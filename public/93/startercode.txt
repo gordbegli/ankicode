@@ -1,0 +1,5 @@
+from typing import List
+
+def binary_search(nums: List[int], target: int) -> int:
+    # Your code here
+    pass

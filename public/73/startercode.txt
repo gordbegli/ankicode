@@ -1,0 +1,5 @@
+from typing import List
+
+def leastInterval(tasks: List[str], n: int) -> int:
+    # Your code here
+    pass

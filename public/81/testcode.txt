@@ -1,0 +1,48 @@
+def test_numIslands():
+    # Test case 1
+    grid1 = [
+        ['1','1','1','1','0'],
+        ['1','1','0','1','0'],
+        ['1','1','0','0','0'],
+        ['0','0','0','0','0']
+    ]
+    assert numIslands(grid1) == 1, f"Test case 1 failed: {grid1}"
+
+    # Test case 2
+    grid2 = [
+        ['1','1','0','0','0'],
+        ['1','1','0','0','0'],
+        ['0','0','1','0','0'],
+        ['0','0','0','1','1']
+    ]
+    assert numIslands(grid2) == 3, f"Test case 2 failed: {grid2}"
+
+    # Additional test cases:
+    grid3 = [['0']]
+    assert numIslands(grid3) == 0, f"Test case 3 failed: {grid3}"
+
+    grid4 = [['1']]
+    assert numIslands(grid4) == 1, f"Test case 4 failed: {grid4}"
+
+    # Edge cases
+    grid5 = [
+        ['1','0','1','0','1'],
+        ['0','0','0','0','0'],
+        ['1','0','1','0','1'],
+        ['0','0','0','0','0'],
+        ['1','0','1','0','1']
+    ]
+    assert numIslands(grid5) == 9, f"Test case 5 failed: {grid5}"
+
+    grid6 = [
+        ['1','1','1','1','1'],
+        ['1','1','1','1','1'],
+        ['1','1','1','1','1'],
+        ['1','1','1','1','1'],
+        ['1','1','1','1','1']
+    ]
+    assert numIslands(grid6) == 1, f"Test case 6 failed: {grid6}"
+
+    print("All test cases passed.")
+    
+test_numIslands()

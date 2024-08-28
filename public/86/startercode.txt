@@ -1,0 +1,25 @@
+from typing import List, Optional
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+# Implement the traversal functions here
+
+def breadth_first_traversal(root: Optional[TreeNode]) -> List[int]:
+    # Your code here
+    pass
+
+def preorder_traversal(root: Optional[TreeNode]) -> List[int]:
+    # Your code here
+    pass
+
+def inorder_traversal(root: Optional[TreeNode]) -> List[int]:
+    # Your code here
+    pass
+
+def postorder_traversal(root: Optional[TreeNode]) -> List[int]:
+    # Your code here
+    pass

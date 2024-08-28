@@ -1,0 +1,7 @@
+from typing import List
+
+INF = 2147483647
+
+def wallsAndGates(rooms: List[List[int]]) -> None:
+    # Your code here
+    pass

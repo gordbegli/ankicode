@@ -1,0 +1,28 @@
+def test_numDecodings():
+    # Test case 1: Example "12"
+    result = numDecodings("12")
+    assert result == 2, f"Failed on input '12'. Expected 2, got {result}"
+    
+    # Test case 2: Example "226"
+    result = numDecodings("226")
+    assert result == 3, f"Failed on input '226'. Expected 3, got {result}"
+    
+    # Test case 3: Example "06"
+    result = numDecodings("06")
+    assert result == 0, f"Failed on input '06'. Expected 0, got {result}"
+    
+    # Custom Test case 4: "123"
+    result = numDecodings("123")
+    assert result == 3, f"Failed on input '123'. Expected 3, got {result}"
+    
+    # Custom Test case 5: "0"
+    result = numDecodings("0")
+    assert result == 0, f"Failed on input '0'. Expected 0, got {result}"
+    
+    # Custom Test case 6: "10"
+    result = numDecodings("10")
+    assert result == 1, f"Failed on input '10'. Expected 1, got {result}"
+    
+    print("All test cases passed!")
+
+test_numDecodings()

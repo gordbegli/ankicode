@@ -1,0 +1,28 @@
+def test_min_stack():
+    print("Test case 1:")
+    minStack = MinStack()
+    minStack.push(-2)
+    minStack.push(0)
+    minStack.push(-3)
+    assert minStack.getMin() == -3, "Error: Expected -3"
+    minStack.pop()
+    assert minStack.top() == 0, "Error: Expected 0"
+    assert minStack.getMin() == -2, "Error: Expected -2"
+    print("Test case 1 passed!")
+    
+    # More test cases
+    print("Test case 2:")
+    minStack = MinStack()
+    minStack.push(1)
+    minStack.push(2)
+    minStack.push(-1)
+    assert minStack.getMin() == -1, "Error: Expected -1"
+    minStack.pop()
+    assert minStack.getMin() == 1, "Error: Expected 1"
+    minStack.pop()
+    assert minStack.getMin() == 1, "Error: Expected 1"
+    print("Test case 2 passed!")
+    
+    print("All test cases complete")
+
+test_min_stack()

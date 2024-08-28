@@ -1,0 +1,5 @@
+from typing import List
+
+def findMin(nums: List[int]) -> int:
+    # Your code here
+    pass

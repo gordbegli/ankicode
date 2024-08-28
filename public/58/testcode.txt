@@ -1,0 +1,50 @@
+def test_subsetsWithDup():
+    # Test case 1
+    nums1 = [1,2,2]
+    result1 = subsetsWithDup(nums1)
+    print("Test case 1:")
+    print(f"Input: {nums1}")
+    print(f"Output: {result1}")
+    expected1 = [[], [1], [1,2], [1,2,2], [2], [2,2]]
+    assert sorted(result1) == sorted(expected1), f"Expected {expected1}, but got {result1}"
+    print("Passed!")
+    print()
+
+    # Test case 2
+    nums2 = [0]
+    result2 = subsetsWithDup(nums2)
+    print("Test case 2:")
+    print(f"Input: {nums2}")
+    print(f"Output: {result2}")
+    expected2 = [[], [0]]
+    assert sorted(result2) == sorted(expected2), f"Expected {expected2}, but got {result2}"
+    print("Passed!")
+    print()
+
+    # Test case 3: Edge case with all identical elements
+    nums3 = [2, 2, 2]
+    result3 = subsetsWithDup(nums3)
+    print("Test case 3:")
+    print(f"Input: {nums3}")
+    print(f"Output: {result3}")
+    expected3 = [[], [2], [2, 2], [2, 2, 2]]
+    assert sorted(result3) == sorted(expected3), f"Expected {expected3}, but got {result3}"
+    print("Passed!")
+    print()
+
+    # Test case 4: Single negative element
+    nums4 = [-1]
+    result4 = subsetsWithDup(nums4)
+    print("Test case 4:")
+    print(f"Input: {nums4}")
+    print(f"Output: {result4}")
+    expected4 = [[], [-1]]
+    assert sorted(result4) == sorted(expected4), f"Expected {expected4}, but got {result4}"
+    print("Passed!")
+    print()
+
+    print("All test cases complete")
+
+# Run the tests
+
+test_subsetsWithDup()

@@ -1,0 +1,21 @@
+def test_evalRPN():
+    sol = Solution()
+
+    # Test case 1
+    tokens = ["2","1","+","3","*"]
+    result = sol.evalRPN(tokens)
+    assert result == 9, f"Expected 9 but got {result}"
+
+    # Test case 2
+    tokens = ["4","13","5","/","+"]
+    result = sol.evalRPN(tokens)
+    assert result == 6, f"Expected 6 but got {result}"
+
+    # Test case 3
+    tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
+    result = sol.evalRPN(tokens)
+    assert result == 22, f"Expected 22 but got {result}"
+
+    print("All test cases passed!")
+
+test_evalRPN()

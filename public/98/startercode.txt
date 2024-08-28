@@ -1,0 +1,13 @@
+class TimeMap:
+
+    def __init__(self):
+        # Initialize the data structure
+        pass
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        # Store the key-value pair with the given timestamp
+        pass
+
+    def get(self, key: str, timestamp: int) -> str:
+        # Retrieve the value corresponding to the key at or before the given timestamp
+        pass

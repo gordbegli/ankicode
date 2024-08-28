@@ -1,0 +1,5 @@
+from typing import List
+
+def findDuplicate(nums: List[int]) -> int:
+    # Your code here
+    pass

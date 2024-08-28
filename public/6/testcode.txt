@@ -1,0 +1,28 @@
+def test_lowestCommonAncestor():
+    print('Test case 1: LCA of 2 and 8 should be 6')
+    root = TreeNode(6, TreeNode(2, TreeNode(0), TreeNode(4, TreeNode(3), TreeNode(5))), TreeNode(8, TreeNode(7), TreeNode(9)))
+    p = root.left # TreeNode(2)
+    q = root.right # TreeNode(8)
+    result = lowestCommonAncestor(root, p, q)
+    print(f'Output: {result.val}')
+    assert result.val == 6
+
+    print('Test case 2: LCA of 2 and 4 should be 2')
+    root = TreeNode(6, TreeNode(2, TreeNode(0), TreeNode(4, TreeNode(3), TreeNode(5))), TreeNode(8, TreeNode(7), TreeNode(9)))
+    p = root.left # TreeNode(2)
+    q = root.left.right # TreeNode(4)
+    result = lowestCommonAncestor(root, p, q)
+    print(f'Output: {result.val}')
+    assert result.val == 2
+
+    print('Test case 3: LCA of 2 and 1 should be 2')
+    root = TreeNode(2, TreeNode(1))
+    p = root # TreeNode(2)
+    q = root.left # TreeNode(1)
+    result = lowestCommonAncestor(root, p, q)
+    print(f'Output: {result.val}')
+    assert result.val == 2
+
+    print('All test cases completed!')
+
+test_lowestCommonAncestor()

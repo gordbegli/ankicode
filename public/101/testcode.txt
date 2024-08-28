@@ -1,0 +1,26 @@
+def test_findCheapestPrice():
+    solution = Solution()
+
+    print('Test case 1:')
+    result = solution.findCheapestPrice(4, [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], 0, 3, 1)
+    assert result == 700, f'Test case 1 failed: Expected 700, got {result}'
+
+    print('Test case 2:')
+    result = solution.findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 1)
+    assert result == 200, f'Test case 2 failed: Expected 200, got {result}'
+
+    print('Test case 3:')
+    result = solution.findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 0)
+    assert result == 500, f'Test case 3 failed: Expected 500, got {result}'
+
+    print('Test case 4:')
+    result = solution.findCheapestPrice(5, [[0,1,50],[1,2,50],[2,3,50],[3,4,50],[0,4,300]], 0, 4, 2)
+    assert result == 200, f'Test case 4 failed: Expected 200, got {result}'
+
+    print('Test case 5:')
+    result = solution.findCheapestPrice(3, [], 0, 2, 1)
+    assert result == -1, f'Test case 5 failed: Expected -1, got {result}'
+
+    print('All test cases passed.')
+
+test_findCheapestPrice()

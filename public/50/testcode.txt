@@ -1,0 +1,39 @@
+def test_maxProfit():
+    # Test case 1
+    prices = [1, 2, 3, 0, 2]
+    result = maxProfit(prices)
+    assert result == 3, f"Expected output is 3, but got {result}"
+
+    # Test case 2
+    prices = [1]
+    result = maxProfit(prices)
+    assert result == 0, f"Expected output is 0, but got {result}"
+
+    # Additional test cases
+    prices = [2, 1, 4, 5, 2, 9, 7]
+    result = maxProfit(prices)
+    assert result == 10, f"Expected output is 10, but got {result}"
+
+    prices = [6, 1, 3, 2, 4, 7]
+    result = maxProfit(prices)
+    assert result == 6, f"Expected output is 6, but got {result}"
+
+    # Edge case: no price change
+    prices = [5, 5, 5, 5]
+    result = maxProfit(prices)
+    assert result == 0, f"Expected output is 0, but got {result}"
+
+    # Edge case: prices always decrease
+    prices = [4, 3, 2, 1]
+    result = maxProfit(prices)
+    assert result == 0, f"Expected output is 0, but got {result}"
+
+    # Edge case: prices always increase
+    prices = [1, 2, 4, 7, 10]
+    result = maxProfit(prices)
+    assert result == 9, f"Expected output is 9, but got {result}"
+
+    print("All test cases complete")
+
+# Run the tests
+test_maxProfit()

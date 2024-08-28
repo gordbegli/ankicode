@@ -1,0 +1,46 @@
+def print_tree(root: Optional[TreeNode]) -> None:
+    if root is None:
+        print('None')
+    else:
+        print(f'val={root.val}', end=', ')
+        print('left=', end='')
+        print_tree(root.left)
+        print('right=', end='')
+        print_tree(root.right)
+
+# Test cases
+def test_invertTree():
+    # Test case 1: Empty tree
+    result = invertTree(None)
+    expected = None
+    assert result == expected, f"Expected {expected}, but got {result}"
+    print("Test case 1 (Empty tree): Passed")
+
+    # Test case 2: Single node
+    root = TreeNode(1)
+    expected = TreeNode(1)
+    result = invertTree(root)
+    assert result.val == expected.val and result.left == expected.left and result.right == expected.right, f"Expected val={expected.val}, left={expected.left}, right={expected.right}, but got val={result.val}, left={result.left}, right={result.right}"
+    print("Test case 2 (Single node): Passed")
+
+    # Test case 3: Full binary tree
+    root = TreeNode(1, TreeNode(2), TreeNode(3))
+    expected = TreeNode(1, TreeNode(3), TreeNode(2))
+    result = invertTree(root)
+    assert result.val == expected.val and result.left.val == expected.left.val and result.right.val == expected.right.val, f"Expected val={expected.val}, left.val={expected.left.val}, right.val={expected.right.val}, but got val={result.val}, left.val={result.left.val}, right.val={result.right.val}"
+    print("Test case 3 (Full binary tree): Passed")
+
+    # Test case 4: Complex binary tree
+    root = TreeNode(4, TreeNode(2, TreeNode(1), TreeNode(3)), TreeNode(7, TreeNode(6), TreeNode(9)))
+    expected = TreeNode(4, TreeNode(7, TreeNode(9), TreeNode(6)), TreeNode(2, TreeNode(3), TreeNode(1)))
+    result = invertTree(root)
+    assert (result.val == expected.val and result.left.val == expected.left.val and result.right.val == expected.right.val
+            and result.left.left.val == expected.left.left.val and result.left.right.val == expected.left.right.val
+            and result.right.left.val == expected.right.left.val and result.right.right.val == expected.right.right.val),
+           f"Expected a complex mirrored tree, but got a different structure"
+    print("Test case 4 (Complex binary tree): Passed")
+
+    print("All test cases completed!")
+
+# Function to execute the tests
+test_invertTree()

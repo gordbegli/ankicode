@@ -1,0 +1,32 @@
+def test_wallsAndGates():
+    print("Test Case 1")
+    rooms1 = [
+        [2147483647, -1, 0, 2147483647],
+        [2147483647, 2147483647, 2147483647, -1],
+        [2147483647, -1, 2147483647, -1],
+        [0, -1, 2147483647, 2147483647],
+    ]
+    expected1 = [
+        [3, -1, 0, 1],
+        [2, 2, 1, -1],
+        [1, -1, 2, -1],
+        [0, -1, 3, 4],
+    ]
+    wallsAndGates(rooms1)
+    assert rooms1 == expected1, f"Expected {expected1}, but got {rooms1}"
+    
+    print("Test Case 2")
+    rooms2 = [[0, 2147483647], [2147483647, 2147483647]]
+    expected2 = [[0, 1], [1, 2]]
+    wallsAndGates(rooms2)
+    assert rooms2 == expected2, f"Expected {expected2}, but got {rooms2}"
+
+    print("Test Case 3")
+    rooms3 = [[0, -1], [2147483647, 2147483647]]
+    expected3 = [[0, -1], [1, 1]]
+    wallsAndGates(rooms3)
+    assert rooms3 == expected3, f"Expected {expected3}, but got {rooms3}"
+
+    print("All test cases passed!")
+
+test_wallsAndGates()

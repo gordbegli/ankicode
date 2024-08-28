@@ -1,0 +1,45 @@
+def test_orangesRotting():
+    # Test case 1
+    grid = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]
+    result = orangesRotting(grid)
+    print("Test case 1:")
+    print(f"Input: {grid}")
+    print(f"Output: {result}")
+    assert result == 4, f"Expected 4 but got {result}"
+    
+    # Test case 2
+    grid = [[2, 1, 1], [0, 1, 1], [1, 0, 1]]
+    result = orangesRotting(grid)
+    print("Test case 2:")
+    print(f"Input: {grid}")
+    print(f"Output: {result}")
+    assert result == -1, f"Expected -1 but got {result}"
+    
+    # Test case 3
+    grid = [[0, 2]]
+    result = orangesRotting(grid)
+    print("Test case 3:")
+    print(f"Input: {grid}")
+    print(f"Output: {result}")
+    assert result == 0, f"Expected 0 but got {result}"
+    
+    # Additional Test case 4
+    grid = [[1]]
+    result = orangesRotting(grid)
+    print("Test case 4:")
+    print(f"Input: {grid}")
+    print(f"Output: {result}")
+    assert result == -1, f"Expected -1 but got {result}"
+
+    # Additional Test case 5
+    grid = [[2]]
+    result = orangesRotting(grid)
+    print("Test case 5:")
+    print(f"Input: {grid}")
+    print(f"Output: {result}")
+    assert result == 0, f"Expected 0 but got {result}"
+
+    print("All test cases complete")
+
+# Run tests
+test_orangesRotting()

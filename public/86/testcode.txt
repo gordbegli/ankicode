@@ -1,0 +1,40 @@
+def create_test_tree():
+    # Creates the tree:
+    #     1
+    #    / \
+    #   2   3
+    #  / \
+    # 4   5
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+    root.left.left = TreeNode(4)
+    root.left.right = TreeNode(5)
+    return root
+
+def test_traversals():
+    root = create_test_tree()
+    
+    # Test Breadth-First Traversal
+    result = breadth_first_traversal(root)
+    print("Breadth-First Traversal Output:", result)
+    assert result == [1, 2, 3, 4, 5], "Failed Breadth-First Traversal"
+
+    # Test Preorder Traversal
+    result = preorder_traversal(root)
+    print("Preorder Traversal Output:", result)
+    assert result == [1, 2, 4, 5, 3], "Failed Preorder Traversal"
+
+    # Test Inorder Traversal
+    result = inorder_traversal(root)
+    print("Inorder Traversal Output:", result)
+    assert result == [4, 2, 5, 1, 3], "Failed Inorder Traversal"
+
+    # Test Postorder Traversal
+    result = postorder_traversal(root)
+    print("Postorder Traversal Output:", result)
+    assert result == [4, 5, 2, 3, 1], "Failed Postorder Traversal"
+
+    print("All tests passed!")
+
+test_traversals()

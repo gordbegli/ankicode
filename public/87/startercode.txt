@@ -1,0 +1,5 @@
+from typing import List
+
+def solve_surrounded_regions(board: List[List[str]]) -> None:
+    # Your code here
+    pass

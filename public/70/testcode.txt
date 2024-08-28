@@ -1,0 +1,19 @@
+def test_lastStoneWeight():
+    print("Test Case 1")
+    assert lastStoneWeight([2, 7, 4, 1, 8, 1]) == 1
+
+    print("Test Case 2")
+    assert lastStoneWeight([1]) == 1
+
+    print("Test Case 3")
+    assert lastStoneWeight([10, 4, 2, 10, 4]) == 0
+
+    print("Test Case 4")
+    assert lastStoneWeight([5, 5, 5, 5]) == 0
+
+    print("Test Case 5")
+    assert lastStoneWeight([9, 3, 2, 10]) == 2
+
+    print("All test cases pass")
+
+test_lastStoneWeight()

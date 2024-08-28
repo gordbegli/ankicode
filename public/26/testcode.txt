@@ -1,0 +1,25 @@
+def test_isAnagram():
+    # Test case 1: Anagram strings
+    result = isAnagram("anagram", "nagaram")
+    print("Test case 1 (Anagram strings):\nInput: s='anagram', t='nagaram'\nOutput: " + str(result) + "\nResult: " + ("Passed" if result == True else "Failed") + "\n") 
+    assert result == True, "Anagram strings should return True"
+
+    # Test case 2: Non-anagram strings
+    result = isAnagram("rat", "car")
+    print("Test case 2 (Non-anagram strings):\nInput: s='rat', t='car'\nOutput: " + str(result) + "\nResult: " + ("Passed" if result == False else "Failed") + "\n") 
+    assert result == False, "Non-anagram strings should return False"
+    
+    # Test case 3: Same string
+    result = isAnagram("a", "a")
+    print("Test case 3 (Same string):\nInput: s='a', t='a'\nOutput: " + str(result) + "\nResult: " + ("Passed" if result == True else "Failed") + "\n") 
+    assert result == True, "Same strings should return True"
+    
+    # Test case 4: Different lengths
+    result = isAnagram("ab", "a")
+    print("Test case 4 (Different lengths):\nInput: s='ab', t='a'\nOutput: " + str(result) + "\nResult: " + ("Passed" if result == False else "Failed") + "\n") 
+    assert result == False, "Strings of different lengths should return False"
+
+    print("All test cases completed!")
+
+# Run the tests
+test_isAnagram()

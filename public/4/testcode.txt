@@ -1,0 +1,63 @@
+def test_isSameTree():
+    # Helper function to create a binary tree from a list of values
+    def list_to_tree(arr):
+        if not arr:
+            return None
+        root = TreeNode(arr[0])
+        nodes = [root]
+        i = 1
+        while nodes and i < len(arr):
+            node = nodes.pop(0)
+            if node:
+                if i < len(arr) and arr[i] is not None:
+                    node.left = TreeNode(arr[i])
+                nodes.append(node.left)
+                if i+1 < len(arr) and arr[i+1] is not None:
+                    node.right = TreeNode(arr[i+1])
+                nodes.append(node.right)
+                i += 2
+        return root
+
+    # Test case 1: Both trees are the same
+    p = list_to_tree([1, 2, 3])
+    q = list_to_tree([1, 2, 3])
+    result = Solution().isSameTree(p, q)
+    print("Test case 1 (Both trees are the same):")
+    print(f"Input: p = [1,2,3], q = [1,2,3]")
+    print(f"Output: {result}")
+    print("Result: " + ("Passed" if result == True else "Failed"))
+    assert result == True
+
+    # Test case 2: Different structure
+    p = list_to_tree([1, 2])
+    q = list_to_tree([1, None, 2])
+    result = Solution().isSameTree(p, q)
+    print("Test case 2 (Different structure):")
+    print(f"Input: p = [1,2], q = [1,null,2]")
+    print(f"Output: {result}")
+    print("Result: " + ("Passed" if result == False else "Failed"))
+    assert result == False
+
+    # Test case 3: Different values
+    p = list_to_tree([1, 2, 1])
+    q = list_to_tree([1, 1, 2])
+    result = Solution().isSameTree(p, q)
+    print("Test case 3 (Different values):")
+    print(f"Input: p = [1,2,1], q = [1,1,2]")
+    print(f"Output: {result}")
+    print("Result: " + ("Passed" if result == False else "Failed"))
+    assert result == False
+
+    # Test case 4: Both trees are empty
+    p = list_to_tree([])
+    q = list_to_tree([])
+    result = Solution().isSameTree(p, q)
+    print("Test case 4 (Both trees are empty):")
+    print(f"Input: p = [], q = []")
+    print(f"Output: {result}")
+    print("Result: " + ("Passed" if result == True else "Failed"))
+    assert result == True
+
+    print("All test cases completed!")
+
+test_isSameTree()

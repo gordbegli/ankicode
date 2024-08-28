@@ -1,0 +1,38 @@
+from typing import Optional, List
+
+class Node:
+    def __init__(self, val: int, next: 'Optional[Node]'=None, random: 'Optional[Node]'=None):
+        self.val = val
+        self.next = next
+        self.random = random
+
+    def __repr__(self):
+        next_val = self.next.val if self.next else 'None'
+        random_val = self.random.val if self.random else 'None'
+        return f'[{self.val}, {random_val}]'
+
+    def __eq__(self, other):
+        if not other or not isinstance(other, Node):
+            return False
+        return self.val == other.val and self.next == other.next and self.random == other.random
+
+    def to_list(self):
+        result, current = [], self
+        while current:
+            random_index = 'None' if current.random is None else self.get_index(current.random)
+            result.append([current.val, random_index])
+            current = current.next
+        return result
+
+    def get_index(self, node):
+        idx, current = 0, self
+        while current and current is not node:
+            current = current.next
+            idx += 1
+        return idx if current is node else None
+
+
+
+def copyRandomList(head: 'Optional[Node]') -> 'Optional[Node]':
+    # Your code here
+    pass

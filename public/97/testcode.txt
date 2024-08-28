@@ -1,0 +1,25 @@
+def test_search():
+    solution = Solution()
+
+    # Test case 1
+    assert solution.search([4,5,6,7,0,1,2], 0) == 4
+
+    # Test case 2
+    assert solution.search([4,5,6,7,0,1,2], 3) == -1
+
+    # Test case 3
+    assert solution.search([1], 0) == -1
+
+    # Additional test cases
+    # Test case 4: nums array where pivot is at the start
+    assert solution.search([6,7,8,0,1,2,3,4,5], 6) == 0
+
+    # Test case 5: larger rotated array
+    assert solution.search([12,13,14,15,1,2,3,4,5,6,7,8,9,10,11], 2) == 5
+
+    # Test case 6: not found
+    assert solution.search([7,8,1,2,3,4,5,6], 9) == -1
+
+    print('All test cases passed.')
+
+test_search()

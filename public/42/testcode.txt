@@ -1,0 +1,35 @@
+def test_copy_random_list():
+    print('Test case 1: [[7, None], [13, 0], [11, 4], [10, 2], [1, 0]]')
+    node5 = Node(1)
+    node4 = Node(10, node5)
+    node3 = Node(11, node4)
+    node2 = Node(13, node3)
+    node1 = Node(7, node2)
+    node5.random = node1
+    node4.random = node3
+    node3.random = node5
+    node2.random = node1
+    result = copyRandomList(node1)
+    print(f'Output: {result.to_list()}')
+    assert result.to_list() == [[7, None], [13, 0], [11, 4], [10, 2], [1, 0]], 'Test case 1 failed'
+
+    print('Test case 2: [[1, 1], [2, 1]]')
+    node2 = Node(2)
+    node1 = Node(1, node2, node2)
+    node2.random = node2
+    result = copyRandomList(node1)
+    print(f'Output: {result.to_list()}')
+    assert result.to_list() == [[1, 1], [2, 1]], 'Test case 2 failed'
+
+    print('Test case 3: [[3, None], [3, 0], [3, None]]')
+    node3 = Node(3)
+    node2 = Node(3, node3)
+    node1 = Node(3, node2)
+    node3.random = node1
+    result = copyRandomList(node1)
+    print(f'Output: {result.to_list()}')
+    assert result.to_list() == [[3, None], [3, 0], [3, None]], 'Test case 3 failed'
+
+    print('All test cases complete.')
+
+test_copy_random_list()

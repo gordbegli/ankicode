@@ -1,0 +1,22 @@
+def test_minDistance():
+    # Example 1
+    result = minDistance("horse", "ros")
+    assert result == 3, f"Failed on Example 1: Expected 3, got {result}"
+    
+    # Example 2
+    result = minDistance("intention", "execution")
+    assert result == 5, f"Failed on Example 2: Expected 5, got {result}"
+    
+    # Additional test cases
+    result = minDistance("", "")
+    assert result == 0, f"Failed on empty strings: Expected 0, got {result}"
+
+    result = minDistance("a", "a")
+    assert result == 0, f"Failed on single same character: Expected 0, got {result}"
+
+    result = minDistance("a", "b")
+    assert result == 1, f"Failed on single different character: Expected 1, got {result}"
+
+    print("All test cases passed")
+
+test_minDistance()

@@ -1,0 +1,32 @@
+from typing import List
+
+class Twitter:
+    def __init__(self):
+        """
+        Initialize your data structures here.
+        """
+        pass
+
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        """
+        Compose a new tweet.
+        """
+        pass
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        """
+        Retrieve the 10 most recent tweet IDs in the user's news feed.
+        """
+        pass
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        """
+        Follower follows a followee.
+        """
+        pass
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        """
+        Follower unfollows a followee.
+        """
+        pass

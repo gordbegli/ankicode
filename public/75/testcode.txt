@@ -1,0 +1,22 @@
+def test_trie_operations():
+    print("Test case 1:")
+    trie = Trie()
+    trie.insert("apple")
+    assert trie.search("apple"), "Error: apple should be found"
+    assert not trie.search("app"), "Error: app should not be found yet"
+    assert trie.startsWith("app"), "Error: app should be a prefix"
+    trie.insert("app")
+    assert trie.search("app"), "Error: app should be found after insertion"
+
+    print("Test case 2:")
+    trie = Trie()
+    trie.insert("banana")
+    assert trie.search("banana"), "Error: banana should be found"
+    assert not trie.search("ban"), "Error: ban should not be found yet"
+    assert trie.startsWith("ban"), "Error: ban should be a prefix"
+    trie.insert("band")
+    assert trie.search("band"), "Error: band should be found after insertion"
+    assert trie.search("banana"), "Error: banana should still be found"
+    print("All test cases complete")
+
+test_trie_operations()

@@ -1,0 +1,45 @@
+def test_kthSmallest():
+    # Test case 1
+    root = TreeNode(3)
+    root.left = TreeNode(1)
+    root.right = TreeNode(4)
+    root.left.right = TreeNode(2)
+    result = kthSmallest(root, 1)
+    print("Test case 1:")
+    print(f"Input: [3,1,4,null,2], k = 1")
+    print(f"Output: {result}")
+    print("Expected: 1")
+    print("Result: " + ("Passed" if result == 1 else "Failed"))
+    assert result == 1
+    print()
+
+    # Test case 2
+    root = TreeNode(5)
+    root.left = TreeNode(3)
+    root.right = TreeNode(6)
+    root.left.left = TreeNode(2)
+    root.left.right = TreeNode(4)
+    root.left.left.left = TreeNode(1)
+    result = kthSmallest(root, 3)
+    print("Test case 2:")
+    print(f"Input: [5,3,6,2,4,null,null,1], k = 3")
+    print(f"Output: {result}")
+    print("Expected: 3")
+    print("Result: " + ("Passed" if result == 3 else "Failed"))
+    assert result == 3
+    print()
+
+    # Additional Test case 3
+    root = TreeNode(2)
+    result = kthSmallest(root, 1)
+    print("Test case 3:")
+    print(f"Input: [2], k = 1")
+    print(f"Output: {result}")
+    print("Expected: 2")
+    print("Result: " + ("Passed" if result == 2 else "Failed"))
+    assert result == 2
+    print()
+
+    print("All test cases complete")
+
+test_kthSmallest()

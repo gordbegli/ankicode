@@ -1,0 +1,19 @@
+def test_maxAreaOfIsland():
+    print("Test case 1:")
+    grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+    result = maxAreaOfIsland(grid)
+    print(f"Input: {grid}")
+    print(f"Output: {result}")
+    assert result == 6
+    
+    print("Test case 2:")
+    grid = [[0,0,0,0,0,0,0,0]]
+    result = maxAreaOfIsland(grid)
+    print(f"Input: {grid}")
+    print(f"Output: {result}")
+    assert result == 0
+    
+    print("All test cases complete")
+
+# Run the tests
+test_maxAreaOfIsland()

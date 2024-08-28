@@ -1,0 +1,5 @@
+from typing import List
+
+def groupAnagrams(strs: List[str]) -> List[List[str]]:
+    # Your code here
+    pass

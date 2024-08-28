@@ -1,0 +1,25 @@
+def test_characterReplacement():
+    # Test case 1
+    result = characterReplacement("ABAB", 2)
+    assert result == 4, f"Test case 1 failed: expected 4 but got {result}"
+
+    # Test case 2
+    result = characterReplacement("AABABBA", 1)
+    assert result == 4, f"Test case 2 failed: expected 4 but got {result}"
+
+    # Additional test cases
+    # Test case 3
+    result = characterReplacement("AAAA", 2)
+    assert result == 4, f"Test case 3 failed: expected 4 but got {result}"
+
+    # Test case 4
+    result = characterReplacement("ABCD", 0)
+    assert result == 1, f"Test case 4 failed: expected 1 but got {result}"
+
+    # Test case 5
+    result = characterReplacement("ABCDEABCDE", 2)
+    assert result == 3, f"Test case 5 failed: expected 3 but got {result}"
+
+    print("All test cases passed")
+
+test_characterReplacement()

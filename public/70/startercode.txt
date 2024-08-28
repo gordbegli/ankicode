@@ -1,0 +1,5 @@
+from typing import List
+
+def lastStoneWeight(stones: List[int]) -> int:
+    # Your code here
+    pass

@@ -1,0 +1,36 @@
+def test_check_inclusion():
+    # Test case 1: Example 1
+    result = check_inclusion("ab", "eidbaooo")
+    assert result == True, f"Test case 1 failed: expected True, got {result}"
+
+    # Test case 2: Example 2
+    result = check_inclusion("ab", "eidboaoo")
+    assert result == False, f"Test case 2 failed: expected False, got {result}"
+
+    # Test case 3: s1 is longer than s2
+    result = check_inclusion("longstring", "short")
+    assert result == False, f"Test case 3 failed: expected False, got {result}"
+
+    # Test case 4: s1 and s2 are identical but not permutations
+    result = check_inclusion("abc", "abc")
+    assert result == True, f"Test case 4 failed: expected True, got {result}"
+
+    # Test case 5: Large input with no permutation match
+    s1_large = "abcdefghijklmnopqrstuvwxyz"
+    s2_large = "a" * 10000
+    result = check_inclusion(s1_large, s2_large)
+    assert result == False, f"Test case 5 failed: expected False, got {result}"
+
+    # Test case 6: Large input with permutation match
+    s1_large_permutation = "abcdefghijklmnopqrstuvwxyz"
+    s2_large_permutation = "zyxwvutsrqponmlkjihgfedcba" + "a" * 9974
+    result = check_inclusion(s1_large_permutation, s2_large_permutation)
+    assert result == True, f"Test case 6 failed: expected True, got {result}"
+
+    # Test case 7: All characters in s1 match s2 but not a permutation
+    result = check_inclusion("abc", "cbdaa")
+    assert result == False, f"Test case 7 failed: expected False, got {result}"
+
+    print("All test cases pass.")
+
+test_check_inclusion()

@@ -1,0 +1,5 @@
+from typing import List
+
+def canPartition(nums: List[int]) -> bool:
+    # Your code here
+    pass

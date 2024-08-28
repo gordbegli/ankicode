@@ -1,0 +1,55 @@
+def test_minCostConnectPoints():
+    # Test case 1
+    points1 = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+    result1 = minCostConnectPoints(points1)
+    print("Test case 1:")
+    print(f"Input: {points1}")
+    print(f"Output: {result1}")
+    print("Expected: 20")
+    assert result1 == 20
+    print()
+
+    # Test case 2
+    points2 = [[3,12],[-2,5],[-4,1]]
+    result2 = minCostConnectPoints(points2)
+    print("Test case 2:")
+    print(f"Input: {points2}")
+    print(f"Output: {result2}")
+    print("Expected: 18")
+    assert result2 == 18
+    print()
+
+    # Additional test case 1: Points on a straight line
+    points3 = [[0,0],[1,0],[2,0],[3,0]]
+    result3 = minCostConnectPoints(points3)
+    print("Additional test case 1:")
+    print(f"Input: {points3}")
+    print(f"Output: {result3}")
+    print("Expected: 3")
+    assert result3 == 3
+    print()
+
+    # Additional test case 2: Minimal input
+    points4 = [[0,0]]
+    result4 = minCostConnectPoints(points4)
+    print("Additional test case 2:")
+    print(f"Input: {points4}")
+    print(f"Output: {result4}")
+    print("Expected: 0")
+    assert result4 == 0
+    print()
+
+    # Additional test case 3: Points forming a square
+    points5 = [[0,0],[0,2],[2,0],[2,2]]
+    result5 = minCostConnectPoints(points5)
+    print("Additional test case 3:")
+    print(f"Input: {points5}")
+    print(f"Output: {result5}")
+    print("Expected: 6")
+    assert result5 == 6
+    print()
+
+    print("All test cases complete")
+
+# Run the tests
+test_minCostConnectPoints()

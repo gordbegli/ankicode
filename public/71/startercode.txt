@@ -1,0 +1,6 @@
+from typing import List
+import heapq
+
+def kClosest(points: List[List[int]], k: int) -> List[List[int]]:
+    # Your code here
+    pass

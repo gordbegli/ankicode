@@ -1,0 +1,33 @@
+def test_leastInterval():
+    # Test case 1
+    print("Test 1: tasks=['A', 'A', 'A', 'B', 'B', 'B'], n=2")
+    result = leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 2)
+    print(f"Output: {result}")
+    assert result == 8, f"Expected 8 but got {result}"
+
+    # Test case 2
+    print("Test 2: tasks=['A', 'C', 'A', 'B', 'D', 'B'], n=1")
+    result = leastInterval(['A', 'C', 'A', 'B', 'D', 'B'], 1)
+    print(f"Output: {result}")
+    assert result == 6, f"Expected 6 but got {result}"
+
+    # Test case 3
+    print("Test 3: tasks=['A', 'A', 'A', 'B', 'B', 'B'], n=3")
+    result = leastInterval(['A', 'A', 'A', 'B', 'B', 'B'], 3)
+    print(f"Output: {result}")
+    assert result == 10, f"Expected 10 but got {result}"
+
+    # Additional test cases
+    print("Test 4: tasks=['A', 'A', 'A', 'B', 'B', 'C'], n=2")
+    result = leastInterval(['A', 'A', 'A', 'B', 'B', 'C'], 2)
+    print(f"Output: {result}")
+    assert result == 7, f"Expected 7 but got {result}"
+
+    print("Test 5: tasks=['A', 'A', 'B', 'B', 'C', 'C'], n=0")
+    result = leastInterval(['A', 'A', 'B', 'B', 'C', 'C'], 0)
+    print(f"Output: {result}")
+    assert result == 6, f"Expected 6 but got {result}"
+
+    print("All test cases complete")
+
+test_leastInterval()

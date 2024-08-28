@@ -1,0 +1,44 @@
+def test_combinationSum():
+    # Test case 1: Example 1
+    candidates = [2, 3, 6, 7]
+    target = 7
+    print("Test case 1: candidates = [2, 3, 6, 7], target = 7")
+    result = combinationSum(candidates, target)
+    print(f"Output: {result}")
+    print("Expected: [[2, 2, 3], [7]]")
+    assert sorted(result) == sorted([[2, 2, 3], [7]]), "Test case 1 failed"
+    print()
+
+    # Test case 2: Example 2
+    candidates = [2, 3, 5]
+    target = 8
+    print("Test case 2: candidates = [2, 3, 5], target = 8")
+    result = combinationSum(candidates, target)
+    print(f"Output: {result}")
+    print("Expected: [[2, 2, 2, 2], [2, 3, 3], [3, 5]]")
+    assert sorted(result) == sorted([[2, 2, 2, 2], [2, 3, 3], [3, 5]]), "Test case 2 failed"
+    print()
+
+    # Test case 3: Example 3
+    candidates = [2]
+    target = 1
+    print("Test case 3: candidates = [2], target = 1")
+    result = combinationSum(candidates, target)
+    print(f"Output: {result}")
+    print("Expected: []")
+    assert result == [], "Test case 3 failed"
+    print()
+
+    # Test case 4: Additional edge case
+    candidates = [1, 2]
+    target = 4
+    print("Test case 4: candidates = [1, 2], target = 4")
+    result = combinationSum(candidates, target)
+    print(f"Output: {result}")
+    print("Expected: [[1, 1, 1, 1], [1, 1, 2], [2, 2]]")
+    assert sorted(result) == sorted([[1, 1, 1, 1], [1, 1, 2], [2, 2]]), "Test case 4 failed"
+    print()
+
+    print("All test cases complete")
+
+test_combinationSum()

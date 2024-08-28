@@ -1,0 +1,26 @@
+def test_twitter():
+    twitter = Twitter()
+
+    # Test case 1: Posting and getting tweets
+    print("Test case 1")
+    twitter.postTweet(1, 5) 
+    result = twitter.getNewsFeed(1)
+    print("User 1's news feed:", result)
+    assert result == [5]
+
+    # Test case 2: Following another user and fetching the news feed
+    twitter.follow(1, 2)
+    twitter.postTweet(2, 6)
+    result = twitter.getNewsFeed(1)
+    print("User 1's news feed after following user 2:", result)
+    assert result == [6, 5]
+
+    # Test case 3: Unfollowing a user and fetching the news feed
+    twitter.unfollow(1, 2)
+    result = twitter.getNewsFeed(1)
+    print("User 1's news feed after unfollowing user 2:", result)
+    assert result == [5]
+
+    print("All test cases passed!")
+
+test_twitter()

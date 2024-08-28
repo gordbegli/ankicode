@@ -1,0 +1,55 @@
+def list_to_string(head: ListNode) -> str:
+    elements = []
+    while head:
+        elements.append(str(head.val))
+        head = head.next
+    return ','.join(elements)
+
+
+def test_mergeTwoLists():
+    # Test case 1
+    print("Test case 1: [1,2,4] and [1,3,4]")
+    list1 = ListNode(1, ListNode(2, ListNode(4, None)))
+    list2 = ListNode(1, ListNode(3, ListNode(4, None)))
+    merged = mergeTwoLists(list1, list2)
+    print("Input: list1 = [1,2,4], list2 = [1,3,4]")
+    result = list_to_string(merged)
+    print(f"Output: [{result}]")
+    assert result == "1,1,2,3,4,4"
+    print("Result: Passed"); print()
+
+    # Test case 2
+    print("Test case 2: [] and []")
+    merged = mergeTwoLists(None, None)
+    print("Input: list1 = [], list2 = []")
+    result = list_to_string(merged)
+    print(f"Output: [{result}]")
+    assert result == ""
+    print("Result: Passed"); print()
+
+    # Test case 3
+    print("Test case 3: [] and [0]")
+    list1 = None
+    list2 = ListNode(0)
+    merged = mergeTwoLists(list1, list2)
+    print("Input: list1 = [], list2 = [0]")
+    result = list_to_string(merged)
+    print(f"Output: [{result}]")
+    assert result == "0"
+    print("Result: Passed"); print()
+
+    # Test case 4: Both lists have negative numbers
+    print("Test case 4: [-3,-1,0] and [-2,2]")
+    list1 = ListNode(-3, ListNode(-1, ListNode(0)))
+    list2 = ListNode(-2, ListNode(2))
+    merged = mergeTwoLists(list1, list2)
+    print("Input: list1 = [-3,-1,0], list2 = [-2,2]")
+    result = list_to_string(merged)
+    print(f"Output: [{result}]")
+    assert result == "-3,-2,-1,0,2"
+    print("Result: Passed"); print()
+
+    print("All test cases complete")
+
+# Run the tests
+test_mergeTwoLists()

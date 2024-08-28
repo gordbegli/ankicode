@@ -1,0 +1,5 @@
+from typing import List
+
+def longestConsecutive(nums: List[int]) -> int:
+    # Your code here
+    pass

@@ -1,0 +1,38 @@
+def print_list(head: Optional[ListNode]):
+    result = []
+    while head:
+        result.append(head.val)
+        head = head.next
+    return result
+
+
+def test_reverseList():
+    print('Test case 1: reverse [1, 2, 3, 4, 5]')
+    head = ListNode(1)
+    head.next = ListNode(2)
+    head.next.next = ListNode(3)
+    head.next.next.next = ListNode(4)
+    head.next.next.next.next = ListNode(5)
+    result = reverseList(head)
+    print(f'Input: [1, 2, 3, 4, 5]')
+    print(f'Output: {print_list(result)}')
+    assert print_list(result) == [5, 4, 3, 2, 1]
+
+    print('Test case 2: reverse [1, 2]')
+    head = ListNode(1)
+    head.next = ListNode(2)
+    result = reverseList(head)
+    print(f'Input: [1, 2]')
+    print(f'Output: {print_list(result)}')
+    assert print_list(result) == [2, 1]
+
+    print('Test case 3: reverse []')
+    head = None
+    result = reverseList(head)
+    print(f'Input: []')
+    print(f'Output: {print_list(result)}')
+    assert print_list(result) == []
+
+    print('All test cases complete')
+
+test_reverseList()

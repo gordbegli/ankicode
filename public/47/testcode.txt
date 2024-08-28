@@ -1,0 +1,26 @@
+def test_LRUCache():
+    print("Test case 1: Basic operations")
+    cache = LRUCache(2)
+    cache.put(1, 1)
+    cache.put(2, 2)
+    result1 = cache.get(1)
+    print(f"get(1): {result1}")
+    assert result1 == 1, f"Expected 1 but got {result1}"
+    cache.put(3, 3)  
+    result2 = cache.get(2)
+    print(f"get(2): {result2}")
+    assert result2 == -1, f"Expected -1 but got {result2}"
+    cache.put(4, 4)
+    result3 = cache.get(1)
+    print(f"get(1): {result3}")
+    assert result3 == -1, f"Expected -1 but got {result3}"
+    result4 = cache.get(3)
+    print(f"get(3): {result4}")
+    assert result4 == 3, f"Expected 3 but got {result4}"
+    result5 = cache.get(4)
+    print(f"get(4): {result5}")
+    assert result5 == 4, f"Expected 4 but got {result5}"
+
+    print("All test cases complete")
+
+test_LRUCache()

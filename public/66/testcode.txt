@@ -1,0 +1,21 @@
+def test_generateParenthesis():
+    # Test case 1: n = 3
+    result = generateParenthesis(3)
+    assert set(result) == {"((()))","(()())","(())()","()(())","()()()"}, f'Test case 1 failed: {result}'
+    
+    # Test case 2: n = 1
+    result = generateParenthesis(1)
+    assert result == ["()"], f'Test case 2 failed: {result}'
+    
+    # Test case 3: n = 2
+    result = generateParenthesis(2)
+    assert set(result) == {"(())","()()"}, f'Test case 3 failed: {result}'
+    
+    # Test case 4: n = 4
+    result = generateParenthesis(4)
+    expected = {"(((())))","((()()))","((())())","((()))()","(()(()))","(()()())","(()())()","(())(())","(())()()","()((()))","()(()())","()(())()","()()(())","()()()()"}
+    assert set(result) == expected, f'Test case 4 failed: {result}'
+
+    print('All test cases pass.')
+
+test_generateParenthesis()

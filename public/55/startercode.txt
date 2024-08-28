@@ -1,0 +1,7 @@
+from typing import List
+
+# Returns all subsets of a given list of unique integers
+
+def subsets(nums: List[int]) -> List[List[int]]:
+    # Your code here
+    pass

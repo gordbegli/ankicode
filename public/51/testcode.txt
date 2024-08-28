@@ -1,0 +1,35 @@
+def test_change():
+    # Test case 1
+    amount, coins = 5, [1, 2, 5]
+    result = change(amount, coins)
+    assert result == 4, f"Test case 1 failed! Expected 4, but got {result}"
+    print(f"Test case 1 passed! Input: amount = {amount}, coins = {coins}, Output: {result}")
+
+    # Test case 2
+    amount, coins = 3, [2]
+    result = change(amount, coins)
+    assert result == 0, f"Test case 2 failed! Expected 0, but got {result}"
+    print(f"Test case 2 passed! Input: amount = {amount}, coins = {coins}, Output: {result}")
+
+    # Test case 3
+    amount, coins = 10, [10]
+    result = change(amount, coins)
+    assert result == 1, f"Test case 3 failed! Expected 1, but got {result}"
+    print(f"Test case 3 passed! Input: amount = {amount}, coins = {coins}, Output: {result}")
+
+    # Additional test case 1
+    amount, coins = 0, [1, 2, 5]
+    result = change(amount, coins)
+    assert result == 1, f"Additional test case 1 failed! Expected 1, but got {result}"
+    print(f"Additional test case 1 passed! Input: amount = {amount}, coins = {coins}, Output: {result}")
+
+    # Additional test case 2
+    amount, coins = 5, []
+    result = change(amount, coins)
+    assert result == 0, f"Additional test case 2 failed! Expected 0, but got {result}"
+    print(f"Additional test case 2 passed! Input: amount = {amount}, coins = {coins}, Output: {result}")
+
+    print("All test cases complete")
+
+# Run the tests
+test_change()

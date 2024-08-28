@@ -1,0 +1,82 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    max-width: 100%;
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
+}
+
+.menu::-webkit-scrollbar {
+    display: none;
+    /* For Chrome, Safari, and Opera */
+}
+
+.tabs {
+    z-index: 100;
+    justify-content: flex-end;
+    display: flex;
+    padding-top: 5px;
+    flex-direction: row;
+    background-color: #f0f0f0;
+}
+
+.activeTab,
+.inactiveTab {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    opacity: .3;
+}
+
+.activeTab {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    opacity: 0.5;
+    box-sizing: border-box;
+}
+
+.inactiveTab:hover {
+    background-color: #e0e0e0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.tabContent {
+    padding: .25rem;
+}
+
+.logo {
+    padding-top: 5px;
+    padding-left: 7.5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+    animation: wiggle 0.5s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(5deg); }
+    100% { transform: rotate(0deg); }
+}

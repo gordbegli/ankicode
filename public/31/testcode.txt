@@ -1,0 +1,25 @@
+def test_productExceptSelf():
+    # Test case 1
+    nums = [1, 2, 3, 4]
+    print("Test case 1: Input: [1, 2, 3, 4]")
+    result = productExceptSelf(nums)
+    print(f"Output: {result}")
+    assert result == [24, 12, 8, 6], f"Expected [24, 12, 8, 6], but got {result}"
+    
+    # Test case 2
+    nums = [-1, 1, 0, -3, 3]
+    print("Test case 2: Input: [-1, 1, 0, -3, 3]")
+    result = productExceptSelf(nums)
+    print(f"Output: {result}")
+    assert result == [0, 0, 9, 0, 0], f"Expected [0, 0, 9, 0, 0], but got {result}"
+
+    # Additional edge case test
+    nums = [5, 2]
+    print("Test case 3: Input: [5, 2]")
+    result = productExceptSelf(nums)
+    print(f"Output: {result}")
+    assert result == [2, 5], f"Expected [2, 5], but got {result}"
+
+    print("All test cases complete")
+
+test_productExceptSelf()

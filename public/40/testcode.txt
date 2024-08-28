@@ -1,0 +1,36 @@
+def print_list(head):
+    result = []
+    current = head
+    while current:
+        result.append(current.val)
+        current = current.next
+    return result
+
+# Test case 1
+print('Test case 1:')
+head = ListNode(1, ListNode(2, ListNode(3, ListNode(4))))
+Solution().reorderList(head)
+print('Expected Output: [1, 4, 2, 3]')
+print('Actual Output:', print_list(head))
+assert print_list(head) == [1, 4, 2, 3]
+print()
+
+# Test case 2
+print('Test case 2:')
+head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+Solution().reorderList(head)
+print('Expected Output: [1, 5, 2, 4, 3]')
+print('Actual Output:', print_list(head))
+assert print_list(head) == [1, 5, 2, 4, 3]
+print()
+
+# Test case 3: Single node list
+print('Test case 3:')
+head = ListNode(1)
+Solution().reorderList(head)
+print('Expected Output: [1]')
+print('Actual Output:', print_list(head))
+assert print_list(head) == [1]
+print()
+
+print('All test cases complete')

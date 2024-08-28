@@ -1,0 +1,45 @@
+def test_unique_paths():
+    # Test case 1
+    print("Test case 1:")
+    m, n = 3, 2
+    print(f"Input: m = {m}, n = {n}")
+    result = unique_paths(m, n)
+    print(f"Output: {result}")
+    assert result == 3, "Expected output is 3"
+    print()
+
+    # Test case 2
+    print("Test case 2:")
+    m, n = 3, 7
+    print(f"Input: m = {m}, n = {n}")
+    result = unique_paths(m, n)
+    print(f"Output: {result}")
+    assert result == 28, "Expected output is 28"
+    print()
+
+    # Additional cases
+    print("Additional test cases:")
+    m, n = 1, 1
+    print(f"Input: m = {m}, n = {n}")
+    result = unique_paths(m, n)
+    print(f"Output: {result}")
+    assert result == 1, "Expected output is 1"
+    print()
+
+    m, n = 2, 2
+    print(f"Input: m = {m}, n = {n}")
+    result = unique_paths(m, n)
+    print(f"Output: {result}")
+    assert result == 2, "Expected output is 2"
+    print()
+
+    m, n = 5, 5
+    print(f"Input: m = {m}, n = {n}")
+    result = unique_paths(m, n)
+    print(f"Output: {result}")
+    assert result == 70, "Expected output is 70"
+    print()
+
+    print("All test cases complete")
+
+test_unique_paths()

@@ -1,0 +1,8 @@
+```python
+from typing import List
+
+
+def rob(nums: List[int]) -> int:
+    # Your code here
+    pass
+```

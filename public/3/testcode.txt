@@ -1,0 +1,42 @@
+def test_isBalanced():
+    solution = Solution()
+    
+    # Test case 1
+    root = TreeNode(3)
+    root.left = TreeNode(9)
+    root.right = TreeNode(20)
+    root.right.left = TreeNode(15)
+    root.right.right = TreeNode(7)
+    result = solution.isBalanced(root)
+    print("Test case 1: ")
+    print(f"Input: [3,9,20,null,null,15,7]")
+    print(f"Output: {result}")
+    assert result == True, "Expected output: True"
+
+    # Test case 2
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(2)
+    root.left.left = TreeNode(3)
+    root.left.right = TreeNode(3)
+    root.left.left.left = TreeNode(4)
+    root.left.left.right = TreeNode(4)
+    result = solution.isBalanced(root)
+    print("Test case 2: ")
+    print(f"Input: [1,2,2,3,3,null,null,4,4]")
+    print(f"Output: {result}")
+    assert result == False, "Expected output: False"
+
+    # Test case 3
+    root = None
+    result = solution.isBalanced(root)
+    print("Test case 3: ")
+    print(f"Input: []")
+    print(f"Output: {result}")
+    assert result == True, "Expected output: True"
+
+    print("All test cases complete")
+
+# Run the tests
+ test_isBalanced()
+

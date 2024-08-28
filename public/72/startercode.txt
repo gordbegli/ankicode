@@ -1,0 +1,6 @@
+from typing import List
+
+# Function to find the kth largest element in an array
+def findKthLargest(nums: List[int], k: int) -> int:
+    # Your code here
+    pass
