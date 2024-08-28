@@ -29,11 +29,11 @@ def test_twoSum():
     # Additional Test cases
     print("Test case 4")
     nums = [1, 2, 3, 4, 5]
-    target = 5
+    target = 9
     result = twoSum(nums, target)
     print(f"Input: nums={nums}, target={target}")
     print(f"Output: {result}")
-    assert result in ([0, 3], [3, 0]), "Test case 4 failed"
+    assert result == [3, 4], "Test case 4 failed"
 
     print("Test case 5")
     nums = [-3, 4, 3, 90]
