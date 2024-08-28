@@ -25,6 +25,20 @@ export default function Flashcard() {
     "1Ddynamicprogramming", "2Ddynamicprogramming", "advancedgraph"
   ]);
 
+  const fetchCardData = useCallback((id) => {
+    Promise.all([
+      fetch(`/${id}/startercode.txt`).then(response => response.text()),
+      fetch(`/${id}/description.md`).then(response => response.text()),
+      fetch(`/${id}/testcode.txt`).then(response => response.text()),
+      fetch(`/${id}/video.txt`).then(response => response.text())
+    ]).then(([starterCode, description, testCode, videoHtml]) => {
+      setAnswer(starterCode);
+      setProblemDescription(description);
+      setTestCode(testCode);
+      setVideoHtml(videoHtml);
+    });
+  }, []);
+
   const updatePattern = useCallback((pattern) => {
     localStorage.setItem('currentPattern', pattern);
     setPattern(pattern);
@@ -56,10 +70,7 @@ export default function Flashcard() {
     setCurrent(next);
     setRating(3);
 
-    fetch(`/${next.id}/startercode.txt`).then(response => response.text()).then(text => setAnswer(text))
-    fetch(`/${next.id}/description.md`).then(response => response.text()).then(text => setProblemDescription(text))
-    fetch(`/${next.id}/testcode.txt`).then(response => response.text()).then(text => setTestCode(text))
-    fetch(`/${next.id}/video.txt`).then(response => response.text()).then(text => setVideoHtml(text))
+    fetchCardData(next.id);
   };
 
   const toggleDivider = useCallback((direction) => {
@@ -122,10 +133,7 @@ export default function Flashcard() {
     const next = initialCards.filter(card => card.pattern === initialPattern).find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
     if (next) {
       setCurrent(next);
-      fetch(`/${next.id}/startercode.txt`).then(response => response.text()).then(text => setAnswer(text))
-      fetch(`/${next.id}/description.md`).then(response => response.text()).then(text => setProblemDescription(text))
-      fetch(`/${next.id}/testcode.txt`).then(response => response.text()).then(text => setTestCode(text))
-      fetch(`/${next.id}/video.txt`).then(response => response.text()).then(text => setVideoHtml(text))
+      fetchCardData(next.id);
     }
   }, []);
 
@@ -139,10 +147,7 @@ export default function Flashcard() {
       .find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
     if (!next) return;
     setCurrent(next);
-    fetch(`/${next.id}/startercode.txt`).then(response => response.text()).then(text => setAnswer(text))
-    fetch(`/${next.id}/description.md`).then(response => response.text()).then(text => setProblemDescription(text))
-    fetch(`/${next.id}/testcode.txt`).then(response => response.text()).then(text => setTestCode(text))
-    fetch(`/${next.id}/video.txt`).then(response => response.text()).then(text => setVideoHtml(text))
+    fetchCardData(next.id);
   }, [pattern]);
 
   const handleEditorReady = (view) => {
