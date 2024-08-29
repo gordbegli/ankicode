@@ -21,12 +21,10 @@ const WelcomeMessage = () => {
         <h2 className={styles.title}>Welcome to AnkiCode!</h2>
         <div className={styles.content}>
           <p>AnkiCode is a spaced repetition coding platform.</p>
-          
+
           <h3>Important Notes</h3>
           <ul>
-            <li>The chat tab won't work until you add an API key in settings.</li>
-            <li>This application is open source. If you find any issues, please click the logo and create an issue in the GitHub repository.</li>
-            <li>If you use the Vimium Chrome extension, you must disable it for this application to work.</li>
+            <li>Add API key in settings to enable chat.</li>
           </ul>
 
           <h3>Keyboard Shortcuts</h3>
@@ -48,8 +46,6 @@ const WelcomeMessage = () => {
               <tr><td>Cmd + K</td><td>Scroll Menu Up</td></tr>
             </tbody>
           </table>
-          <h3>Algorithm</h3>
-          <p>FSRS, except if there are two previously seen cards due today, then you review them first.</p>
         </div>
         <button className={styles.closeButton} onClick={() => setShowMessage(false)}>Get Started</button>
       </div>
