@@ -9,7 +9,6 @@ import styles from './page.module.css';
 
 export default function Flashcard() {
   const [answer, setAnswer] = useState('');
-  const [cards, setCards] = useState([]);
   const [current, setCurrent] = useState(null);
   const [pyodide, setPyodide] = useState(null);
   const f = fsrs(generatorParameters());
@@ -17,18 +16,10 @@ export default function Flashcard() {
   const [problemDescription, setProblemDescription] = useState('');
   const [testCode, setTestCode] = useState('');
   const [videoHtml, setVideoHtml] = useState('');
-  const [pattern, setPattern] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('currentPattern') || 'array';
-    }
-    return 'array';
-  });
   const [dividerPosition, setDividerPosition] = useState(50);
-  const [patterns, setPatterns] = useState([
-    "array", "backtracking", "binarysearch", "graph", "heap", "linkedlist",
-    "slidingwindow", "stack", "tree", "trie", "twopointer",
-    "1Ddynamicprogramming", "2Ddynamicprogramming", "advancedgraph"
-  ]);
+  const [pattern, setPattern] = useState(() => {if (typeof window !== 'undefined') {return localStorage.getItem('currentPattern') || 'array';}return 'array';});
+  const [cards, setCards] = useState(() => {if (typeof window !== 'undefined') {const storedCards = localStorage.getItem('storedCards');return storedCards ? JSON.parse(storedCards) : startingCards;}return startingCards;});
+  const [patterns, setPatterns] = useState(["array", "backtracking", "binarysearch", "graph", "heap", "linkedlist","slidingwindow", "stack", "tree", "trie", "twopointer","1Ddynamicprogramming", "2Ddynamicprogramming", "advancedgraph"]);
 
   const fetchCardData = useCallback((id) => {
     Promise.all([
@@ -44,18 +35,19 @@ export default function Flashcard() {
     });
   }, []);
 
+  const getNextCard = useCallback(() => {
+    const today = new Date();
+    let next = cards.filter(card => card.pattern === pattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
+    if (!next) next = cards.filter(card => card.pattern === pattern).find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
+    return next;
+  }, [cards, pattern]);
+
   const updatePattern = useCallback((pattern) => {
     localStorage.setItem('currentPattern', pattern);
     setPattern(pattern);
   }, []);
 
-  const moveToNextPattern = useCallback(() => {
-    const currentIndex = patterns.indexOf(pattern);
-    const nextIndex = (currentIndex + 1) % patterns.length;
-    updatePattern(patterns[nextIndex]);
-  }, [pattern, patterns, updatePattern]);
-
-  const rate = (rating) => {
+  const rate = useCallback((rating) => {
     if (current.stage === 'new') {
       current.stage = 'learning';
     }
@@ -63,36 +55,35 @@ export default function Flashcard() {
     const updated = [...cards.filter(card => card !== current), scheduling[rating].card];
     setCards(updated);
 
-    const today = new Date();
-    let next = updated.filter(card => card.pattern === pattern && card.stage === 'learning' && new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0))[0];
+    let next = getNextCard();
     if (!next) {
-      next = updated.filter(card => card.pattern === pattern).find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
+      const currentIndex = patterns.indexOf(pattern);
+      const nextIndex = (currentIndex + 1) % patterns.length;
+      updatePattern(patterns[nextIndex]);
+      next = getNextCard(); // Try to get a card for the new pattern
     }
-    if (!next) {
-      moveToNextPattern();
-      return;
-    }
-    setCurrent(next);
-    setRating(3);
 
-    fetchCardData(next.id);
-  };
-
-  const toggleDivider = useCallback((direction) => {
-    if (direction === 'left') {
-      setDividerPosition(prevPosition => {
-        if (prevPosition === 0) return 0;
-        return prevPosition > 75 ? 50 : prevPosition < 25 ? 100 : 0;
-      });
-    } else if (direction === 'right') {
-      setDividerPosition(prevPosition => {
-        if (prevPosition === 100) return 100;
-        return prevPosition < 25 ? 50 : prevPosition > 75 ? 0 : 100;
-      });
+    if (next) {
+      setCurrent(next);
+      setRating(3);
+      fetchCardData(next.id);
     }
-  }, []);
+  }, [current, cards, f, getNextCard, patterns, pattern, updatePattern, setCards, setCurrent, setRating, fetchCardData]);
 
   useEffect(() => {
+    const toggleDivider = (direction) => {
+      setDividerPosition(prevPosition => {
+        if (direction === 'left') {
+          if (prevPosition === 0) return 0;
+          return prevPosition > 75 ? 50 : prevPosition < 25 ? 100 : 0;
+        } else if (direction === 'right') {
+          if (prevPosition === 100) return 100;
+          return prevPosition < 25 ? 50 : prevPosition > 75 ? 0 : 100;
+        }
+        return prevPosition;
+      });
+    };
+
     const handleKeyDown = (e) => {
       if (e.metaKey || e.ctrlKey) {
         if (e.key === 'h') {
@@ -107,7 +98,7 @@ export default function Flashcard() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [toggleDivider]);
+  }, []);
 
   useEffect(() => {
     const load = async () => {
@@ -126,15 +117,7 @@ export default function Flashcard() {
     };
     load();
 
-    const storedCards = localStorage.getItem('storedCards');
-    const initialCards = storedCards ? JSON.parse(storedCards) : startingCards;
-    setCards(initialCards);
-
-    const today = new Date();
-    let next = initialCards.filter(card => card.pattern === pattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
-    if (!next) {
-      next = initialCards.filter(card => card.pattern === pattern).find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
-    }
+    const next = getNextCard();
     setCurrent(next);
     fetchCardData(next.id);
   }, []);
@@ -144,13 +127,7 @@ export default function Flashcard() {
   }, [cards]);
 
   useEffect(() => {
-    const today = new Date();
-    let next = cards.filter(card => card.pattern === pattern && card.stage === 'learning')
-      .find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
-    if (!next) {
-      next = cards.filter(card => card.pattern === pattern)
-        .find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
-    }
+    const next = getNextCard();
     if (!next) return;
     setCurrent(next);
     fetchCardData(next.id);
