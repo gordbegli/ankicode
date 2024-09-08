@@ -130,7 +130,7 @@ export default function Flashcard() {
     setPattern(initialPattern);
 
     const today = new Date();
-    const next = initialCards.filter(card => card.pattern === initialPattern).find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
+    const next = initialCards.filter(card => card.pattern === initialPattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
     if (next) {
       setCurrent(next);
       fetchCardData(next.id);
