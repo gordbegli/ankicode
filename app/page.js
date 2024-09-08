@@ -17,7 +17,12 @@ export default function Flashcard() {
   const [problemDescription, setProblemDescription] = useState('');
   const [testCode, setTestCode] = useState('');
   const [videoHtml, setVideoHtml] = useState('');
-  const [pattern, setPattern] = useState('array');
+  const [pattern, setPattern] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('currentPattern') || 'array';
+    }
+    return 'array';
+  });
   const [dividerPosition, setDividerPosition] = useState(50);
   const [patterns, setPatterns] = useState([
     "array", "backtracking", "binarysearch", "graph", "heap", "linkedlist",
@@ -125,12 +130,8 @@ export default function Flashcard() {
     const initialCards = storedCards ? JSON.parse(storedCards) : startingCards;
     setCards(initialCards);
 
-    const storedPattern = localStorage.getItem('currentPattern');
-    const initialPattern = storedPattern || pattern;
-    setPattern(initialPattern);
-
     const today = new Date();
-    let next = initialCards.filter(card => card.pattern === initialPattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
+    let next = initialCards.filter(card => card.pattern === pattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
     if (!next) {
       next = initialCards.filter(card => card.pattern === pattern).find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
     }
@@ -144,12 +145,16 @@ export default function Flashcard() {
 
   useEffect(() => {
     const today = new Date();
-    const next = cards.filter(card => card.pattern === pattern)
+    let next = cards.filter(card => card.pattern === pattern && card.stage === 'learning')
       .find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
+    if (!next) {
+      next = cards.filter(card => card.pattern === pattern)
+        .find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
+    }
     if (!next) return;
     setCurrent(next);
     fetchCardData(next.id);
-  }, [pattern]);
+  }, [pattern, cards, fetchCardData]);
 
   const handleEditorReady = (view) => {
     if (view) {
