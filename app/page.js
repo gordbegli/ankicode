@@ -20,6 +20,7 @@ export default function Flashcard() {
   const [pattern, setPattern] = useState(() => {if (typeof window !== 'undefined') {return localStorage.getItem('currentPattern') || 'array';}return 'array';});
   const [cards, setCards] = useState(() => {if (typeof window !== 'undefined') {const storedCards = localStorage.getItem('storedCards');return storedCards ? JSON.parse(storedCards) : startingCards;}return startingCards;});
   const [patterns, setPatterns] = useState(["array", "backtracking", "binarysearch", "graph", "heap", "linkedlist","slidingwindow", "stack", "tree", "trie", "twopointer","1Ddynamicprogramming", "2Ddynamicprogramming", "advancedgraph"]);
+  const [focusEditor, setFocusEditor] = useState(false);
 
   const fetchCardData = useCallback((id) => {
     Promise.all([
@@ -92,6 +93,9 @@ export default function Flashcard() {
         } else if (e.key === 'l') {
           e.preventDefault();
           toggleDivider('right');
+        } else if (e.key === 'i' && e.shiftKey) {
+          e.preventDefault();
+          setFocusEditor(prev => !prev);
         }
       }
     };
@@ -99,6 +103,14 @@ export default function Flashcard() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  useEffect(() => {
+    if (focusEditor) {
+      // This will trigger the onEditorReady callback in the Editor component
+      setAnswer(prevAnswer => prevAnswer + ' ');
+      setFocusEditor(false);
+    }
+  }, [focusEditor]);
 
   useEffect(() => {
     const load = async () => {

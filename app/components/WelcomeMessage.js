@@ -40,8 +40,9 @@ const WelcomeMessage = () => {
               <tr><td>Cmd + \</td><td>Next Problem</td></tr>
               <tr><td>Cmd + H</td><td>Enlarge Editor</td></tr>
               <tr><td>Cmd + L</td><td>Enlarge Menu</td></tr>
-              <tr><td>Cmd + Shift + O</td><td>Jump to Chat</td></tr>
-              <tr><td>Cmd + Shift + P</td><td>Jump to Problem</td></tr>
+              <tr><td>Cmd + Shift + O</td><td>Focus Chat</td></tr>
+              <tr><td>Cmd + Shift + P</td><td>Focus Problem</td></tr>
+              <tr><td>Cmd + Shift + I</td><td>Focus Editor</td></tr>
               <tr><td>Cmd + J</td><td>Scroll Menu Down</td></tr>
               <tr><td>Cmd + K</td><td>Scroll Menu Up</td></tr>
             </tbody>
