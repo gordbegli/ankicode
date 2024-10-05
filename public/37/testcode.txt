@@ -1,58 +1,55 @@
-def test_max_area():
-    # Test case 1
-    result = max_area([1, 8, 6, 2, 5, 4, 8, 3, 7])
-    print("Test case 1:")
-    print(f"Input: [1, 8, 6, 2, 5, 4, 8, 3, 7]")
-    print(f"Output: {result}")
-    assert result == 49, "Expected output is 49"
-    print("Passed")
-    print()
+# Test case 1
+result = max_area([1, 8, 6, 2, 5, 4, 8, 3, 7])
+print("Test case 1:")
+print(f"Input: [1, 8, 6, 2, 5, 4, 8, 3, 7]")
+print(f"Output: {result}")
+assert result == 49, "Expected output is 49"
+print("Passed")
+print()
 
-    # Test case 2
-    result = max_area([1, 1])
-    print("Test case 2:")
-    print(f"Input: [1, 1]")
-    print(f"Output: {result}")
-    assert result == 1, "Expected output is 1"
-    print("Passed")
-    print()
+# Test case 2
+result = max_area([1, 1])
+print("Test case 2:")
+print(f"Input: [1, 1]")
+print(f"Output: {result}")
+assert result == 1, "Expected output is 1"
+print("Passed")
+print()
 
-    # Test case 3 (additional case)
-    result = max_area([4, 3, 2, 1, 4])
-    print("Test case 3 (additional):")
-    print(f"Input: [4, 3, 2, 1, 4]")
-    print(f"Output: {result}")
-    assert result == 16, "Expected output is 16"
-    print("Passed")
-    print()
+# Test case 3 (additional case)
+result = max_area([4, 3, 2, 1, 4])
+print("Test case 3 (additional):")
+print(f"Input: [4, 3, 2, 1, 4]")
+print(f"Output: {result}")
+assert result == 16, "Expected output is 16"
+print("Passed")
+print()
 
-    # Test case 4 (additional case)
-    result = max_area([1, 2, 1])
-    print("Test case 4 (additional):")
-    print(f"Input: [1, 2, 1]")
-    print(f"Output: {result}")
-    assert result == 2, "Expected output is 2"
-    print("Passed")
-    print()
+# Test case 4 (additional case)
+result = max_area([1, 2, 1])
+print("Test case 4 (additional):")
+print(f"Input: [1, 2, 1]")
+print(f"Output: {result}")
+assert result == 2, "Expected output is 2"
+print("Passed")
+print()
 
-    # Test case 5 (edge case with minimum height array)
-    result = max_area([2, 3])
-    print("Test case 5 (minimum height array):")
-    print(f"Input: [2, 3]")
-    print(f"Output: {result}")
-    assert result == 2, "Expected output is 2"
-    print("Passed")
-    print()
+# Test case 5 (edge case with minimum height array)
+result = max_area([2, 3])
+print("Test case 5 (minimum height array):")
+print(f"Input: [2, 3]")
+print(f"Output: {result}")
+assert result == 2, "Expected output is 2"
+print("Passed")
+print()
 
-    # Test case 6 (edge case with all zeros)
-    result = max_area([0, 0, 0, 0, 0])
-    print("Test case 6 (all zeros):")
-    print(f"Input: [0, 0, 0, 0, 0]")
-    print(f"Output: {result}")
-    assert result == 0, "Expected output is 0"
-    print("Passed")
-    print()
+# Test case 6 (edge case with all zeros)
+result = max_area([0, 0, 0, 0, 0])
+print("Test case 6 (all zeros):")
+print(f"Input: [0, 0, 0, 0, 0]")
+print(f"Output: {result}")
+assert result == 0, "Expected output is 0"
+print("Passed")
+print()
 
-    print("All test cases completed!")
-
-test_max_area()
+print("All test cases completed!")
