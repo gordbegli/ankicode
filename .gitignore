@@ -2,8 +2,6 @@
 
 .env
 venv
-update.py
-update2.py
 
 # dependencies
 /node_modules
