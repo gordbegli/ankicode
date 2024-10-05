@@ -6,21 +6,21 @@ Given the head of a singly linked list, remove the nth node from the end of the 
 
 ### Example 1:
 
-```
+```python
 Input: head = [1,2,3,4,5], n = 2
 Output: [1,2,3,5]
 ```
 
 ### Example 2:
 
-```
+```python
 Input: head = [1], n = 1
 Output: []
 ```
 
 ### Example 3:
 
-```
+```python
 Input: head = [1,2], n = 1
 Output: [1]
 ```

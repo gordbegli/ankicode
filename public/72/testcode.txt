@@ -1,28 +1,25 @@
-def test_findKthLargest():
-    # Test case 1
-    nums = [3,2,1,5,6,4]
-    k = 2
-    result = findKthLargest(nums, k)
-    assert result == 5, f"Test case 1 failed: expected 5, got {result}"
+# Test case 1
+nums = [3,2,1,5,6,4]
+k = 2
+result = findKthLargest(nums, k)
+assert result == 5, f"Test case 1 failed: expected 5, got {result}"
 
-    # Test case 2
-    nums = [3,2,3,1,2,4,5,5,6]
-    k = 4
-    result = findKthLargest(nums, k)
-    assert result == 4, f"Test case 2 failed: expected 4, got {result}"
+# Test case 2
+nums = [3,2,3,1,2,4,5,5,6]
+k = 4
+result = findKthLargest(nums, k)
+assert result == 4, f"Test case 2 failed: expected 4, got {result}"
 
-    # Test case 3
-    nums = [1]
-    k = 1
-    result = findKthLargest(nums, k)
-    assert result == 1, f"Test case 3 failed: expected 1, got {result}"
+# Test case 3
+nums = [1]
+k = 1
+result = findKthLargest(nums, k)
+assert result == 1, f"Test case 3 failed: expected 1, got {result}"
 
-    # Test case 4
-    nums = [-1,-1]
-    k = 2
-    result = findKthLargest(nums, k)
-    assert result == -1, f"Test case 4 failed: expected -1, got {result}"
+# Test case 4
+nums = [-1,-1]
+k = 2
+result = findKthLargest(nums, k)
+assert result == -1, f"Test case 4 failed: expected -1, got {result}"
 
-    print("All test cases passed!")
-
-test_findKthLargest()
+print("All test cases passed!")

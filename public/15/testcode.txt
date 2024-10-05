@@ -1,36 +1,31 @@
-```python
-def test_rob():
-    # Test case 1
-    nums = [1, 2, 3, 1]
-    result = rob(nums)
-    assert result == 4, f"Expected 4, but got {result}"
+# Test case 1
+nums = [1, 2, 3, 1]
+result = rob(nums)
+assert result == 4, f"Expected 4, but got {result}"
 
-    # Test case 2
-    nums = [2, 7, 9, 3, 1]
-    result = rob(nums)
-    assert result == 12, f"Expected 12, but got {result}"
+# Test case 2
+nums = [2, 7, 9, 3, 1]
+result = rob(nums)
+assert result == 12, f"Expected 12, but got {result}"
 
-    # Test case 3
-    nums = [4, 1, 2, 7, 5, 3, 1]
-    result = rob(nums)
-    assert result == 14, f"Expected 14, but got {result}"
+# Test case 3
+nums = [4, 1, 2, 7, 5, 3, 1]
+result = rob(nums)
+assert result == 14, f"Expected 14, but got {result}"
 
-    # Edge case: single house
-    nums = [5]
-    result = rob(nums)
-    assert result == 5, f"Expected 5, but got {result}"
+# Edge case: single house
+nums = [5]
+result = rob(nums)
+assert result == 5, f"Expected 5, but got {result}"
 
-    # Edge case: all houses have the same money
-    nums = [10, 10, 10, 10]
-    result = rob(nums)
-    assert result == 20, f"Expected 20, but got {result}"
+# Edge case: all houses have the same money
+nums = [10, 10, 10, 10]
+result = rob(nums)
+assert result == 20, f"Expected 20, but got {result}"
 
-    # Edge case: empty array
-    nums = []
-    result = rob(nums)
-    assert result == 0, f"Expected 0, but got {result}"
+# Edge case: empty array
+nums = []
+result = rob(nums)
+assert result == 0, f"Expected 0, but got {result}"
 
-    print("All test cases passed!")
-
-test_rob()
-```
+print("All test cases passed!")

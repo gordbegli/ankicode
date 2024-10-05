@@ -8,8 +8,8 @@ Each number in candidates may only be used once in the combination.
 
 ### Examples
 
-Example 1:
-```python
+**Example 1:**
+```
 Input: candidates = [10,1,2,7,6,1,5], target = 8
 Output: 
 [
@@ -20,8 +20,8 @@ Output:
 ]
 ```
 
-Example 2:
-```python
+**Example 2:**
+```
 Input: candidates = [2,5,2,1,2], target = 5
 Output: 
 [

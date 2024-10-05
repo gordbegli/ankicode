@@ -37,12 +37,12 @@ There is only one car, hence there is only one fleet.
 #### Example 3:
 
 ```
-Input: target 100 position [0 2 4], speed [4 2 1]
+Input: target = 100, position = [0, 2, 4], speed = [4, 2, 1]
 Output: 1
 
 Explanation:
 - The cars starting at 0 (speed 4) and 2 (speed 2) become a fleet, meeting each other at mile 4. The car starting at 4 (speed 1) travels to mile 5.
-- Then, the fleet at 4 (speed 2) and the car at mile 5 (speed 1) become one fleet, meeting each other at mile 6. The fleet moves together at speed 1 until they reach the target.
+- Then, the fleet at mile 4 (speed 2) and the car at mile 5 (speed 1) become one fleet, meeting each other at mile 6. The fleet moves together at speed 1 until they reach the target.
 ```
 
 ### Constraints:

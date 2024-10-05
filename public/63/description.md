@@ -42,5 +42,5 @@ Output: False
 
 ### Constraints:
 
-* 1 <= s.length <= 10^4
+* 0 <= s.length <= 10^4
 * The string `s` consists of parentheses only '()[]{}'.

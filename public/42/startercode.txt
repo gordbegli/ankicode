@@ -19,7 +19,7 @@ class Node:
     def to_list(self):
         result, current = [], self
         while current:
-            random_index = 'None' if current.random is None else self.get_index(current.random)
+            random_index = None if current.random is None else self.get_index(current.random)
             result.append([current.val, random_index])
             current = current.next
         return result
@@ -30,8 +30,6 @@ class Node:
             current = current.next
             idx += 1
         return idx if current is node else None
-
-
 
 def copyRandomList(head: 'Optional[Node]') -> 'Optional[Node]':
     # Your code here

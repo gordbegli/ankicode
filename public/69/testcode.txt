@@ -1,59 +1,56 @@
-def test_KthLargest():
-    # Test case 1
-    print("Test case 1 (Example 1):")
-    kthLargest = KthLargest(3, [4, 5, 8, 2])
-    result = kthLargest.add(3)
-    print(f"add(3) -> {result} [Expected: 4]")
-    assert result == 4
-    result = kthLargest.add(5)
-    print(f"add(5) -> {result} [Expected: 5]")
-    assert result == 5
-    result = kthLargest.add(10)
-    print(f"add(10) -> {result} [Expected: 5]")
-    assert result == 5
-    result = kthLargest.add(9)
-    print(f"add(9) -> {result} [Expected: 8]")
-    assert result == 8
-    result = kthLargest.add(4)
-    print(f"add(4) -> {result} [Expected: 8]")
-    assert result == 8
-    print()
+# Test case 1 (Example 1):
+print("Test case 1 (Example 1):")
+kthLargest = KthLargest(3, [4, 5, 8, 2])
+result = kthLargest.add(3)
+print(f"add(3) -> {result} [Expected: 4]")
+assert result == 4
+result = kthLargest.add(5)
+print(f"add(5) -> {result} [Expected: 5]")
+assert result == 5
+result = kthLargest.add(10)
+print(f"add(10) -> {result} [Expected: 5]")
+assert result == 5
+result = kthLargest.add(9)
+print(f"add(9) -> {result} [Expected: 8]")
+assert result == 8
+result = kthLargest.add(4)
+print(f"add(4) -> {result} [Expected: 8]")
+assert result == 8
+print()
 
-    # Test case 2
-    print("Test case 2 (Example 2):")
-    kthLargest = KthLargest(4, [7, 7, 7, 7, 8, 3])
-    result = kthLargest.add(2)
-    print(f"add(2) -> {result} [Expected: 7]")
-    assert result == 7
-    result = kthLargest.add(10)
-    print(f"add(10) -> {result} [Expected: 7]")
-    assert result == 7
-    result = kthLargest.add(9)
-    print(f"add(9) -> {result} [Expected: 7]")
-    assert result == 7
-    result = kthLargest.add(9)
-    print(f"add(9) -> {result} [Expected: 8]")
-    assert result == 8
-    print()
+# Test case 2 (Example 2):
+print("Test case 2 (Example 2):")
+kthLargest = KthLargest(4, [7, 7, 7, 7, 8, 3])
+result = kthLargest.add(2)
+print(f"add(2) -> {result} [Expected: 7]")
+assert result == 7
+result = kthLargest.add(10)
+print(f"add(10) -> {result} [Expected: 7]")
+assert result == 7
+result = kthLargest.add(9)
+print(f"add(9) -> {result} [Expected: 7]")
+assert result == 7
+result = kthLargest.add(9)
+print(f"add(9) -> {result} [Expected: 8]")
+assert result == 8
+print()
 
-    # Additional test cases
-    print("Additional test cases:")
-    kthLargest = KthLargest(1, [1, 1, 1])
-    result = kthLargest.add(0)
-    print(f"add(0) -> {result} [Expected: 1]")
-    assert result == 1
-    result = kthLargest.add(2)
-    print(f"add(2) -> {result} [Expected: 2]")
-    assert result == 2
+# Additional test cases:
+print("Additional test cases:")
+kthLargest = KthLargest(1, [1, 1, 1])
+result = kthLargest.add(0)
+print(f"add(0) -> {result} [Expected: 1]")
+assert result == 1
+result = kthLargest.add(2)
+print(f"add(2) -> {result} [Expected: 2]")
+assert result == 2
 
-    kthLargest = KthLargest(2, [5, 6, 7])
-    result = kthLargest.add(4)
-    print(f"add(4) -> {result} [Expected: 6]")
-    assert result == 6
-    result = kthLargest.add(8)
-    print(f"add(8) -> {result} [Expected: 7]")
-    assert result == 7
+kthLargest = KthLargest(2, [5, 6, 7])
+result = kthLargest.add(4)
+print(f"add(4) -> {result} [Expected: 6]")
+assert result == 6
+result = kthLargest.add(8)
+print(f"add(8) -> {result} [Expected: 7]")
+assert result == 7
 
-    print("All test cases complete")
-
-test_KthLargest()
+print("All test cases complete")

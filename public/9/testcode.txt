@@ -1,53 +1,64 @@
-def test_countGoodNodes():
-    # Helper function to build a tree from a list
-    def build_tree(values, index=0):
-        if index >= len(values) or values[index] is None:
-            return None
-        root = TreeNode(values[index])
-        root.left = build_tree(values, 2 * index + 1)
-        root.right = build_tree(values, 2 * index + 2)
-        return root
+from typing import Optional
 
-    # Test case 1
-    root = build_tree([3, 1, 4, 3, None, 1, 5])
-    result = countGoodNodes(root)
-    print("Test case 1:")
-    print(f"Input: [3,1,4,3,None,1,5]")
-    print(f"Output: {result}")
-    assert result == 4, f"Expected 4, but got {result}"
-    
-    # Test case 2
-    root = build_tree([3, 3, None, 4, 2])
-    result = countGoodNodes(root)
-    print("Test case 2:")
-    print(f"Input: [3,3,None,4,2]")
-    print(f"Output: {result}")
-    assert result == 3, f"Expected 3, but got {result}"
-    
-    # Test case 3
-    root = build_tree([1])
-    result = countGoodNodes(root)
-    print("Test case 3:")
-    print(f"Input: [1]")
-    print(f"Output: {result}")
-    assert result == 1, f"Expected 1, but got {result}"
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-    # Additional test case 1 (Edge Case)
-    root = build_tree([1, 2, 3, None, None, 4, 5])
-    result = countGoodNodes(root)
-    print("Edge case 1:")
-    print(f"Input: [1, 2, 3, None, None, 4, 5]")
-    print(f"Output: {result}")
-    assert result == 4, f"Expected 4, but got {result}"
+def countGoodNodes(root: Optional[TreeNode]) -> int:
+    # Your implementation here
+    pass
 
-    # Additional test case 2 (Complex Tree)
-    root = build_tree([3, 3, 3, None, 4, None, 5, 1, 2])
-    result = countGoodNodes(root)
-    print("Edge case 2:")
-    print(f"Input: [3, 3, 3, None, 4, None, 5, 1, 2]")
-    print(f"Output: {result}")
-    assert result == 5, f"Expected 5, but got {result}"
+# Helper function to build a tree from a list
+def build_tree(values, index=0):
+    if index >= len(values) or values[index] is None:
+        return None
+    root = TreeNode(values[index])
+    root.left = build_tree(values, 2 * index + 1)
+    root.right = build_tree(values, 2 * index + 2)
+    return root
 
-    print("All test cases complete")
+# Test case 1
+root = build_tree([3, 1, 4, 3, None, 1, 5])
+result = countGoodNodes(root)
+print("Test case 1:")
+print(f"Input: [3,1,4,3,None,1,5]")
+print(f"Output: {result}")
+assert result == 4, f"Expected 4, but got {result}"
 
-test_countGoodNodes()
+# Test case 2
+root = build_tree([3, 3, None, 4, 2])
+result = countGoodNodes(root)
+print("Test case 2:")
+print(f"Input: [3,3,None,4,2]")
+print(f"Output: {result}")
+assert result == 3, f"Expected 3, but got {result}"
+
+# Test case 3
+root = build_tree([1])
+result = countGoodNodes(root)
+print("Test case 3:")
+print(f"Input: [1]")
+print(f"Output: {result}")
+assert result == 1, f"Expected 1, but got {result}"
+
+# Additional test case 1 (Edge Case)
+root = build_tree([1, 2, 3, None, None, 4, 5])
+result = countGoodNodes(root)
+print("Edge case 1:")
+print(f"Input: [1, 2, 3, None, None, 4, 5]")
+print(f"Output: {result}")
+assert result == 4, f"Expected 4, but got {result}"
+
+# Additional test case 2 (Complex Tree)
+root = build_tree([3, 3, 3, None, 4, None, 5, 1, 2])
+result = countGoodNodes(root)
+print("Edge case 2:")
+print(f"Input: [3, 3, 3, None, 4, None, 5, 1, 2]")
+print(f"Output: {result}")
+assert result == 5, f"Expected 5, but got {result}"
+
+print("All test cases complete")
+
+# Run tests

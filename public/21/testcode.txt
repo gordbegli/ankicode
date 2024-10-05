@@ -1,41 +1,38 @@
-def test_maxProduct():
- solution = Solution()
- 
- # Test case 1
- nums = [2, 3, -2, 4]
- print("Test case 1: nums = [2, 3, -2, 4]")
- result = solution.maxProduct(nums)
- print(f"Output: {result}")
- assert result == 6, f"Expected 6 but got {result}"
- 
- # Test case 2
- nums = [-2, 0, -1]
- print("Test case 2: nums = [-2, 0, -1]")
- result = solution.maxProduct(nums)
- print(f"Output: {result}")
- assert result == 0, f"Expected 0 but got {result}"
- 
- # Additional test case: single element
- nums = [5]
- print("Test case 3: single element, nums = [5]")
- result = solution.maxProduct(nums)
- print(f"Output: {result}")
- assert result == 5, f"Expected 5 but got {result}"
+solution = Solution()
 
- # Additional test case: all negative numbers
- nums = [-2, -3, -4]
- print("Test case 4: all negative numbers, nums = [-2, -3, -4]")
- result = solution.maxProduct(nums)
- print(f"Output: {result}")
- assert result == 12, f"Expected 12 but got {result}"
+# Test case 1
+nums = [2, 3, -2, 4]
+print("Test case 1: nums = [2, 3, -2, 4]")
+result = solution.maxProduct(nums)
+print(f"Output: {result}")
+assert result == 6, f"Expected 6 but got {result}"
 
- # More diverse test case: mixed positive and negative numbers
- nums = [-2, -3, 7]
- print("Test case 5: mixed positive and negative numbers, nums = [-2, -3, 7]")
- result = solution.maxProduct(nums)
- print(f"Output: {result}")
- assert result == 42, f"Expected 42 but got {result}"
+# Test case 2
+nums = [-2, 0, -1]
+print("Test case 2: nums = [-2, 0, -1]")
+result = solution.maxProduct(nums)
+print(f"Output: {result}")
+assert result == 0, f"Expected 0 but got {result}"
 
- print("All test cases complete!")
+# Additional test case: single element
+nums = [5]
+print("Test case 3: single element, nums = [5]")
+result = solution.maxProduct(nums)
+print(f"Output: {result}")
+assert result == 5, f"Expected 5 but got {result}"
 
-test_maxProduct()
+# Additional test case: all negative numbers
+nums = [-2, -3, -4]
+print("Test case 4: all negative numbers, nums = [-2, -3, -4]")
+result = solution.maxProduct(nums)
+print(f"Output: {result}")
+assert result == 12, f"Expected 12 but got {result}"
+
+# More diverse test case: mixed positive and negative numbers
+nums = [-2, -3, 7]
+print("Test case 5: mixed positive and negative numbers, nums = [-2, -3, 7]")
+result = solution.maxProduct(nums)
+print(f"Output: {result}")
+assert result == 42, f"Expected 42 but got {result}"
+
+print("All test cases complete!")

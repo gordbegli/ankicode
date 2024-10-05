@@ -46,9 +46,3 @@ board2 = [
     [".",".",".",".","8",".",".","7","9"]
 ]
 assert Solution().isValidSudoku(board2) == False
-```
-
-## Clarifications
-- The input board must be a 9x9 grid.
-- The cell values can only be '.' or digits from '1' to '9'.
-- Implement the solution to efficiently check each row, column, and 3x3 sub-box.

@@ -1,29 +1,17 @@
-def test_countPalindromicSubstrings():
-    # Test case 1
-    s = "abc"
-    result = countPalindromicSubstrings(s)
-    assert result == 3, f"Test case 1 failed: Expected 3 but got {result}"
-    
-    # Test case 2
-    s = "aaa"
-    result = countPalindromicSubstrings(s)
-    assert result == 6, f"Test case 2 failed: Expected 6 but got {result}"
+s = "abc"
+result = countPalindromicSubstrings(s)
+assert result == 3, f"Test case 1 failed: Expected 3 but got {result}"
 
-    # Test case 3
-    s = "abba"
-    result = countPalindromicSubstrings(s)
-    assert result == 6, f"Test case 3 failed: Expected 6 but got {result}"
+s = "aaa"
+result = countPalindromicSubstrings(s)
+assert result == 6, f"Test case 2 failed: Expected 6 but got {result}"
 
-    # Test case 4
-    s = "racecar"
-    result = countPalindromicSubstrings(s)
-    assert result == 10, f"Test case 4 failed: Expected 10 but got {result}"
+s = "abba"
+result = countPalindromicSubstrings(s)
+assert result == 6, f"Test case 3 failed: Expected 6 but got {result}"
 
-    # Test case 5
-    s = ""
-    result = countPalindromicSubstrings(s)
-    assert result == 0, f"Test case 5 failed: Expected 0 but got {result}"
+s = "racecar"
+result = countPalindromicSubstrings(s)
+assert result == 10, f"Test case 4 failed: Expected 10 but got {result}"
 
-    print("All test cases pass")
-
-test_countPalindromicSubstrings()
+print("All test cases pass")

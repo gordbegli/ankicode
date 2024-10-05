@@ -1,36 +1,31 @@
-def test_maxProfit():
-    
-    # Test case 1
-    prices = [7, 1, 5, 3, 6, 4]
-    expected = 5
-    assert maxProfit(prices) == expected, f'Test case 1 failed: expected {expected}, got {maxProfit(prices)}'
-    
-    # Test case 2
-    prices = [7, 6, 4, 3, 1]
-    expected = 0
-    assert maxProfit(prices) == expected, f'Test case 2 failed: expected {expected}, got {maxProfit(prices)}'
+# Test case 1
+prices = [7, 1, 5, 3, 6, 4]
+expected = 5
+assert maxProfit(prices) == expected, f'Test case 1 failed: expected {expected}, got {maxProfit(prices)}'
 
-    # Test case 3
-    prices = [3, 3, 5, 0, 0, 3, 1, 4]
-    expected = 4
-    assert maxProfit(prices) == expected, f'Test case 3 failed: expected {expected}, got {maxProfit(prices)}'
+# Test case 2
+prices = [7, 6, 4, 3, 1]
+expected = 0
+assert maxProfit(prices) == expected, f'Test case 2 failed: expected {expected}, got {maxProfit(prices)}'
 
-    # Test case 4
-    prices = [1, 2]
-    expected = 1
-    assert maxProfit(prices) == expected, f'Test case 4 failed: expected {expected}, got {maxProfit(prices)}'
-    
-    # Edge case 1: Only one price
-    prices = [5]
-    expected = 0
-    assert maxProfit(prices) == expected, f'Edge case 1 failed: expected {expected}, got {maxProfit(prices)}'
-    
-    # Edge case 2: Prices with no possible profit
-    prices = [5, 5, 5, 5, 5]
-    expected = 0
-    assert maxProfit(prices) == expected, f'Edge case 2 failed: expected {expected}, got {maxProfit(prices)}'
+# Test case 3
+prices = [3, 3, 5, 0, 0, 3, 1, 4]
+expected = 4
+assert maxProfit(prices) == expected, f'Test case 3 failed: expected {expected}, got {maxProfit(prices)}'
 
-    print("All test cases passed!")
+# Test case 4
+prices = [1, 2]
+expected = 1
+assert maxProfit(prices) == expected, f'Test case 4 failed: expected {expected}, got {maxProfit(prices)}'
 
+# Edge case 1: Only one price
+prices = [5]
+expected = 0
+assert maxProfit(prices) == expected, f'Edge case 1 failed: expected {expected}, got {maxProfit(prices)}'
 
-test_maxProfit()
+# Edge case 2: Prices with no possible profit
+prices = [5, 5, 5, 5, 5]
+expected = 0
+assert maxProfit(prices) == expected, f'Edge case 2 failed: expected {expected}, got {maxProfit(prices)}'
+
+print("All test cases passed!")

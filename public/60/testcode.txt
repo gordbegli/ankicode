@@ -1,54 +1,51 @@
-def test_exist():
-    # Test case 1
-    board1 = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
-    word1 = "ABCCED"
-    result = exist(board1, word1)
-    print("Test case 1:")
-    print(f"Input: board = {board1}, word = '{word1}'")
-    print(f"Output: {result}")
-    assert result == True, "Failed test case 1"
-    print()
+# Test case 1
+board1 = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+word1 = "ABCCED"
+result = exist(board1, word1)
+print("Test case 1:")
+print(f"Input: board = {board1}, word = '{word1}'")
+print(f"Output: {result}")
+assert result == True, "Failed test case 1"
+print()
 
-    # Test case 2
-    board2 = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
-    word2 = "SEE"
-    result = exist(board2, word2)
-    print("Test case 2:")
-    print(f"Input: board = {board2}, word = '{word2}'")
-    print(f"Output: {result}")
-    assert result == True, "Failed test case 2"
-    print()
+# Test case 2
+board2 = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+word2 = "SEE"
+result = exist(board2, word2)
+print("Test case 2:")
+print(f"Input: board = {board2}, word = '{word2}'")
+print(f"Output: {result}")
+assert result == True, "Failed test case 2"
+print()
 
-    # Test case 3
-    board3 = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
-    word3 = "ABCB"
-    result = exist(board3, word3)
-    print("Test case 3:")
-    print(f"Input: board = {board3}, word = '{word3}'")
-    print(f"Output: {result}")
-    assert result == False, "Failed test case 3"
-    print()
+# Test case 3
+board3 = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+word3 = "ABCB"
+result = exist(board3, word3)
+print("Test case 3:")
+print(f"Input: board = {board3}, word = '{word3}'")
+print(f"Output: {result}")
+assert result == False, "Failed test case 3"
+print()
 
-    # Edge case 1
-    board4 = [["A"]]
-    word4 = "A"
-    result = exist(board4, word4)
-    print("Edge case 1:")
-    print(f"Input: board = {board4}, word = '{word4}'")
-    print(f"Output: {result}")
-    assert result == True, "Failed edge case 1"
-    print()
+# Edge case 1
+board4 = [["A"]]
+word4 = "A"
+result = exist(board4, word4)
+print("Edge case 1:")
+print(f"Input: board = {board4}, word = '{word4}'")
+print(f"Output: {result}")
+assert result == True, "Failed edge case 1"
+print()
 
-    # Edge case 2
-    board5 = [["A", "A", "A", "A"], ["A", "A", "A", "A"], ["A", "A", "A", "A"], ["A", "A", "A", "A"]]
-    word5 = "AAAA"
-    result = exist(board5, word5)
-    print("Edge case 2:")
-    print(f"Input: board = {board5}, word = '{word5}'")
-    print(f"Output: {result}")
-    assert result == True, "Failed edge case 2"
-    print()
+# Edge case 2
+board5 = [["A", "A", "A", "A"], ["A", "A", "A", "A"], ["A", "A", "A", "A"], ["A", "A", "A", "A"]]
+word5 = "AAAA"
+result = exist(board5, word5)
+print("Edge case 2:")
+print(f"Input: board = {board5}, word = '{word5}'")
+print(f"Output: {result}")
+assert result == True, "Failed edge case 2"
+print()
 
-    print("All test cases completed!")
-
-test_exist()
+print("All test cases completed!")

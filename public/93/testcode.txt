@@ -1,54 +1,45 @@
-def test_binary_search():
-    # Test case 1
-    print("Test case 1: nums = [-1,0,3,5,9,12], target = 9")
-    result = binary_search([-1,0,3,5,9,12], 9)
-    print(f"Output: {result}")
-    assert result == 4, f"Expected 4, but got {result}"
+print("Test case 1: nums = [-1,0,3,5,9,12], target = 9")
+result = binary_search([-1,0,3,5,9,12], 9)
+print(f"Output: {result}")
+assert result == 4, f"Expected 4, but got {result}"
 
-    # Test case 2
-    print("Test case 2: nums = [-1,0,3,5,9,12], target = 2")
-    result = binary_search([-1,0,3,5,9,12], 2)
-    print(f"Output: {result}")
-    assert result == -1, f"Expected -1, but got {result}"
+print("Test case 2: nums = [-1,0,3,5,9,12], target = 2")
+result = binary_search([-1,0,3,5,9,12], 2)
+print(f"Output: {result}")
+assert result == -1, f"Expected -1, but got {result}"
 
-    # Test case 3
-    print("Test case 3: nums = [1,2,3,4,5,6,7], target = 4")
-    result = binary_search([1,2,3,4,5,6,7], 4)
-    print(f"Output: {result}")
-    assert result == 3, f"Expected 3, but got {result}"
+print("Test case 3: nums = [1,2,3,4,5,6,7], target = 4")
+result = binary_search([1,2,3,4,5,6,7], 4)
+print(f"Output: {result}")
+assert result == 3, f"Expected 3, but got {result}"
 
-    # Test case 4
-    print("Test case 4: nums = [1,2,3,4,5,6,7], target = 8")
-    result = binary_search([1,2,3,4,5,6,7], 8)
-    print(f"Output: {result}")
-    assert result == -1, f"Expected -1, but got {result}"
+print("Test case 4: nums = [1,2,3,4,5,6,7], target = 8")
+result = binary_search([1,2,3,4,5,6,7], 8)
+print(f"Output: {result}")
+assert result == -1, f"Expected -1, but got {result}"
 
-    # Additional test cases
-    print("Test case 5: nums = [2,4,6,8,10,12,14], target = 10")
-    result = binary_search([2,4,6,8,10,12,14], 10)
-    print(f"Output: {result}")
-    assert result == 4, f"Expected 4, but got {result}"
+# Additional test cases
+print("Test case 5: nums = [2,4,6,8,10,12,14], target = 10")
+result = binary_search([2,4,6,8,10,12,14], 10)
+print(f"Output: {result}")
+assert result == 4, f"Expected 4, but got {result}"
 
-    # Edge case: largest possible array
-    print("Test case 6: nums = list(range(1, 10001)), target = 5000")
-    result = binary_search(list(range(1, 10001)), 5000)
-    print(f"Output: {result}")
-    assert result == 4999, f"Expected 4999, but got {result}"
+# Edge case: largest possible array
+print("Test case 6: nums = list(range(1, 10001)), target = 5000")
+result = binary_search(list(range(1, 10001)), 5000)
+print(f"Output: {result}")
+assert result == 4999, f"Expected 4999, but got {result}"
 
-    # Edge case: single-element array, target exists
-    print("Test case 7: nums = [1], target = 1")
-    result = binary_search([1], 1)
-    print(f"Output: {result}")
-    assert result == 0, f"Expected 0, but got {result}"
+# Edge case: single-element array, target exists
+print("Test case 7: nums = [1], target = 1")
+result = binary_search([1], 1)
+print(f"Output: {result}")
+assert result == 0, f"Expected 0, but got {result}"
 
-    # Edge case: single-element array, target does not exist
-    print("Test case 8: nums = [1], target = 2")
-    result = binary_search([1], 2)
-    print(f"Output: {result}")
-    assert result == -1, f"Expected -1, but got {result}"
+# Edge case: single-element array, target does not exist
+print("Test case 8: nums = [1], target = 2")
+result = binary_search([1], 2)
+print(f"Output: {result}")
+assert result == -1, f"Expected -1, but got {result}"
 
-    print("All test cases complete!")
-
-# Run the tests
-
-test_binary_search()
+print("All test cases complete!")

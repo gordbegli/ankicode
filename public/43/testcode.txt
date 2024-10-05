@@ -1,52 +1,50 @@
-def test_copyRandomList():
-    def list_to_linked_list(lst):
-        if not lst:
-            return None
-        nodes = [Node(val) for val, _ in lst]
-        for i, (val, random_index) in enumerate(lst):
-            if i < len(lst) - 1:
-                nodes[i].next = nodes[i+1]
-            if random_index is not None:
-                nodes[i].random = nodes[random_index]
-        return nodes[0]
+def list_to_linked_list(lst):
+    if not lst:
+        return None
+    nodes = [Node(val, None, None) for val, _ in lst]
+    for i, (val, random_index) in enumerate(lst):
+        if i < len(lst) - 1:
+            nodes[i].next = nodes[i+1]
+        if random_index is not None:
+            nodes[i].random = nodes[random_index]
+    return nodes[0]
 
-    def linked_list_to_list(head):
-        lst, node_map, idx = [], {}, 0
-        current = head
-        while current:
-            node_map[current] = idx
-            lst.append([current.val, None])
-            current = current.next
-            idx += 1
-        current = head
-        idx = 0
-        while current:
-            if current.random:
-                lst[idx][1] = node_map[current.random]
-            current = current.next
-            idx += 1
-        return lst
+def linked_list_to_list(head):
+    lst, node_map, idx = [], {}, 0
+    current = head
+    while current:
+        node_map[current] = idx
+        lst.append([current.val, None])
+        current = current.next
+        idx += 1
+    current = head
+    idx = 0
+    while current:
+        if current.random:
+            lst[idx][1] = node_map[current.random]
+        current = current.next
+        idx += 1
+    return lst
 
-    # Test case 1
-    head = list_to_linked_list([[7, None], [13, 0], [11, 4], [10, 2], [1, 0]])
-    copied_head = copyRandomList(head)
-    result = linked_list_to_list(copied_head)
-    assert result == [[7, None], [13, 0], [11, 4], [10, 2], [1, 0]]
+# Test case 1
+head = list_to_linked_list([[7, None], [13, 0], [11, 4], [10, 2], [1, 0]])
+copied_head = copyRandomList(head)
+result = linked_list_to_list(copied_head)
+assert result == [[7, None], [13, 0], [11, 4], [10, 2], [1, 0]]
 
-    # Test case 2
-    head = list_to_linked_list([[1, 1], [2, 1]])
-    copied_head = copyRandomList(head)
-    result = linked_list_to_list(copied_head)
-    assert result == [[1, 1], [2, 1]]
+# Test case 2
+head = list_to_linked_list([[1, 1], [2, 1]])
+copied_head = copyRandomList(head)
+result = linked_list_to_list(copied_head)
+assert result == [[1, 1], [2, 1]]
 
-    # Test case 3
-    head = list_to_linked_list([[3, None], [3, 0], [3, None]])
-    copied_head = copyRandomList(head)
-    result = linked_list_to_list(copied_head)
-    assert result == [[3, None], [3, 0], [3, None]]
+# Test case 3
+head = list_to_linked_list([[3, None], [3, 0], [3, None]])
+copied_head = copyRandomList(head)
+result = linked_list_to_list(copied_head)
+assert result == [[3, None], [3, 0], [3, None]]
 
-    print("All test cases passed!")
-
+print("All test cases passed!")
 
 # Run the tests
-test_copyRandomList()
+

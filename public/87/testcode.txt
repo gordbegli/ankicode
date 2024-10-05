@@ -1,21 +1,21 @@
 def test_solve_surrounded_regions():
     # Test case 1
-    board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
-    expected = [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]
+    board = [['X','X','X','X'],['X','O','O','X'],['X','X','O','X'],['X','O','X','X']]
+    expected = [['X','X','X','X'],['X','X','X','X'],['X','X','X','X'],['X','O','X','X']]
     solve_surrounded_regions(board)
     assert board == expected, f"Expected {expected}, but got {board}"
     print("Test case 1 passed.")
 
     # Test case 2
-    board = [["X"]]
-    expected = [["X"]]
+    board = [['X']]
+    expected = [['X']]
     solve_surrounded_regions(board)
     assert board == expected, f"Expected {expected}, but got {board}"
     print("Test case 2 passed.")
 
     # Additional test case
-    board = [["X","O","X"],["O","X","O"],["X","O","X"]]
-    expected = [["X","O","X"],["O","X","O"],["X","O","X"]]
+    board = [['X','O','X'],['O','X','O'],['X','O','X']]
+    expected = [['X','O','X'],['O','X','O'],['X','O','X']]
     solve_surrounded_regions(board)
     assert board == expected, f"Expected {expected}, but got {board}"
     print("Test case 3 passed.")

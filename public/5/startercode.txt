@@ -6,6 +6,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 def isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
     # Your code here
     pass

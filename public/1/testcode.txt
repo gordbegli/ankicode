@@ -1,30 +1,26 @@
-def test_sumOfLeftLeaves():
-    # Test case 1
-    root = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
-    result = sumOfLeftLeaves(root)
-    assert result == 24, f"Expected 24 but got {result}"
-    
-    # Test case 2
-    root = TreeNode(1, None, TreeNode(2))
-    result = sumOfLeftLeaves(root)
-    assert result == 0, f"Expected 0 but got {result}"
-    
-    # Test case 3
-    root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4))), TreeNode(5))
-    result = sumOfLeftLeaves(root)
-    assert result == 4, f"Expected 4 but got {result}"
-    
-    # Test case 4
-    root = TreeNode(0)
-    result = sumOfLeftLeaves(root)
-    assert result == 0, f"Expected 0 but got {result}"
-    
-    # Test case 5
-    root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4, TreeNode(5)))))
-    result = sumOfLeftLeaves(root)
-    assert result == 9, f"Expected 9 but got {result}"
+# Test case 1
+root = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
+result = sumOfLeftLeaves(root)
+assert result == 24, f"Expected 24 but got {result}"
 
-    print("All test cases passed!")
+# Test case 2
+root = TreeNode(1, None, TreeNode(2))
+result = sumOfLeftLeaves(root)
+assert result == 0, f"Expected 0 but got {result}"
 
-# Run the tests
-test_sumOfLeftLeaves()
+# Test case 3
+root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4))), TreeNode(5))
+result = sumOfLeftLeaves(root)
+assert result == 4, f"Expected 4 but got {result}"
+
+# Test case 4
+root = TreeNode(0)
+result = sumOfLeftLeaves(root)
+assert result == 0, f"Expected 0 but got {result}"
+
+# Test case 5
+root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4, TreeNode(5)))))
+result = sumOfLeftLeaves(root)
+assert result == 9, f"Expected 9 but got {result}"
+
+print("All test cases passed!")

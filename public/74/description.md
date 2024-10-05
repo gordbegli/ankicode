@@ -1,4 +1,3 @@
-
 # Design a Simplified Twitter
 
 Design a simplified version of Twitter where users can post tweets, follow or unfollow another user, and see the 10 most recent tweets in the user's news feed.
@@ -6,10 +5,10 @@ Design a simplified version of Twitter where users can post tweets, follow or un
 Implement the `Twitter` class:
 
 - `Twitter()`: Initializes your Twitter object.
-- `void postTweet(int userId, int tweetId)`: Composes a new tweet with ID tweetId by the user userId. Each call to this function will be made with a unique tweetId.
+- `void postTweet(int userId, int tweetId)`: Composes a new tweet with ID `tweetId` by the user `userId`. Each call to this function will be made with a unique `tweetId`.
 - `List<Integer> getNewsFeed(int userId)`: Retrieves the 10 most recent tweet IDs in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user themselves. Tweets must be ordered from most recent to least recent.
-- `void follow(int followerId, int followeeId)`: The user with ID followerId started following the user with ID followeeId.
-- `void unfollow(int followerId, int followeeId)`: The user with ID followerId stopped following the user with ID followeeId.
+- `void follow(int followerId, int followeeId)`: The user with ID `followerId` started following the user with ID `followeeId`.
+- `void unfollow(int followerId, int followeeId)`: The user with ID `followerId` stopped following the user with ID `followeeId`.
 
 ## Examples
 
@@ -32,8 +31,9 @@ twitter.getNewsFeed(1);  // User 1's news feed should return a list with 2 tweet
 twitter.unfollow(1, 2);  // User 1 unfollows user 2.
 twitter.getNewsFeed(1);  // User 1's news feed should return a list with 1 tweet ID -> [5], since user 1 is no longer following user 2.
 ```
+
 ## Constraints
-- 1 <= `userId`, `followerId`, `followeeId` <= 500
-- 0 <= `tweetId` <= 10^4
+- `1 <= userId, followerId, followeeId <= 500`
+- `0 <= tweetId <= 10^4`
 - All tweets have unique IDs.
-- At most 3 * 10^4 calls will be made to `postTweet`, `getNewsFeed`, `follow`, and `unfollow`.
+- At most `3 * 10^4` calls will be made to `postTweet`, `getNewsFeed`, `follow`, and `unfollow`.

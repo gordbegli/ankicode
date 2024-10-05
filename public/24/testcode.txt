@@ -1,37 +1,34 @@
-def test_canPartition():
-    # Test case 1
-    nums = [1, 5, 11, 5]
-    result = canPartition(nums)
-    print("Test case 1:")
-    print(f"Input: {nums}")
-    print(f"Output: {result}")
-    assert result == True, f"Expected True but got {result}"
+# Test case 1
+nums = [1, 5, 11, 5]
+result = canPartition(nums)
+print("Test case 1:")
+print(f"Input: {nums}")
+print(f"Output: {result}")
+assert result == True, f"Expected True but got {result}"
 
-    # Test case 2
-    nums = [1, 2, 3, 5]
-    result = canPartition(nums)
-    print("Test case 2:")
-    print(f"Input: {nums}")
-    print(f"Output: {result}")
-    assert result == False, f"Expected False but got {result}"
+# Test case 2
+nums = [1, 2, 3, 5]
+result = canPartition(nums)
+print("Test case 2:")
+print(f"Input: {nums}")
+print(f"Output: {result}")
+assert result == False, f"Expected False but got {result}"
 
-    # Additional edge cases
-    # Test case 3: Single element - cannot partition
-    nums = [2]
-    result = canPartition(nums)
-    print("Test case 3:")
-    print(f"Input: {nums}")
-    print(f"Output: {result}")
-    assert result == False, f"Expected False but got {result}"
+# Additional edge cases
+# Test case 3: Single element - cannot partition
+nums = [2]
+result = canPartition(nums)
+print("Test case 3:")
+print(f"Input: {nums}")
+print(f"Output: {result}")
+assert result == False, f"Expected False but got {result}"
 
-    # Test case 4: Large input
-    nums = [1]*100 + [2]*100
-    result = canPartition(nums)
-    print("Test case 4:")
-    print(f"Input: {nums}")
-    print(f"Output: {result}")
-    assert result == True, f"Expected True but got {result}"
+# Test case 4: Large input
+nums = [1]*100 + [2]*100
+result = canPartition(nums)
+print("Test case 4:")
+print(f"Input: {nums}")
+print(f"Output: {result}")
+assert result == True, f"Expected True but got {result}"
 
-    print("All test cases completed!")
-
-test_canPartition()
+print("All test cases completed!")

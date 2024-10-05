@@ -1,59 +1,53 @@
-def test_codec():
-    codec = Codec()
+codec = Codec()
 
-    # Test case 1
-    input_data = ["hello", "world"]
-    encoded = codec.encode(input_data)
-    decoded = codec.decode(encoded)
-    print("Test case 1:")
-    print(f"Input: {input_data}")
-    print(f"Encoded: {encoded}")
-    print(f"Decoded: {decoded}")
-    assert decoded == input_data, f"Expected {input_data} but got {decoded}"
-    print("Result: Passed")
-    print()
+# Test case 1
+input_data = ["hello", "world"]
+encoded = codec.encode(input_data)
+decoded = codec.decode(encoded)
+print("Test case 1:")
+print(f"Input: {input_data}")
+print(f"Encoded: {encoded}")
+print(f"Decoded: {decoded}")
+assert decoded == input_data, f"Expected {input_data} but got {decoded}"
+print("Result: Passed")
+print()
 
-    # Test case 2
-    input_data = ["", "decode", "string"]
-    encoded = codec.encode(input_data)
-    decoded = codec.decode(encoded)
-    print("Test case 2:")
-    print(f"Input: {input_data}")
-    print(f"Encoded: {encoded}")
-    print(f"Decoded: {decoded}")
-    assert decoded == input_data, f"Expected {input_data} but got {decoded}"
-    print("Result: Passed")
-    print()
+# Test case 2
+input_data = ["", "decode", "string"]
+encoded = codec.encode(input_data)
+decoded = codec.decode(encoded)
+print("Test case 2:")
+print(f"Input: {input_data}")
+print(f"Encoded: {encoded}")
+print(f"Decoded: {decoded}")
+assert decoded == input_data, f"Expected {input_data} but got {decoded}"
+print("Result: Passed")
+print()
 
-    # Test case 3
-    input_data = [""]
-    encoded = codec.encode(input_data)
-    decoded = codec.decode(encoded)
-    print("Test case 3:")
-    print(f"Input: {input_data}")
-    print(f"Encoded: {encoded}")
-    print(f"Decoded: {decoded}")
-    assert decoded == input_data, f"Expected {input_data} but got {decoded}"
-    print("Result: Passed")
-    print()
+# Test case 3
+input_data = [""]
+encoded = codec.encode(input_data)
+decoded = codec.decode(encoded)
+print("Test case 3:")
+print(f"Input: {input_data}")
+print(f"Encoded: {encoded}")
+print(f"Decoded: {decoded}")
+assert decoded == input_data, f"Expected {input_data} but got {decoded}"
+print("Result: Passed")
+print()
 
-    # Test case 4
-    input_data = []
-    encoded = codec.encode(input_data)
-    decoded = codec.decode(encoded)
-    assert decoded == input_data, f"Expected {input_data} but got {decoded}"
-    print("Test case 4: Passed")
+# Test case 4
+input_data = []
+encoded = codec.encode(input_data)
+decoded = codec.decode(encoded)
+assert decoded == input_data, f"Expected {input_data} but got {decoded}"
+print("Test case 4: Passed")
 
-    # Test case 5
-    input_data = ["#hello", "world#"]
-    encoded = codec.encode(input_data)
-    decoded = codec.decode(encoded)
-    assert decoded == input_data, f"Expected {input_data} but got {decoded}"
-    print("Test case 5: Passed")
+# Test case 5
+input_data = ["#hello", "world#"]
+encoded = codec.encode(input_data)
+decoded = codec.decode(encoded)
+assert decoded == input_data, f"Expected {input_data} but got {decoded}"
+print("Test case 5: Passed")
 
-    print("All test cases completed!")
-
-# Run the tests
-configure_state(test_codec)
-# Run the tests
-test_codec()
+print("All test cases completed!")

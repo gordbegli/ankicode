@@ -1,34 +1,30 @@
-def test_letterCombinations():
-    # Test case 1
-    print("Test case 1: digits = '23'")
-    result = letterCombinations("23")
-    print(f"Output: {result}")
-    assert set(result) == set(["ad","ae","af","bd","be","bf","cd","ce","cf"]), "Error in test case 1"
+# Test case 1
+print("Test case 1: digits = '23'")
+result = letterCombinations("23")
+print(f"Output: {result}")
+assert set(result) == set(["ad","ae","af","bd","be","bf","cd","ce","cf"]), "Error in test case 1"
 
-    # Test case 2
-    print("Test case 2: digits = ''")
-    result = letterCombinations("")
-    print(f"Output: {result}")
-    assert result == [], "Error in test case 2"
+# Test case 2
+print("Test case 2: digits = ''")
+result = letterCombinations("")
+print(f"Output: {result}")
+assert result == [], "Error in test case 2"
 
-    # Test case 3
-    print("Test case 3: digits = '2'")
-    result = letterCombinations("2")
-    print(f"Output: {result}")
-    assert set(result) == set(["a", "b", "c"]), "Error in test case 3"
+# Test case 3
+print("Test case 3: digits = '2'")
+result = letterCombinations("2")
+print(f"Output: {result}")
+assert set(result) == set(["a", "b", "c"]), "Error in test case 3"
 
-    # Test case 4
-    print("Test case 4: digits = '234'")
-    result = letterCombinations("234")
-    print(f"Output: {result}")
-    expected_output = [
-        "adg", "adh", "adi", "aeg", "aeh", "aei", "afg", "afh", "afi",
-        "bdg", "bdh", "bdi", "beg", "beh", "bei", "bfg", "bfh", "bfi",
-        "cdg", "cdh", "cdi", "ceg", "ceh", "cei", "cfg", "cfh", "cfi"
-    ]
-    assert set(result) == set(expected_output), "Error in test case 4"
+# Test case 4
+print("Test case 4: digits = '234'")
+result = letterCombinations("234")
+print(f"Output: {result}")
+expected_output = [
+    "adg", "adh", "adi", "aeg", "aeh", "aei", "afg", "afh", "afi",
+    "bdg", "bdh", "bdi", "beg", "beh", "bei", "bfg", "bfh", "bfi",
+    "cdg", "cdh", "cdi", "ceg", "ceh", "cei", "cfg", "cfh", "cfi"
+]
+assert set(result) == set(expected_output), "Error in test case 4"
 
-    print("All test cases complete")
-
-# Run the tests
-test_letterCombinations()
+print("All test cases complete")

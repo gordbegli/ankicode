@@ -1,41 +1,36 @@
-def test_longest_palindromic_substring():
-    
-    # Test case 1
-    s = "babad"
-    result = longest_palindromic_substring(s)
-    assert result in ["bab", "aba"], f"Expected 'bab' or 'aba' but got {result}"
-    
-    # Test case 2
-    s = "cbbd"
-    result = longest_palindromic_substring(s)
-    assert result == "bb", f"Expected 'bb' but got {result}"
-    
-    # Test case 3
-    s = "a"
-    result = longest_palindromic_substring(s)
-    assert result == "a", f"Expected 'a' but got {result}"
+# Test case 1
+s = "babad"
+result = longest_palindromic_substring(s)
+assert result in ["bab", "aba"], f"Expected 'bab' or 'aba' but got {result}"
 
-    # Test case 4
-    s = "ac"
-    result = longest_palindromic_substring(s)
-    assert result in ["a", "c"], f"Expected 'a' or 'c' but got {result}"
+# Test case 2
+s = "cbbd"
+result = longest_palindromic_substring(s)
+assert result == "bb", f"Expected 'bb' but got {result}"
 
-    # Test case 5
-    s = "racecar"
-    result = longest_palindromic_substring(s)
-    assert result == "racecar", f"Expected 'racecar' but got {result}"
+# Test case 3
+s = "a"
+result = longest_palindromic_substring(s)
+assert result == "a", f"Expected 'a' but got {result}"
 
-    # Test case 6
-    s = "banana"
-    result = longest_palindromic_substring(s)
-    assert result == "anana", f"Expected 'anana' but got {result}"
+# Test case 4
+s = "ac"
+result = longest_palindromic_substring(s)
+assert result in ["a", "c"], f"Expected 'a' or 'c' but got {result}"
 
-    # Test case 7
-    s = ""
-    result = longest_palindromic_substring(s)
-    assert result == "", f"Expected '' but got {result}"
+# Test case 5
+s = "racecar"
+result = longest_palindromic_substring(s)
+assert result == "racecar", f"Expected 'racecar' but got {result}"
 
-    print("All test cases passed.")
+# Test case 6
+s = "banana"
+result = longest_palindromic_substring(s)
+assert result == "anana", f"Expected 'anana' but got {result}"
 
-# Run the tests
-test_longest_palindromic_substring()
+# Test case 7
+s = ""
+result = longest_palindromic_substring(s)
+assert result == "", f"Expected '' but got {result}"
+
+print("All test cases passed.")

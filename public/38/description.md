@@ -6,28 +6,18 @@ Given the head of a singly linked list, reverse the list, and return the reverse
 
 **Example 1:**
 
-```plaintext
-1 -> 2 -> 3 -> 4 -> 5 -> NULL
-
 Input: head = [1, 2, 3, 4, 5]
 Output: [5, 4, 3, 2, 1]
-```
 
 **Example 2:**
 
-```plaintext
-1 -> 2 -> NULL
-
 Input: head = [1, 2]
 Output: [2, 1]
-```
 
 **Example 3:**
 
-```plaintext
-Input: head = []
+Input: []
 Output: []
-```
 
 ## Constraints:
 

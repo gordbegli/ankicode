@@ -6,6 +6,7 @@ class ListNode:
         self.next = next
 
 
+
 def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     # Your code here
     pass
