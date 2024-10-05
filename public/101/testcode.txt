@@ -21,5 +21,3 @@ result = solution.findCheapestPrice(3, [], 0, 2, 1)
 assert result == -1, f'Test case 5 failed: Expected -1, got {result}'
 
 print('All test cases passed.')
-
-solution.findCheapestPrice()

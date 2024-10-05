@@ -17,5 +17,3 @@ print(f"Output: {result}")
 assert result == [2, 5], f"Expected [2, 5], but got {result}"
 
 print("All test cases complete")
-
-test_productExceptSelf()

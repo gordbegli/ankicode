@@ -29,5 +29,3 @@ expected = 0
 assert maxProfit(prices) == expected, f'Edge case 2 failed: expected {expected}, got {maxProfit(prices)}'
 
 print("All test cases passed!")
-
-test_maxProfit()

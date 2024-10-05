@@ -13,13 +13,16 @@ def breadth_first_traversal(root: Optional[TreeNode]) -> List[int]:
     # Your code here
     pass
 
+
 def preorder_traversal(root: Optional[TreeNode]) -> List[int]:
     # Your code here
     pass
 
+
 def inorder_traversal(root: Optional[TreeNode]) -> List[int]:
     # Your code here
     pass
+
 
 def postorder_traversal(root: Optional[TreeNode]) -> List[int]:
     # Your code here

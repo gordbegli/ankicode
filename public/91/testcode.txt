@@ -1,49 +1,41 @@
-def test_countComponents():
-    print("Test case 1:")
-    n1, edges1 = 5, [[0, 1], [1, 2], [3, 4]]
-    result1 = countComponents(n1, edges1)
-    print(f"Input: n = {n1}, edges = {edges1}")
-    print(f"Output: {result1}")
-    assert result1 == 2
-    print("Result: Passed\n")
-    
-    print("Test case 2:")
-    n2, edges2 = 6, [[0, 1], [1, 2], [2, 3], [3, 4]]
-    result2 = countComponents(n2, edges2)
-    print(f"Input: n = {n2}, edges = {edges2}")
-    print(f"Output: {result2}")
-    assert result2 == 1
-    print("Result: Passed\n")
+print("Test case 1:")
+n1, edges1 = 5, [[0, 1], [1, 2], [3, 4]]
+result1 = countComponents(n1, edges1)
+print(f"Input: n = {n1}, edges = {edges1}")
+print(f"Output: {result1}")
+assert result1 == 2
+print("Result: Passed\n")
 
-    print("Test case 3:")
-    n3, edges3 = 4, []
-    result3 = countComponents(n3, edges3)
-    print(f"Input: n = {n3}, edges = {edges3}")
-    print(f"Output: {result3}")
-    assert result3 == 4
-    print("Result: Passed\n")
+print("Test case 2:")
+n2, edges2 = 6, [[0, 1], [1, 2], [2, 3], [3, 4]]
+result2 = countComponents(n2, edges2)
+print(f"Input: n = {n2}, edges = {edges2}")
+print(f"Output: {result2}")
+assert result2 == 1
+print("Result: Passed\n")
 
-    print("Test case 4:")
-    n4, edges4 = 4, [[0, 1], [2, 3]]
-    result4 = countComponents(n4, edges4)
-    print(f"Input: n = {n4}, edges = {edges4}")
-    print(f"Output: {result4}")
-    assert result4 == 2
-    print("Result: Passed\n")
+print("Test case 3:")
+n3, edges3 = 4, []
+result3 = countComponents(n3, edges3)
+print(f"Input: n = {n3}, edges = {edges3}")
+print(f"Output: {result3}")
+assert result3 == 4
+print("Result: Passed\n")
 
-    print("Test case 5:")
-    n5, edges5 = 7, [[0, 1], [1, 2], [2, 0], [3, 4], [5, 6]]
-    result5 = countComponents(n5, edges5)
-    print(f"Input: n = {n5}, edges = {edges5}")
-    print(f"Output: {result5}")
-    assert result5 == 3
-    print("Result: Passed\n")
+print("Test case 4:")
+n4, edges4 = 4, [[0, 1], [2, 3]]
+result4 = countComponents(n4, edges4)
+print(f"Input: n = {n4}, edges = {edges4}")
+print(f"Output: {result4}")
+assert result4 == 2
+print("Result: Passed\n")
 
-    print("All test cases complete")
+print("Test case 5:")
+n5, edges5 = 7, [[0, 1], [1, 2], [2, 0], [3, 4], [5, 6]]
+result5 = countComponents(n5, edges5)
+print(f"Input: n = {n5}, edges = {edges5}")
+print(f"Output: {result5}")
+assert result5 == 3
+print("Result: Passed\n")
 
-# Run the tests
-
-
-
-
-test_countComponents()
+print("All test cases complete")

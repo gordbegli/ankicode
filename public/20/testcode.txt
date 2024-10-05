@@ -43,13 +43,13 @@ print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
 assert result == 3, "Test case 5 failed"
 print("Passed\n")
 
-# Test case 7
-print("Test case 7")
+# Test case 6
+print("Test case 6")
 coins = [3]
 amount = 3
 result = coinChange(coins, amount)
 print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
-assert result == 1, "Test case 7 failed"
+assert result == 1, "Test case 6 failed"
 print("Passed\n")
 
 print("All test cases complete")

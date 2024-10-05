@@ -65,5 +65,3 @@ print("Result: Passed")
 print()
 
 print("All test cases complete!")
-
-test_searchMatrix()

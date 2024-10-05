@@ -12,6 +12,7 @@ def create_test_tree():
     root.left.right = TreeNode(5)
     return root
 
+
 def test_traversals():
     root = create_test_tree()
     
@@ -36,5 +37,6 @@ def test_traversals():
     assert result == [4, 5, 2, 3, 1], "Failed Postorder Traversal"
 
     print("All tests passed!")
+
 
 test_traversals()

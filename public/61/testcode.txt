@@ -1,29 +1,26 @@
-def test_partition():
-    # Test case 1
-    result = partition("aab")
-    print("Test case 1 output:", result)
-    assert sorted(result) == sorted([["a","a","b"],["aa","b"]]), "Test case 1 failed"
+# Test case 1
+result = partition("aab")
+print("Test case 1 output:", result)
+assert sorted(result) == sorted([["a","a","b"],["aa","b"]]), "Test case 1 failed"
 
-    # Test case 2
-    result = partition("a")
-    print("Test case 2 output:", result)
-    assert result == [["a"]], "Test case 2 failed"
+# Test case 2
+result = partition("a")
+print("Test case 2 output:", result)
+assert result == [["a"]], "Test case 2 failed"
 
-    # Test case 3
-    result = partition("racecar")
-    print("Test case 3 output:", result)
-    assert sorted(result) == sorted([["r","a","c","e","c","a","r"], ["r","a","cec","a","r"], ["r","aceca","r"], ["racecar"]]), "Test case 3 failed"
+# Test case 3
+result = partition("racecar")
+print("Test case 3 output:", result)
+assert sorted(result) == sorted([["r","a","c","e","c","a","r"], ["r","a","cec","a","r"], ["r","aceca","r"], ["racecar"]]), "Test case 3 failed"
 
-    # Test case 4
-    result = partition("aabb")
-    print("Test case 4 output:", result)
-    assert sorted(result) == sorted([["a", "a", "b", "b"], ["aa", "b", "b"], ["a", "a", "bb"]]), "Test case 4 failed"
+# Test case 4
+result = partition("aabb")
+print("Test case 4 output:", result)
+assert sorted(result) == sorted([["a", "a", "b", "b"], ["aa", "b", "b"], ["a", "a", "bb"]]), "Test case 4 failed"
 
-    # Test case 5
-    result = partition("abcd")
-    print("Test case 5 output:", result)
-    assert result == [["a", "b", "c", "d"]], "Test case 5 failed"
+# Test case 5
+result = partition("abcd")
+print("Test case 5 output:", result)
+assert result == [["a", "b", "c", "d"]], "Test case 5 failed"
 
-    print("All test cases passed.")
-
-test_partition()
+print("All test cases passed.")

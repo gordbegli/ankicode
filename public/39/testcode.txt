@@ -48,5 +48,3 @@ assert result == "-3,-2,-1,0,2"
 print("Result: Passed"); print()
 
 print("All test cases complete")
-
-test_mergeTwoLists()

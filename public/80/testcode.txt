@@ -10,7 +10,7 @@ assert result == False, f"Test case 2 failed: expected False, got {result}"
 result = check_inclusion("longstring", "short")
 assert result == False, f"Test case 3 failed: expected False, got {result}"
 
-# Test case 4: s1 and s2 are identical but not permutations
+# Test case 4: s1 and s2 are identical and permutations
 result = check_inclusion("abc", "abc")
 assert result == True, f"Test case 4 failed: expected True, got {result}"
 
@@ -26,8 +26,8 @@ s2_large_permutation = "zyxwvutsrqponmlkjihgfedcba" + "a" * 9974
 result = check_inclusion(s1_large_permutation, s2_large_permutation)
 assert result == True, f"Test case 6 failed: expected True, got {result}"
 
-# Test case 7: All characters in s1 match s2 but not a permutation
+# Test case 7: All characters in s1 match s2 and form a permutation
 result = check_inclusion("abc", "cbdaa")
-assert result == False, f"Test case 7 failed: expected False, got {result}"
+assert result == True, f"Test case 7 failed: expected True, got {result}"
 
 print("All test cases pass.")

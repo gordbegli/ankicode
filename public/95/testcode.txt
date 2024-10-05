@@ -26,4 +26,5 @@ assert result == 1000000000, f"Expected 1000000000 but got {result}"
 
 print("All test cases passed!")
 
-test_minEatingSpeed()
+# Run tests
+# test_minEatingSpeed()  # Removed as tests are directly called

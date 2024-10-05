@@ -21,7 +21,9 @@ Input: s = "AABABBA", k = 1
 Output: 4
 
 Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
+
 The substring "BBBB" has the longest repeating letters, which is 4.
+
 There may exist other ways to achieve this answer too.
 
 ## Constraints:

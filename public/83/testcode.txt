@@ -6,6 +6,7 @@ def build_graph(adjList):
         nodes[i].neighbors = [nodes[j - 1] for j in neighbors]
     return nodes[0]
 
+
 def graph_to_adjList(node):
     if not node:
         return []
@@ -41,5 +42,3 @@ result = graph_to_adjList(cloned_graph)
 assert result == adjList, f"Test case 3 failed: expected {adjList}, but got {result}"
 
 print("All test cases passed!")
-
-test_cloneGraph()

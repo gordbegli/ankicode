@@ -62,4 +62,3 @@ assert result == 5, f"Expected 5, but got {result}"
 print("All test cases complete")
 
 # Run tests
-# test_countGoodNodes()

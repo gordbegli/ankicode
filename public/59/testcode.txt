@@ -7,7 +7,7 @@ print(f"Output: {result}")
 assert sorted(result) == sorted([[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]), f"Expected [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]], but got {result}"
 
 # Test case 2: Example 2
-candidates = [2,5,2,1,2]
+candidates = [2, 5, 2, 1, 2]
 target = 5
 result = combinationSum2(candidates, target)
 print("Test Case 2: candidates = [2,5,2,1,2], target = 5")

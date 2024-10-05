@@ -17,5 +17,3 @@ print(f"Output: {result}")
 assert result == True, "Test case 3 failed"
 
 print("All test cases complete")
-
-test_isPalindrome()

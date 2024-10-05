@@ -20,5 +20,3 @@ result = characterReplacement("ABCDEABCDE", 2)
 assert result == 3, f"Test case 5 failed: expected 3 but got {result}"
 
 print("All test cases passed")
-
-test_characterReplacement()

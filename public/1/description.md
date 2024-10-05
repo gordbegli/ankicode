@@ -5,6 +5,7 @@ Given the root of a binary tree, return the sum of all left leaves. A leaf is a 
 ### Examples
 
 #### Example 1
+
 ```
 Input:
     3

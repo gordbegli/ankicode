@@ -4,7 +4,7 @@ Given an array of integers `temperatures` representing the daily temperatures, r
 
 The function signature is:
 ```python
- def dailyTemperatures(temperatures: List[int]) -> List[int]:
+def dailyTemperatures(temperatures: List[int]) -> List[int]:
 ```
 
 ## Examples
