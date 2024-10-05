@@ -1,32 +1,29 @@
-def test_minEatingSpeed():
-    # Test case 1
-    result = minEatingSpeed([3, 6, 7, 11], 8)
-    assert result == 4, f"Expected 4 but got {result}"
+# Test case 1
+result = minEatingSpeed([3, 6, 7, 11], 8)
+assert result == 4, f"Expected 4 but got {result}"
 
-    # Test case 2
-    result = minEatingSpeed([30, 11, 23, 4, 20], 5)
-    assert result == 30, f"Expected 30 but got {result}"
+# Test case 2
+result = minEatingSpeed([30, 11, 23, 4, 20], 5)
+assert result == 30, f"Expected 30 but got {result}"
 
-    # Test case 3
-    result = minEatingSpeed([30, 11, 23, 4, 20], 6)
-    assert result == 23, f"Expected 23 but got {result}"
+# Test case 3
+result = minEatingSpeed([30, 11, 23, 4, 20], 6)
+assert result == 23, f"Expected 23 but got {result}"
 
-    # Edge case 1: Single pile
-    result = minEatingSpeed([1], 1)
-    assert result == 1, f"Expected 1 but got {result}"
+# Edge case 1: Single pile
+result = minEatingSpeed([1], 1)
+assert result == 1, f"Expected 1 but got {result}"
 
-    # Edge case 2: Minimum and large h
-    result = minEatingSpeed([1, 1, 1, 1, 1], 5)
-    assert result == 1, f"Expected 1 but got {result}"
-    result = minEatingSpeed([1000000000]*10000, 1000000000)
-    assert result == 1, f"Expected 1 but got {result}"
+# Edge case 2: Minimum and large h
+result = minEatingSpeed([1, 1, 1, 1, 1], 5)
+assert result == 1, f"Expected 1 but got {result}"
+result = minEatingSpeed([1000000000]*10000, 1000000000)
+assert result == 1, f"Expected 1 but got {result}"
 
-    # Edge case 3: Large pile, small h
-    result = minEatingSpeed([1000000000]*10, 10)
-    assert result == 1000000000, f"Expected 1000000000 but got {result}"
+# Edge case 3: Large pile, small h
+result = minEatingSpeed([1000000000]*10, 10)
+assert result == 1000000000, f"Expected 1000000000 but got {result}"
 
-    print("All test cases passed!")
-
-# Run the tests
+print("All test cases passed!")
 
 test_minEatingSpeed()

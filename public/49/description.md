@@ -1,11 +1,10 @@
-
 ## Longest Common Subsequence
 
 Given two strings `text1` and `text2`, return the length of their longest common subsequence (LCS). If there is no common subsequence, return 0.
 
 A subsequence of a string is a sequence of characters that appear in the same order as they do in the original string, but not necessarily consecutively. For example, "ace" is a subsequence of "abcde".
 
-A common subsequence of the two strings is a subsequence that appears in both strings.  
+A common subsequence of the two strings is a subsequence that appears in both strings.
 
 ## Examples
 

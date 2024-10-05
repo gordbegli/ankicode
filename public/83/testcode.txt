@@ -1,46 +1,45 @@
-def test_cloneGraph():
-    def build_graph(adjList):
-        if not adjList:
-            return None
-        nodes = [Node(i) for i in range(1, len(adjList) + 1)]
-        for i, neighbors in enumerate(adjList):
-            nodes[i].neighbors = [nodes[j - 1] for j in neighbors]
-        return nodes[0]
+def build_graph(adjList):
+    if not adjList:
+        return None
+    nodes = [Node(i) for i in range(1, len(adjList) + 1)]
+    for i, neighbors in enumerate(adjList):
+        nodes[i].neighbors = [nodes[j - 1] for j in neighbors]
+    return nodes[0]
 
-    def graph_to_adjList(node):
-        if not node:
-            return []
-        visited = {}
-        def dfs(node):
-            if node in visited:
-                return
-            visited[node] = [n.val for n in node.neighbors]
-            for neighbor in node.neighbors:
-                dfs(neighbor)
-        dfs(node)
-        return [visited[n] for n in sorted(visited.keys(), key=lambda x: x.val)]
+def graph_to_adjList(node):
+    if not node:
+        return []
+    visited = {}
+    def dfs(node):
+        if node in visited:
+            return
+        visited[node] = [n.val for n in node.neighbors]
+        for neighbor in node.neighbors:
+            dfs(neighbor)
+    dfs(node)
+    return [visited[n] for n in sorted(visited.keys(), key=lambda x: x.val)]
 
-    # Test case 1: Example from problem statement
-    adjList = [[2, 4], [1, 3], [2, 4], [1, 3]]
-    graph = build_graph(adjList)
-    cloned_graph = Solution().cloneGraph(graph)
-    result = graph_to_adjList(cloned_graph)
-    assert result == adjList, f"Test case 1 failed: expected {adjList}, but got {result}"
+# Test case 1: Example from problem statement
+adjList = [[2, 4], [1, 3], [2, 4], [1, 3]]
+graph = build_graph(adjList)
+cloned_graph = Solution().cloneGraph(graph)
+result = graph_to_adjList(cloned_graph)
+assert result == adjList, f"Test case 1 failed: expected {adjList}, but got {result}"
 
-    # Test case 2: Single node with no neighbors
-    adjList = [[]]
-    graph = build_graph(adjList)
-    cloned_graph = Solution().cloneGraph(graph)
-    result = graph_to_adjList(cloned_graph)
-    assert result == adjList, f"Test case 2 failed: expected {adjList}, but got {result}"
+# Test case 2: Single node with no neighbors
+adjList = [[]]
+graph = build_graph(adjList)
+cloned_graph = Solution().cloneGraph(graph)
+result = graph_to_adjList(cloned_graph)
+assert result == adjList, f"Test case 2 failed: expected {adjList}, but got {result}"
 
-    # Test case 3: Empty graph
-    adjList = []
-    graph = build_graph(adjList)
-    cloned_graph = Solution().cloneGraph(graph)
-    result = graph_to_adjList(cloned_graph)
-    assert result == adjList, f"Test case 3 failed: expected {adjList}, but got {result}"
+# Test case 3: Empty graph
+adjList = []
+graph = build_graph(adjList)
+cloned_graph = Solution().cloneGraph(graph)
+result = graph_to_adjList(cloned_graph)
+assert result == adjList, f"Test case 3 failed: expected {adjList}, but got {result}"
 
-    print("All test cases passed!")
+print("All test cases passed!")
 
 test_cloneGraph()

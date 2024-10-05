@@ -6,6 +6,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 def countGoodNodes(root: Optional[TreeNode]) -> int:
     # Your code here
     pass

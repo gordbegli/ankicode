@@ -15,6 +15,7 @@ Input:
 
 Output: 24
 ```
+
 **Explanation:** The left leaves are 9 and 15. Sum = 9 + 15 = 24.
 
 **Input:** root = `[3,9,20,null,null,15,7]`
@@ -30,6 +31,7 @@ Input:
 
 Output: 0
 ```
+
 **Explanation:** There are no left leaves.
 
 **Input:** root = `[1,null,2]`

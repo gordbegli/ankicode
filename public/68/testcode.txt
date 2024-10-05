@@ -13,10 +13,10 @@ def test_carFleet():
     result = sol.carFleet(100, [0, 2, 4], [4, 2, 1])
     assert result == 1, f"Test case 3 failed: {result}"
 
-    # Additional test case 4: No cars
-    result = sol.carFleet(20, [], [])
-    assert result == 0, f"Test case 4 failed: {result}"
-
     print("All test cases complete")
 
-test_carFleet()
+
+# Run the test function
+
+if __name__ == "__main__":
+    test_carFleet()

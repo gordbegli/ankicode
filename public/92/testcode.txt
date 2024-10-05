@@ -1,43 +1,39 @@
-def test_findRedundantConnection():
-    sol = Solution()
-    
-    # Test case 1
-    print("Test case 1 (edges = [[1,2],[1,3],[2,3]]):")
-    edges = [[1,2],[1,3],[2,3]]
-    result = sol.findRedundantConnection(edges)
-    print(f"Input: {edges}")
-    print(f"Output: {result}")
-    assert result == [2,3], f"Expected [2,3], but got {result}"
+sol = Solution()
 
-    # Test case 2
-    print("Test case 2 (edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]):")
-    edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]
-    result = sol.findRedundantConnection(edges)
-    print(f"Input: {edges}")
-    print(f"Output: {result}")
-    assert result == [1,4], f"Expected [1,4], but got {result}"
+# Test case 1
+print("Test case 1 (edges = [[1,2],[1,3],[2,3]]):")
+edges = [[1,2],[1,3],[2,3]]
+result = sol.findRedundantConnection(edges)
+print(f"Input: {edges}")
+print(f"Output: {result}")
+assert result == [2,3], f"Expected [2,3], but got {result}"
 
-    # Additional Test case 3: Complex case with more nodes
-    print("Test case 3 (edges = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,3]]):")
-    edges = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,3]]
-    result = sol.findRedundantConnection(edges)
-    print(f"Input: {edges}")
-    print(f"Output: {result}")
-    assert result == [9,3], f"Expected [9,3], but got {result}"
+# Test case 2
+print("Test case 2 (edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]):")
+edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]
+result = sol.findRedundantConnection(edges)
+print(f"Input: {edges}")
+print(f"Output: {result}")
+assert result == [1,4], f"Expected [1,4], but got {result}"
 
-    # Additional Test case 4: No redundant connection since extra edge is at the end
-    print("Test case 4 (edges = [[1,2],[1,3],[2,3],[4,5],[4,6],[5,6]]):")
-    edges = [[1,2],[1,3],[2,3],[4,5],[4,6],[5,6]]
-    result = sol.findRedundantConnection(edges)
-    assert result == [5,6], f"Expected [5,6], but got {result}"
+# Additional Test case 3: Complex case with more nodes
+print("Test case 3 (edges = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,3]]):")
+edges = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,3]]
+result = sol.findRedundantConnection(edges)
+print(f"Input: {edges}")
+print(f"Output: {result}")
+assert result == [9,3], f"Expected [9,3], but got {result}"
 
-    # Additional Test case 5: Minimal tree with extra edge
-    print("Test case 5 (edges = [[1,2],[1,3],[3,2]]):")
-    edges = [[1,2],[1,3],[3,2]]
-    result = sol.findRedundantConnection(edges)
-    assert result == [3,2], f"Expected [3,2], but got {result}"
+# Additional Test case 4: No redundant connection since extra edge is at the end
+print("Test case 4 (edges = [[1,2],[1,3],[2,3],[4,5],[4,6],[5,6]]):")
+edges = [[1,2],[1,3],[2,3],[4,5],[4,6],[5,6]]
+result = sol.findRedundantConnection(edges)
+assert result == [5,6], f"Expected [5,6], but got {result}"
 
-    print("All test cases complete")
+# Additional Test case 5: Minimal tree with extra edge
+print("Test case 5 (edges = [[1,2],[1,3],[3,2]]):")
+edges = [[1,2],[1,3],[3,2]]
+result = sol.findRedundantConnection(edges)
+assert result == [3,2], f"Expected [3,2], but got {result}"
 
-# Run the tests
-test_findRedundantConnection()
+print("All test cases complete")

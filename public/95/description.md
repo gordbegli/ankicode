@@ -4,7 +4,7 @@ Koko loves eating bananas. There are `n` piles of bananas, and the `i`-th pile h
 
 Koko can decide her bananas-per-hour eating speed `k`. Each hour, she chooses some pile of bananas and eats up to `k` bananas from that pile. If the pile has fewer than `k` bananas, she eats all of them instead and does not eat more bananas that hour.
 
-Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return. 
+Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return.
 
 Return the minimum integer `k` such that she can eat all the bananas within `h` hours.
 

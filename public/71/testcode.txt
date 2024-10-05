@@ -1,27 +1,22 @@
-def test_kClosest():
-    # Test case 1: Basic input
-    result = kClosest([[1,3],[-2,2]], 1)
-    assert result == [[-2,2]], f"Test case 1 failed: {result}"
+# Test case 1: Basic input
+result = kClosest([[1,3],[-2,2]], 1)
+assert result == [[-2,2]], f"Test case 1 failed: {result}"
 
-    # Test case 2: Multiple closest points
-    result = kClosest([[3,3],[5,-1],[-2,4]], 2)
-    assert result == [[3,3],[-2,4]] or result == [[-2,4],[3,3]], f"Test case 2 failed: {result}"
+# Test case 2: Multiple closest points
+result = kClosest([[3,3],[5,-1],[-2,4]], 2)
+assert result == [[3,3],[-2,4]] or result == [[-2,4],[3,3]], f"Test case 2 failed: {result}"
 
-    # Test case 3: Negative coordinates
-    result = kClosest([[-5, -4], [4, 3], [-2, -1]], 1)
-    assert result == [[-2, -1]], f"Test case 3 failed: {result}"
+# Test case 3: Negative coordinates
+result = kClosest([[-5, -4], [4, 3], [-2, -1]], 1)
+assert result == [[-2, -1]], f"Test case 3 failed: {result}"
 
-    # Test case 4: All points the same distance
-    result = kClosest([[1, 1], [-1, -1], [1, -1]], 2)
-    assert all(point in [[1, 1], [-1, -1], [1, -1]] for point in result) and len(result) == 2, f"Test case 4 failed: {result}"
+# Test case 4: All points the same distance
+result = kClosest([[1, 1], [-1, -1], [1, -1]], 2)
+assert all(point in [[1, 1], [-1, -1], [1, -1]] for point in result) and len(result) == 2, f"Test case 4 failed: {result}"
 
-    # Test case 5: Large inputs
-    points = [[i, i] for i in range(1, 10001)]
-    result = kClosest(points, 3)
-    assert result == [[1, 1], [2, 2], [3, 3]], f"Test case 5 failed: {result}"
+# Test case 5: Large inputs
+points = [[i, i] for i in range(1, 10001)]
+result = kClosest(points, 3)
+assert result == [[1, 1], [2, 2], [3, 3]], f"Test case 5 failed: {result}"
 
-    print("All test cases passed.")
-
-# Run the tests
-
-test_kClosest()
+print("All test cases passed.")

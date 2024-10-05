@@ -13,5 +13,4 @@ def test_rob():
 
     print("All test cases pass")
 
-# Run the tests
 test_rob()

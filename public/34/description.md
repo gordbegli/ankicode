@@ -25,7 +25,7 @@ Explanation: After processing, "raceacar" does not read the same forward and bac
 **Example 3:**
 
 ```
-Input: s = "
+Input: s = " "
 Output: True
 Explanation: After removing non-alphanumeric characters, the string becomes an empty string "" which is a palindrome by definition.
 ```

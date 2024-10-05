@@ -6,33 +6,27 @@ We will send a signal from a given node `k`. Return the minimum time it takes fo
 
 ## Examples
 
-Example 1:
+**Example 1:**
 
-```
-Input: times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
-Output: 2
-```
+Input: `times = [[2,1,1],[2,3,1],[3,4,1]]`, `n = 4`, `k = 2`
+Output: `2`
 
-Example 2:
+**Example 2:**
 
-```
-Input: times = [[1,2,1]], n = 2, k = 1
-Output: 1
-```
+Input: `times = [[1,2,1]]`, `n = 2`, `k = 1`
+Output: `1`
 
-Example 3:
+**Example 3:**
 
-```
-Input: times = [[1,2,1]], n = 2, k = 2
-Output: -1
-```
+Input: `times = [[1,2,1]]`, `n = 2`, `k = 2`
+Output: `-1`
 
 ## Constraints
 
-* `1 <= k <= n <= 100`
-* `1 <= times.length <= 6000`
-* `times[i].length == 3`
-* `1 <= u_i, v_i <= n`
-* `u_i != v_i`
-* `0 <= w_i <= 100`
-* All the pairs `(u_i, v_i)` are unique.
+- `1 <= k <= n <= 100`
+- `1 <= times.length <= 6000`
+- `times[i].length == 3`
+- `1 <= u_i, v_i <= n`
+- `u_i != v_i`
+- `0 <= w_i <= 100`
+- All the pairs `(u_i, v_i)` are unique.
