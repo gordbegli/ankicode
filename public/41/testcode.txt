@@ -1,62 +1,58 @@
-def test_removeNthFromEnd():
-    # Helper function to convert linked list to Python list
-    def list_nodes(head: Optional[ListNode]) -> list:
-        result = []
-        while head:
-            result.append(head.val)
-            head = head.next
-        return result
+def list_nodes(head: Optional[ListNode]) -> list:
+    result = []
+    while head:
+        result.append(head.val)
+        head = head.next
+    return result
 
-    # Test case 1
-    head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
-    n = 2
-    result = removeNthFromEnd(head, n)
-    print("Test case 1:")
-    print(f"Input: head = [1,2,3,4,5], n = {n}")
-    print(f"Output: {list_nodes(result)}")
-    assert list_nodes(result) == [1,2,3,5]
-    print("Result: Passed\n")
+# Test case 1
+head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+n = 2
+result = removeNthFromEnd(head, n)
+print("Test case 1:")
+print(f"Input: head = [1,2,3,4,5], n = {n}")
+print(f"Output: {list_nodes(result)}")
+assert list_nodes(result) == [1,2,3,5]
+print("Result: Passed\n")
 
-    # Test case 2
-    head = ListNode(1)
-    n = 1
-    result = removeNthFromEnd(head, n)
-    print("Test case 2:")
-    print(f"Input: head = [1], n = {n}")
-    print(f"Output: {list_nodes(result)}")
-    assert list_nodes(result) == []
-    print("Result: Passed\n")
+# Test case 2
+head = ListNode(1)
+n = 1
+result = removeNthFromEnd(head, n)
+print("Test case 2:")
+print(f"Input: head = [1], n = {n}")
+print(f"Output: {list_nodes(result)}")
+assert list_nodes(result) == []
+print("Result: Passed\n")
 
-    # Test case 3
-    head = ListNode(1, ListNode(2))
-    n = 1
-    result = removeNthFromEnd(head, n)
-    print("Test case 3:")
-    print(f"Input: head = [1,2], n = {n}")
-    print(f"Output: {list_nodes(result)}")
-    assert list_nodes(result) == [1]
-    print("Result: Passed\n")
+# Test case 3
+head = ListNode(1, ListNode(2))
+n = 1
+result = removeNthFromEnd(head, n)
+print("Test case 3:")
+print(f"Input: head = [1,2], n = {n}")
+print(f"Output: {list_nodes(result)}")
+assert list_nodes(result) == [1]
+print("Result: Passed\n")
 
-    # Test case 4
-    head = ListNode(1, ListNode(2, ListNode(3)))
-    n = 3
-    result = removeNthFromEnd(head, n)
-    print("Test case 4:")
-    print(f"Input: head = [1,2,3], n = {n}")
-    print(f"Output: {list_nodes(result)}")
-    assert list_nodes(result) == [2, 3]
-    print("Result: Passed\n")
+# Test case 4
+head = ListNode(1, ListNode(2, ListNode(3)))
+n = 3
+result = removeNthFromEnd(head, n)
+print("Test case 4:")
+print(f"Input: head = [1,2,3], n = {n}")
+print(f"Output: {list_nodes(result)}")
+assert list_nodes(result) == [2, 3]
+print("Result: Passed\n")
 
-    # Test case 5
-    head = ListNode(10, ListNode(20, ListNode(30, ListNode(40))))
-    n = 1
-    result = removeNthFromEnd(head, n)
-    print("Test case 5:")
-    print(f"Input: head = [10,20,30,40], n = {n}")
-    print(f"Output: {list_nodes(result)}")
-    assert list_nodes(result) == [10,20,30]
-    print("Result: Passed\n")
+# Test case 5
+head = ListNode(10, ListNode(20, ListNode(30, ListNode(40))))
+n = 1
+result = removeNthFromEnd(head, n)
+print("Test case 5:")
+print(f"Input: head = [10,20,30,40], n = {n}")
+print(f"Output: {list_nodes(result)}")
+assert list_nodes(result) == [10,20,30]
+print("Result: Passed\n")
 
-    print("All test cases complete")
-
-test_removeNthFromEnd()
+print("All test cases complete")

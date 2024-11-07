@@ -4,13 +4,15 @@ Given a string `s`, partition `s` such that every substring of the partition is 
 
 ## Examples
 
-Example 1:
+**Example 1:**
+
 ```
 Input: s = "aab"
 Output: [["a","a","b"],["aa","b"]]
 ```
 
-Example 2:
+**Example 2:**
+
 ```
 Input: s = "a"
 Output: [["a"]]
@@ -18,10 +20,10 @@ Output: [["a"]]
 
 ## Constraints
 
-* 1 <= s.length <= 16
-* s contains only lowercase English letters.
+- 1 <= s.length <= 16
+- s contains only lowercase English letters.
 
 ## Notes
 
-* You may assume that the input string will always have at least one valid partition.
-* Pay special attention to edge cases like a single character string or a string with all identical characters.
+- You may assume that the input string will always have at least one valid partition.
+- Pay special attention to edge cases like a single character string or a string with all identical characters.

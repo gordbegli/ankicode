@@ -1,4 +1,3 @@
-
 ## Problem Statement
 
 Given the root of a binary tree, write a function to invert the tree and return its root. An inverted tree is one where the left and right children of all nodes are swapped.

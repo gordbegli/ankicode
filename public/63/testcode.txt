@@ -1,41 +1,38 @@
-def test_isValid():
-    # Test case 1: Basic valid parentheses
-    result = isValid("()")
-    assert result == True, f"Test case 1 failed: expected True but got {result}"
+# Test case 1: Basic valid parentheses
+result = isValid("()")
+assert result == True, f"Test case 1 failed: expected True but got {result}"
 
-    # Test case 2: Mixed types, valid order
-    result = isValid("()[]{}")
-    assert result == True, f"Test case 2 failed: expected True but got {result}"
+# Test case 2: Mixed types, valid order
+result = isValid("()[]{}")
+assert result == True, f"Test case 2 failed: expected True but got {result}"
 
-    # Test case 3: Mismatched types
-    result = isValid("(]")
-    assert result == False, f"Test case 3 failed: expected False but got {result}"
+# Test case 3: Mismatched types
+result = isValid("(]")
+assert result == False, f"Test case 3 failed: expected False but got {result}"
 
-    # Test case 4: Nested valid parentheses
-    result = isValid("([])")
-    assert result == True, f"Test case 4 failed: expected True but got {result}"
+# Test case 4: Nested valid parentheses
+result = isValid("([])")
+assert result == True, f"Test case 4 failed: expected True but got {result}"
 
-    # Test case 5: Unmatched opening
-    result = isValid("[(])")
-    assert result == False, f"Test case 5 failed: expected False but got {result}"
+# Test case 5: Unmatched opening
+result = isValid("[(])")
+assert result == False, f"Test case 5 failed: expected False but got {result}"
 
-    # Additional Test Cases
-    # Test case 6: Empty string
-    result = isValid("")
-    assert result == True, f"Test case 6 failed: expected True but got {result}"
+# Additional Test Cases
+# Test case 6: Empty string
+result = isValid("")
+assert result == True, f"Test case 6 failed: expected True but got {result}"
 
-    # Test case 7: Single type, long nested valid sequence
-    result = isValid("(((())))")
-    assert result == True, f"Test case 7 failed: expected True but got {result}"
+# Test case 7: Single type, long nested valid sequence
+result = isValid("(((())))")
+assert result == True, f"Test case 7 failed: expected True but got {result}"
 
-    # Test case 8: Single type, long nested invalid sequence
-    result = isValid("((())")
-    assert result == False, f"Test case 8 failed: expected False but got {result}"
+# Test case 8: Single type, long nested invalid sequence
+result = isValid("((())")
+assert result == False, f"Test case 8 failed: expected False but got {result}"
 
-    # Test case 9: Multiple types, long sequence
-    result = isValid("{[()()]}")
-    assert result == True, f"Test case 9 failed: expected True but got {result}"
+# Test case 9: Multiple types, long sequence
+result = isValid("{[()()]}")
+assert result == True, f"Test case 9 failed: expected True but got {result}"
 
-    print("All test cases passed!")
-
-test_isValid()
+print("All test cases passed!")

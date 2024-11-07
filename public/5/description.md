@@ -6,7 +6,7 @@ A subtree of a binary tree `tree` is a tree that consists of a node in `tree` an
 
 ## Examples
 
-Example 1:
+**Example 1:**
 
 Input:
 ```
@@ -20,7 +20,7 @@ Input:
 Input: `root = [3,4,5,1,2]`, `subRoot = [4,1,2]`
 Output: `true`
 
-Example 2:
+**Example 2:**
 
 Input:
 ```

@@ -21,10 +21,8 @@ Input:
 Output: [[3],[9,20],[15,7]]
 ```
 
-```
 **Input:** root = [3,9,20,None,None,15,7]
 **Output:** [[3],[9,20],[15,7]]
-```
 
 Example 2:
 ```
@@ -34,10 +32,8 @@ Input:
 Output: [[1]]
 ```
 
-```
 **Input:** root = [1]
 **Output:** [[1]]
-```
 
 Example 3:
 ```
@@ -45,10 +41,8 @@ Input:
 Output: []
 ```
 
-```
 **Input:** root = []
 **Output:** []
-```
 
 ## Constraints
 

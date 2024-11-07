@@ -1,69 +1,55 @@
-def test_coinChange():
-    # Test case 1
-    print("Test case 1")
-    coins = [1, 2, 5]
-    amount = 11
-    result = coinChange(coins, amount)
-    print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
-    assert result == 3, "Test case 1 failed"
-    print("Passed\n")
+# Test case 1
+print("Test case 1")
+coins = [1, 2, 5]
+amount = 11
+result = coinChange(coins, amount)
+print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
+assert result == 3, "Test case 1 failed"
+print("Passed\n")
 
-    # Test case 2
-    print("Test case 2")
-    coins = [2]
-    amount = 3
-    result = coinChange(coins, amount)
-    print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
-    assert result == -1, "Test case 2 failed"
-    print("Passed\n")
+# Test case 2
+print("Test case 2")
+coins = [2]
+amount = 3
+result = coinChange(coins, amount)
+print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
+assert result == -1, "Test case 2 failed"
+print("Passed\n")
 
-    # Test case 3
-    print("Test case 3")
-    coins = [1]
-    amount = 0
-    result = coinChange(coins, amount)
-    print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
-    assert result == 0, "Test case 3 failed"
-    print("Passed\n")
+# Test case 3
+print("Test case 3")
+coins = [1]
+amount = 0
+result = coinChange(coins, amount)
+print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
+assert result == 0, "Test case 3 failed"
+print("Passed\n")
 
-    # Test case 4
-    print("Test case 4")
-    coins = [1]
-    amount = 2
-    result = coinChange(coins, amount)
-    print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
-    assert result == 2, "Test case 4 failed"
-    print("Passed\n")
+# Test case 4
+print("Test case 4")
+coins = [1]
+amount = 2
+result = coinChange(coins, amount)
+print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
+assert result == 2, "Test case 4 failed"
+print("Passed\n")
 
-    # Test case 5
-    print("Test case 5")
-    coins = [2, 3, 5]
-    amount = 11
-    result = coinChange(coins, amount)
-    print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
-    assert result == 3, "Test case 5 failed"
-    print("Passed\n")
+# Test case 5
+print("Test case 5")
+coins = [2, 3, 5]
+amount = 11
+result = coinChange(coins, amount)
+print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
+assert result == 3, "Test case 5 failed"
+print("Passed\n")
 
-    # Test case 6
-    print("Test case 6")
-    coins = []
-    amount = 1
-    result = coinChange(coins, amount)
-    print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
-    assert result == -1, "Test case 6 failed"
-    print("Passed\n")
+# Test case 6
+print("Test case 6")
+coins = [3]
+amount = 3
+result = coinChange(coins, amount)
+print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
+assert result == 1, "Test case 6 failed"
+print("Passed\n")
 
-    # Test case 7
-    print("Test case 7")
-    coins = [3]
-    amount = 3
-    result = coinChange(coins, amount)
-    print(f"Input: coins = {coins}, amount = {amount}\nOutput: {result}")
-    assert result == 1, "Test case 7 failed"
-    print("Passed\n")
-
-    print("All test cases complete")
-
-# Run the test
-
-test_coinChange()
+print("All test cases complete")

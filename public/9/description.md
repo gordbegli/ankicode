@@ -1,6 +1,6 @@
 # Count Good Nodes in Binary Tree
 
-Given a binary tree, a node X in the tree is termed "good" if in the path from the root to X, there are no nodes with a value greater than X. The tree is represented as a list where None signifies missing children nodes. 
+Given a binary tree, a node X in the tree is termed "good" if in the path from the root to X, there are no nodes with a value greater than X. The tree is represented as a list where `None` signifies missing children nodes.
 
 Return the number of good nodes in the binary tree.
 
@@ -24,7 +24,6 @@ Explanation:
         3   5
          \
           1
-
 ```
 
 **Example 2:**
@@ -51,7 +50,6 @@ Explanation: Root is considered as good.
 
     1
 ```
-
 
 ## Constraints:
  * The number of nodes in the binary tree is in the range [1, 10^5].

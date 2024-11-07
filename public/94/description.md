@@ -1,13 +1,13 @@
 ## Search a 2D Matrix
 
-You are given an m x n integer matrix `matrix` with the following two properties:
+You are given an `m x n` integer matrix `matrix` with the following two properties:
 
 - Each row is sorted in non-decreasing order.
 - The first integer of each row is greater than the last integer of the previous row.
 
 Given an integer `target`, return `true` if `target` is in `matrix` or `false` otherwise.
 
-You must write a solution with O(log(m * n)) time complexity.
+You must write a solution with `O(log(m * n))` time complexity.
 
 ### Examples
 
@@ -34,4 +34,4 @@ Output: false
 
 ### Additional Notes
 
-- The solution should handle edge cases such as a 1x1 matrix, a single row matrix, and a single column matrix.
+- The solution should handle edge cases such as a `1x1` matrix, a single row matrix, and a single column matrix.

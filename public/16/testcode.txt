@@ -1,17 +1,13 @@
-def test_rob():
-    # Test case 1
-    result = rob([2, 3, 2])
-    assert result == 3, f"Test case 1 failed: expected 3, got {result}"
+# Test case 1
+result = rob([2, 3, 2])
+assert result == 3, f"Test case 1 failed: expected 3, got {result}"
 
-    # Test case 2
-    result = rob([1, 2, 3, 1])
-    assert result == 4, f"Test case 2 failed: expected 4, got {result}"
+# Test case 2
+result = rob([1, 2, 3, 1])
+assert result == 4, f"Test case 2 failed: expected 4, got {result}"
 
-    # Test case 3
-    result = rob([1, 2, 3])
-    assert result == 3, f"Test case 3 failed: expected 3, got {result}"
+# Test case 3
+result = rob([1, 2, 3])
+assert result == 3, f"Test case 3 failed: expected 3, got {result}"
 
-    print("All test cases pass")
-
-# Run the tests
-test_rob()
+print("All test cases pass")

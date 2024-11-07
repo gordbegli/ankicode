@@ -1,53 +1,49 @@
-def test_combinationSum2():
-    # Test case 1: Example 1
-    candidates = [10, 1, 2, 7, 6, 1, 5]
-    target = 8
-    result = combinationSum2(candidates, target)
-    print("Test Case 1: candidates = [10,1,2,7,6,1,5], target = 8")
-    print(f"Output: {result}")
-    assert sorted(result) == sorted([[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]), f"Expected [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]], but got {result}"
+# Test case 1: Example 1
+candidates = [10, 1, 2, 7, 6, 1, 5]
+target = 8
+result = combinationSum2(candidates, target)
+print("Test Case 1: candidates = [10,1,2,7,6,1,5], target = 8")
+print(f"Output: {result}")
+assert sorted(result) == sorted([[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]), f"Expected [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]], but got {result}"
 
-    # Test case 2: Example 2
-    candidates = [2,5,2,1,2]
-    target = 5
-    result = combinationSum2(candidates, target)
-    print("Test Case 2: candidates = [2,5,2,1,2], target = 5")
-    print(f"Output: {result}")
-    assert sorted(result) == sorted([[1, 2, 2], [5]]), f"Expected [[1, 2, 2], [5]], but got {result}"
+# Test case 2: Example 2
+candidates = [2, 5, 2, 1, 2]
+target = 5
+result = combinationSum2(candidates, target)
+print("Test Case 2: candidates = [2,5,2,1,2], target = 5")
+print(f"Output: {result}")
+assert sorted(result) == sorted([[1, 2, 2], [5]]), f"Expected [[1, 2, 2], [5]], but got {result}"
 
-    # Test case 3: No combination
-    candidates = [2, 4, 6]
-    target = 5
-    result = combinationSum2(candidates, target)
-    print("Test Case 3: candidates = [2, 4, 6], target = 5")
-    print(f"Output: {result}")
-    assert result == [], f"Expected [], but got {result}"
+# Test case 3: No combination
+candidates = [2, 4, 6]
+target = 5
+result = combinationSum2(candidates, target)
+print("Test Case 3: candidates = [2, 4, 6], target = 5")
+print(f"Output: {result}")
+assert result == [], f"Expected [], but got {result}"
 
-    # Test case 4: Single candidate equals target
-    candidates = [3]
-    target = 3
-    result = combinationSum2(candidates, target)
-    print("Test Case 4: candidates = [3], target = 3")
-    print(f"Output: {result}")
-    assert result == [[3]], f"Expected [[3]], but got {result}"
+# Test case 4: Single candidate equals target
+candidates = [3]
+target = 3
+result = combinationSum2(candidates, target)
+print("Test Case 4: candidates = [3], target = 3")
+print(f"Output: {result}")
+assert result == [[3]], f"Expected [[3]], but got {result}"
 
-    # Test case 5: All candidates sum to target
-    candidates = [1, 1, 1, 1]
-    target = 4
-    result = combinationSum2(candidates, target)
-    print("Test Case 5: candidates = [1, 1, 1, 1], target = 4")
-    print(f"Output: {result}")
-    assert result == [[1, 1, 1, 1]], f"Expected [[1, 1, 1, 1]], but got {result}"
+# Test case 5: All candidates sum to target
+candidates = [1, 1, 1, 1]
+target = 4
+result = combinationSum2(candidates, target)
+print("Test Case 5: candidates = [1, 1, 1, 1], target = 4")
+print(f"Output: {result}")
+assert result == [[1, 1, 1, 1]], f"Expected [[1, 1, 1, 1]], but got {result}"
 
-    # Test case 6: Duplicates in candidates but unique combinations
-    candidates = [1, 1, 2, 5, 6, 7, 10]
-    target = 8
-    result = combinationSum2(candidates, target)
-    print("Test Case 6: candidates = [1, 1, 2, 5, 6, 7, 10], target = 8")
-    print(f"Output: {result}")
-    assert sorted(result) == sorted([[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]), f"Expected [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]], but got {result}"
+# Test case 6: Duplicates in candidates but unique combinations
+candidates = [1, 1, 2, 5, 6, 7, 10]
+target = 8
+result = combinationSum2(candidates, target)
+print("Test Case 6: candidates = [1, 1, 2, 5, 6, 7, 10], target = 8")
+print(f"Output: {result}")
+assert sorted(result) == sorted([[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]), f"Expected [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]], but got {result}"
 
-    print("All test cases complete")
-
-# Run the tests
-test_combinationSum2()
+print("All test cases complete")

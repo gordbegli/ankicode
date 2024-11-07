@@ -1,4 +1,3 @@
-
 # Word Search
 
 Given an `m x n` grid of characters `board` and a string `word`, return `True` if the word exists in the grid.

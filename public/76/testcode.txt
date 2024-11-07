@@ -34,13 +34,15 @@ def test_invertTree():
     root = TreeNode(4, TreeNode(2, TreeNode(1), TreeNode(3)), TreeNode(7, TreeNode(6), TreeNode(9)))
     expected = TreeNode(4, TreeNode(7, TreeNode(9), TreeNode(6)), TreeNode(2, TreeNode(3), TreeNode(1)))
     result = invertTree(root)
-    assert (result.val == expected.val and result.left.val == expected.left.val and result.right.val == expected.right.val
-            and result.left.left.val == expected.left.left.val and result.left.right.val == expected.left.right.val
-            and result.right.left.val == expected.right.left.val and result.right.right.val == expected.right.right.val),
-           f"Expected a complex mirrored tree, but got a different structure"
+    assert (result.val == expected.val and \
+            result.left.val == expected.left.val and \
+            result.right.val == expected.right.val and \
+            result.left.left.val == expected.left.left.val and \
+            result.left.right.val == expected.left.right.val and \
+            result.right.left.val == expected.right.left.val and \
+            result.right.right.val == expected.right.right.val), "Expected a complex mirrored tree, but got a different structure"
     print("Test case 4 (Complex binary tree): Passed")
 
     print("All test cases completed!")
 
-# Function to execute the tests
 test_invertTree()

@@ -1,16 +1,13 @@
-def test_TimeMap():
-    timeMap = TimeMap()
+timeMap = TimeMap()
 
-    print("Test case 1: Set 'foo' to 'bar' at timestamp 1")
-    timeMap.set("foo", "bar", 1)
-    assert timeMap.get("foo", 1) == "bar", "Error in Test case 1"
-    assert timeMap.get("foo", 3) == "bar", "Error in Test case 1"
+print("Test case 1: Set 'foo' to 'bar' at timestamp 1")
+timeMap.set("foo", "bar", 1)
+assert timeMap.get("foo", 1) == "bar", "Error in Test case 1"
+assert timeMap.get("foo", 3) == "bar", "Error in Test case 1"
 
-    print("Test case 2: Set 'foo' to 'bar2' at timestamp 4")
-    timeMap.set("foo", "bar2", 4)
-    assert timeMap.get("foo", 4) == "bar2", "Error in Test case 2"
-    assert timeMap.get("foo", 5) == "bar2", "Error in Test case 2"
+print("Test case 2: Set 'foo' to 'bar2' at timestamp 4")
+timeMap.set("foo", "bar2", 4)
+assert timeMap.get("foo", 4) == "bar2", "Error in Test case 2"
+assert timeMap.get("foo", 5) == "bar2", "Error in Test case 2"
 
-    print("All test cases passed!")
-
-test_TimeMap()
+print("All test cases passed!")

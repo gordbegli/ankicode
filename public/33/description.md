@@ -17,7 +17,7 @@ Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefor
 ```
 Input: nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]
 Output: 9
-Explanation: The longest consecutive elements sequence is [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. Its length is 9.
+Explanation: The longest consecutive elements sequence is [0, 1, 2, 3, 4, 5, 6, 7, 8]. Its length is 9.
 ```
 
 ## Constraints:

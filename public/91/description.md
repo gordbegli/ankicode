@@ -5,6 +5,7 @@ Given an undirected graph, you need to count the number of connected components 
 ## Examples
 
 ### Example 1:
+
 ```
 Input: n = 5, edges = [[0, 1], [1, 2], [3, 4]]
 
@@ -16,6 +17,7 @@ Component 2: 3 - 4
 ```
 
 ### Example 2:
+
 ```
 Input: n = 6, edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
 

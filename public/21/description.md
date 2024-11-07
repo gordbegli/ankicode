@@ -27,7 +27,8 @@ Output: 42
 Explanation: [-2,-3,7] has the largest product 42.
 ```
 
-## Constraints:
-* 1 <= nums.length <= 2 * 10^4
-* -10 <= nums[i] <= 10
+## Constraints
+
+* `1 <= nums.length <= 2 * 10^4`
+* `-10 <= nums[i] <= 10`
 * The product of any subarray of `nums` is guaranteed to fit in a 32-bit integer.

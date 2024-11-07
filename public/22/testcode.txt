@@ -1,32 +1,27 @@
-def test_wordBreak():
-    def run_test(s, wordDict, expected):
-        result = wordBreak(s, wordDict)
-        assert result == expected, f"Failed for input: s = {s}, wordDict = {wordDict}, Expected: {expected}, Got: {result}"
-        print(f"Passed for input: s = {s}, wordDict = {wordDict}")
+def run_test(s, wordDict, expected):
+    result = wordBreak(s, wordDict)
+    assert result == expected, f"Failed for input: s = {s}, wordDict = {wordDict}, Expected: {expected}, Got: {result}"
+    print(f"Passed for input: s = {s}, wordDict = {wordDict}")
 
-    # Test case 1
-    run_test("leetcode", ["leet", "code"], True)
-    
-    # Test case 2
-    run_test("applepenapple", ["apple", "pen"], True)
-    
-    # Test case 3
-    run_test("catsandog", ["cats", "dog", "sand", "and", "cat"], False)
+# Test case 1
+run_test("leetcode", ["leet", "code"], True)
 
-    # Additional test case 1: Single character word in dictionary
-    run_test("a", ["a"], True)
+# Test case 2
+run_test("applepenapple", ["apple", "pen"], True)
 
-    # Additional test case 2: Single character word not in dictionary
-    run_test("b", ["a"], False)
+# Test case 3
+run_test("catsandog", ["cats", "dog", "sand", "and", "cat"], False)
 
-    # Additional test case 3: Multiple possible segmentations
-    run_test("pineapplepenapple", ["apple","pen","applepen","pine","pineapple"], True)
+# Additional test case 1: Single character word in dictionary
+run_test("a", ["a"], True)
 
-    # Additional test case 4: Complex segmentation
-    run_test("catsanddog", ["cat","cats","and","sand","dog"], True)
+# Additional test case 2: Single character word not in dictionary
+run_test("b", ["a"], False)
 
-    print("All test cases complete")
+# Additional test case 3: Multiple possible segmentations
+run_test("pineapplepenapple", ["apple","pen","applepen","pine","pineapple"], True)
 
-# Run the tests
+# Additional test case 4: Complex segmentation
+run_test("catsanddog", ["cat","cats","and","sand","dog"], True)
 
-test_wordBreak()
+print("All test cases complete")

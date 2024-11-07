@@ -5,6 +5,7 @@ Given the root of a binary tree, imagine yourself standing on the right side of 
 ## Tree Representation
 
 The tree is represented as a list in level-order traversal, where `None` indicates the absence of a node. For example, the list `[1,2,3,None,5,None,4]` represents the following tree:
+
 ```
     1
    / \

@@ -11,6 +11,7 @@ The answer is guaranteed to fit into a signed 32-bit integer.
 ### Examples
 
 **Example 1:**
+
 ```
 Input: amount = 5, coins = [1,2,5]
 Output: 4
@@ -22,6 +23,7 @@ Explanation: There are four ways to make up the amount:
 ```
 
 **Example 2:**
+
 ```
 Input: amount = 3, coins = [2]
 Output: 0
@@ -29,6 +31,7 @@ Explanation: The amount of 3 cannot be made up just with coins of 2.
 ```
 
 **Example 3:**
+
 ```
 Input: amount = 10, coins = [10]
 Output: 1
