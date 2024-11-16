@@ -13,13 +13,12 @@ export async function POST(req) {
             });
         }
 
-        const fireworks = new OpenAI({
+        const openai = new OpenAI({
             apiKey: userApiKey,
-            baseURL: 'https://api.fireworks.ai/inference/v1',
         });
 
-        const response = await fireworks.chat.completions.create({
-            model: 'accounts/fireworks/models/llama-v3p1-405b-instruct',
+        const response = await openai.chat.completions.create({
+            model: 'gpt-4o',
             stream: true,
             max_tokens: 1000,
             messages,
