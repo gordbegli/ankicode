@@ -1,0 +1,62 @@
+.progress {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    justify-content: left;
+    align-items: left;
+    padding: 1rem;
+    margin-top: 5px;
+}
+
+.progressBarContainer {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin: 10px 0;
+    position: relative;
+}
+
+.progressBar {
+    height: 100%;
+    background-color: #999;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    position: relative;
+    pointer-events: none;
+}
+
+.pattern {
+    font-size: 1rem;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0;
+}
+
+.progressText {
+    position: absolute;
+    right: 5px;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-20%);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.progressBarContainer:hover .tooltip {
+    visibility: visible;
+}
