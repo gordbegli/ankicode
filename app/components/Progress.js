@@ -13,14 +13,17 @@ const Progress = ({ cards, patterns }) => {
 
     const now = new Date();
     const dueDate = new Date(card.due);
+    // Reset time part for accurate date comparison
+    now.setHours(0, 0, 0, 0);
+    dueDate.setHours(0, 0, 0, 0);
 
     if (card.stage === 'new') {
       acc[card.pattern].new++;
     } 
     else if (card.stage === 'learning') {
-      if (dueDate > now) {
+      if (dueDate.getTime() > now.getTime()) {
         acc[card.pattern].future++;
-      } else {
+      } else if (dueDate.getTime() === now.getTime()) {
         acc[card.pattern].due++;
       }
     }

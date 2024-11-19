@@ -21,6 +21,8 @@ export default function Flashcard() {
   const [cards, setCards] = useState(() => {if (typeof window !== 'undefined') {const storedCards = localStorage.getItem('storedCards');return storedCards ? JSON.parse(storedCards) : startingCards;}return startingCards;});
   const [patterns, setPatterns] = useState(["array", "backtracking", "binarysearch", "graph", "heap", "linkedlist","slidingwindow", "stack", "tree", "trie", "twopointer","1Ddynamicprogramming", "2Ddynamicprogramming", "advancedgraph"]);
   const [focusEditor, setFocusEditor] = useState(false);
+  const [lastNew, setLastNew] = useState(() => { if (typeof window !== 'undefined') { return localStorage.getItem('lastNew') || null } return null });
+  const [done, setDone] = useState(false);
 
   const fetchCardData = useCallback((id) => {
     Promise.all([
@@ -37,9 +39,17 @@ export default function Flashcard() {
   }, []);
 
   const getNextCard = useCallback(() => {
-    const today = new Date();
-    let next = cards.filter(card => card.pattern === pattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
-    if (!next) next = cards.filter(card => card.pattern === pattern).find(card => new Date(card.due).setHours(0, 0, 0, 0) <= today);
+    //get reviews
+    let next = cards.filter(card => card.pattern === pattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0));
+    //get get new card, if no reviews
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {
+      next = cards.filter(card => card.pattern === pattern).find(card => new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0));
+      localStorage.setItem('lastNew', new Date().toISOString());
+    }
+    if (!next) {
+      next = cards[0]; //assign a random card so the app doesn't crash
+      setDone(true);
+    }
     return next;
   }, [cards, pattern]);
 
@@ -152,13 +162,16 @@ export default function Flashcard() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.menu} style={{ width: `${dividerPosition}%` }}>
-        <Menu current={current} cards={cards} answer={answer} rate={rate} videoHtml={videoHtml} problemDescription={problemDescription} testCode={testCode} rating={rating} setRating={setRating} pattern={pattern} setPattern={updatePattern} patterns={patterns} />
+    <>
+      {done && <div className={styles.done}>Done. Come back later.</div>}
+      <div className={styles.container}>
+        <div className={styles.menu} style={{ width: `${dividerPosition}%` }}>
+          <Menu current={current} cards={cards} answer={answer} rate={rate} videoHtml={videoHtml} problemDescription={problemDescription} testCode={testCode} rating={rating} setRating={setRating} pattern={pattern} setPattern={updatePattern} patterns={patterns} />
+        </div>
+        <div className={styles.editor} style={{ width: `${100 - dividerPosition}%` }}>
+          <Editor value={answer} onChange={(value) => setAnswer(value)} onEditorReady={handleEditorReady} />
+        </div>
       </div>
-      <div className={styles.editor} style={{ width: `${100 - dividerPosition}%` }}>
-        <Editor value={answer} onChange={(value) => setAnswer(value)} onEditorReady={handleEditorReady} />
-      </div>
-    </div>
+    </>
   );
 }
