@@ -18,3 +18,4 @@ AnkiCode is a spaced repetition coding platform.
 ## Algorithm
 
 [FSRS](https://github.com/open-spaced-repetition/ts-fsrs)
+
