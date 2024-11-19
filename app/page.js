@@ -39,19 +39,12 @@ export default function Flashcard() {
   }, []);
 
   const getNextCard = useCallback(() => {
-    //get reviews
-    let next = cards.filter(card => card.pattern === pattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0));
-    //get get new card, if no reviews
-    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {
-      next = cards.filter(card => card.pattern === pattern).find(card => new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0));
-      localStorage.setItem('lastNew', new Date().toISOString());
-    }
-    if (!next) {
-      next = cards[0]; //assign a random card so the app doesn't crash
-      setDone(true);
-    }
+    //Due -> Daily New -> Done
+    next = cards.filter(card => card.pattern === pattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0));
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new')[0];}
+    else if (!next) { next = cards[0]; /* assignment just to avoid bugs */ setDone(true);}
     return next;
-  }, [cards, pattern]);
+  }, [cards, pattern, lastNew]);
 
   const updatePattern = useCallback((pattern) => {
     localStorage.setItem('currentPattern', pattern);
@@ -61,6 +54,8 @@ export default function Flashcard() {
   const rate = useCallback((rating) => {
     if (current.stage === 'new') {
       current.stage = 'learning';
+      localStorage.setItem('lastNew', new Date().toISOString());
+      setLastNew(new Date().toISOString());
     }
     const scheduling = f.repeat(current, new Date());
     const updated = [...cards.filter(card => card !== current), scheduling[rating].card];
