@@ -1,9 +1,12 @@
 'use client';
+import React from 'react';
 import { useChat } from 'ai/react';
 import { useEffect, useRef, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { InlineMath, BlockMath } from 'react-katex';
 import styles from './Chat.module.css';
+import 'katex/dist/katex.min.css';
 
 export default function Chat({ answer, problemDescription, testCode, setRating, chatRef }) {
     const formRef = useRef(null);
@@ -61,28 +64,70 @@ export default function Chat({ answer, problemDescription, testCode, setRating, 
 
     const renderMessage = (message) => {
         const parts = [];
+        const content = message.content;
+        const combinedRegex = /```(\w+)?\n([\s\S]*?)```|\\\[(.*?)\\\]|\\\((.*?)\\\)|\$\$(.*?)\$\$|\$(.*?)\$|`([^`]+?)`/gs;
         let lastIndex = 0;
-        const processInlineCode = (text) => {
-            return text.split(/(`[^`]+`)/).map((part, index) => {
-                if (index % 2 === 1) {
-                    return <code key={index} className={styles.inlineCode}>{part.slice(1, -1)}</code>;
-                }
-                return part.split('\n').map((line, i) => (
-                    <>
-                        {line}
-                        {i < part.split('\n').length - 1 && <br />}
-                    </>
-                ));
-            });
-        };
+        let match;
 
-        message.content.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code, offset) => {
-            if (offset > lastIndex) parts.push(processInlineCode(message.content.slice(lastIndex, offset)));
-            parts.push(<SyntaxHighlighter key={offset} language={lang || 'python'} style={tomorrow}>{code.trim()}</SyntaxHighlighter>);
-            lastIndex = offset + match.length;
-        });
-        if (lastIndex < message.content.length) parts.push(processInlineCode(message.content.slice(lastIndex)));
+        while ((match = combinedRegex.exec(content)) !== null) {
+            if (match.index > lastIndex) {
+                const text = content.slice(lastIndex, match.index);
+                parts.push(processPlainText(text));
+            }
+
+            if (match[0].startsWith('```')) {
+                const lang = match[1] || 'python';
+                const code = match[2];
+                parts.push(
+                    <SyntaxHighlighter key={match.index} language={lang} style={tomorrow}>
+                        {code.trim()}
+                    </SyntaxHighlighter>
+                );
+            } else if (match[0].startsWith('\\[') && match[0].endsWith('\\]')) {
+                const latex = match[3];
+                parts.push(
+                    <BlockMath key={match.index}>{latex}</BlockMath>
+                );
+            } else if (match[0].startsWith('\\(') && match[0].endsWith('\\)')) {
+                const latex = match[4];
+                parts.push(
+                    <InlineMath key={match.index}>{latex}</InlineMath>
+                );
+            } else if (match[0].startsWith('$$') && match[0].endsWith('$$')) {
+                const latex = match[5];
+                parts.push(
+                    <BlockMath key={match.index}>{latex}</BlockMath>
+                );
+            } else if (match[0].startsWith('$') && match[0].endsWith('$')) {
+                const latex = match[6];
+                parts.push(
+                    <InlineMath key={match.index}>{latex}</InlineMath>
+                );
+            } else if (match[0].startsWith('`')) {
+                const code = match[7];
+                parts.push(
+                    <code key={match.index} className={styles.inlineCode}>{code}</code>
+                );
+            }
+
+            lastIndex = combinedRegex.lastIndex;
+        }
+
+        if (lastIndex < content.length) {
+            const text = content.slice(lastIndex);
+            parts.push(processPlainText(text));
+        }
+
         return parts;
+    };
+
+    const processPlainText = (text) => {
+        return text.split('\n').map((line, i) => (
+            <React.Fragment key={i}>
+                {line}
+                {i < text.split('\n').length - 1 && <br />}
+            </React.Fragment>
+        ));
     };
 
     const handleCheck = () => {
