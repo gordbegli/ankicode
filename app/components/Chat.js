@@ -65,16 +65,16 @@ export default function Chat({ answer, problemDescription, testCode, setRating, 
     const renderMessage = (message) => {
         const parts = [];
         const content = message.content;
-        const combinedRegex = /```(\w+)?\n([\s\S]*?)```|\\\[(.*?)\\\]|\\\((.*?)\\\)|\$\$(.*?)\$\$|\$(.*?)\$|`([^`]+?)`/gs;
+        const combinedRegex = /```(\w+)?\n([\s\S]*?)```|\\\[(.*?)\\\]|\\\((.*?)\\\)|\$\$(.*?)\$\$|\$(.*?)\$|`([^`]+?)`|\*\*(.+?)\*\*/gs;
         let lastIndex = 0;
         let match;
-
+    
         while ((match = combinedRegex.exec(content)) !== null) {
             if (match.index > lastIndex) {
                 const text = content.slice(lastIndex, match.index);
                 parts.push(processPlainText(text));
             }
-
+    
             if (match[0].startsWith('```')) {
                 const lang = match[1] || 'python';
                 const code = match[2];
@@ -108,18 +108,24 @@ export default function Chat({ answer, problemDescription, testCode, setRating, 
                 parts.push(
                     <code key={match.index} className={styles.inlineCode}>{code}</code>
                 );
+            } else if (match[0].startsWith('**') && match[0].endsWith('**')) {
+                const boldText = match[8];
+                parts.push(
+                    <strong key={match.index}>{boldText}</strong>
+                );
             }
-
+    
             lastIndex = combinedRegex.lastIndex;
         }
-
+    
         if (lastIndex < content.length) {
             const text = content.slice(lastIndex);
             parts.push(processPlainText(text));
         }
-
+    
         return parts;
     };
+    
 
     const processPlainText = (text) => {
         return text.split('\n').map((line, i) => (
