@@ -26,11 +26,11 @@
 }
 
 .inlineCode {
-  font-family: 'Courier New', Courier, monospace;
   background-color: #e8e8e8;
-  padding: 0px 1px;
-  border-radius: 3px;
-  color: #333;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
 }
 
 .form {
