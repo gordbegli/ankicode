@@ -1,7 +1,17 @@
-# AnkiCode 
-AnkiCode is a spaced repetition coding platform. 
+# AnkiCode
+AnkiCode is a pattern focused spaced repetition coding platform with an LLM baked in. Thank you to [ishiko732](https://github.com/ishiko732) for creating [`ts-fsrs`](https://github.com/open-spaced-repetition/ts-fsrs)!
+
+## Automatic Rating
+Ankicode will rate the [difficulty](https://docs.ankiweb.net/studying.html#answer-buttons) of a card based on the following criteria.
+
+| Rating | Criteria |
+|--------|---------|
+| Again  | Failed Tests Once |
+| Again  | Used LLM Once |
+| Good   | Passed First Try |
 
 ## Keyboard Shortcuts
+So you don't have to use your mouse.
 
 | Shortcut | Action |
 |----------|--------|
@@ -15,7 +25,5 @@ AnkiCode is a spaced repetition coding platform.
 | Cmd + J | Scroll Menu Down |
 | Cmd + K | Scroll Menu Up |
 
-## Algorithm
-
-[FSRS](https://github.com/open-spaced-repetition/ts-fsrs)
-
+## New Problem Schedule
+AnkiCode will introduce 1 new card every 24 hours.

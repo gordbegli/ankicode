@@ -62,19 +62,25 @@ export default function Chat({ answer, problemDescription, testCode, setRating, 
         }
     }, [chatRef]);
 
+    const handleSubmitWrapper = (e) => {
+        e.preventDefault();
+        setRating(1);
+        handleSubmit(e);
+    };
+
     const renderMessage = (message) => {
         const parts = [];
         const content = message.content;
         const combinedRegex = /```(\w+)?\n([\s\S]*?)```|\\\[(.*?)\\\]|\\\((.*?)\\\)|\$\$(.*?)\$\$|\$(.*?)\$|`([^`]+?)`|\*\*(.+?)\*\*/gs;
         let lastIndex = 0;
         let match;
-    
+
         while ((match = combinedRegex.exec(content)) !== null) {
             if (match.index > lastIndex) {
                 const text = content.slice(lastIndex, match.index);
                 parts.push(processPlainText(text));
             }
-    
+
             if (match[0].startsWith('```')) {
                 const lang = match[1] || 'python';
                 const code = match[2];
@@ -114,15 +120,15 @@ export default function Chat({ answer, problemDescription, testCode, setRating, 
                     <strong key={match.index}>{boldText}</strong>
                 );
             }
-    
+
             lastIndex = combinedRegex.lastIndex;
         }
-    
+
         if (lastIndex < content.length) {
             const text = content.slice(lastIndex);
             parts.push(processPlainText(text));
         }
-    
+
         return parts;
     };
     
@@ -164,7 +170,7 @@ export default function Chat({ answer, problemDescription, testCode, setRating, 
                     </div>
                 ))}
             </div>
-            <form onSubmit={handleSubmit} ref={formRef} className={styles.form}>
+            <form onSubmit={handleSubmitWrapper} ref={formRef} className={styles.form}>
                 <div className={styles.inputButtonContainer}>
                     <input 
                         ref={inputRef}
