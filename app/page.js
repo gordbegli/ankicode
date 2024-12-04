@@ -39,10 +39,11 @@ export default function Flashcard() {
   }, []);
 
   const getNextCard = useCallback(() => {
-    //Due -> Daily New -> Done
+    //Due -> Daily New (current or next pattern) -> Done
     next = cards.filter(card => card.pattern === pattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0));
     if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new')[0];}
-    else if (!next) { next = cards[0]; /* assignment just to avoid bugs */ setDone(true);}
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === patterns[(patterns.indexOf(pattern) + 1) % patterns.length] && card.stage === 'new'); updatePattern(patterns[(patterns.indexOf(pattern) + 1) % patterns.length])}
+    if (!next) { next = cards[0]; /* assignment just to avoid bugs */ setDone(true);}
     return next;
   }, [cards, pattern, lastNew]);
 
