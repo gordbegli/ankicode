@@ -19,7 +19,7 @@ export default function Flashcard() {
   const [dividerPosition, setDividerPosition] = useState(50);
   const [pattern, setPattern] = useState(() => {if (typeof window !== 'undefined') {return localStorage.getItem('currentPattern') || 'array';}return 'array';});
   const [cards, setCards] = useState(() => {if (typeof window !== 'undefined') {const storedCards = localStorage.getItem('storedCards');return storedCards ? JSON.parse(storedCards) : startingCards;}return startingCards;});
-  const [patterns, setPatterns] = useState(["array", "backtracking", "binarysearch", "graph", "heap", "linkedlist","slidingwindow", "stack", "tree", "trie", "twopointer","1Ddynamicprogramming", "2Ddynamicprogramming", "advancedgraph"]);
+  const [patterns, setPatterns] = useState(["array", "twopointer", "slidingwindow", "stack", "binarysearch", "linkedlist", "tree", "heap", "backtracking", "trie", "graph", "advancedgraph", "1Ddynamicprogramming", "2Ddynamicprogramming"]);
   const [focusEditor, setFocusEditor] = useState(false);
   const [lastNew, setLastNew] = useState(() => { if (typeof window !== 'undefined') { return localStorage.getItem('lastNew') || null } return null });
   const [done, setDone] = useState(false);
@@ -39,10 +39,11 @@ export default function Flashcard() {
   }, []);
 
   const getNextCard = useCallback(() => {
-    //Due -> Daily New -> Done
+    //Due -> Daily New (current or next pattern) -> Done
     next = cards.filter(card => card.pattern === pattern && card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0));
     if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new')[0];}
-    else if (!next) { next = cards[0]; /* assignment just to avoid bugs */ setDone(true);}
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === patterns[(patterns.indexOf(pattern) + 1) % patterns.length] && card.stage === 'new'); updatePattern(patterns[(patterns.indexOf(pattern) + 1) % patterns.length])}
+    if (!next) { next = cards[0]; /* assignment just to avoid bugs */ setDone(true);}
     return next;
   }, [cards, pattern, lastNew]);
 
