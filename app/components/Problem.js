@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import DOMPurify from 'isomorphic-dompurify';
 import styles from './Problem.module.css';
 
-const Problem = memo(({ content, videoHtml }) => {
+const Problem = memo(({ current, content, videoHtml }) => {
     const purifyConfig = {
         ADD_TAGS: ['iframe'],
         ADD_ATTR: ['src', 'title', 'frameborder', 'allow', 'allowfullscreen', 'referrerpolicy'],
@@ -12,9 +12,11 @@ const Problem = memo(({ content, videoHtml }) => {
         ALLOWED_URI_REGEXP: /^https:\/\/www\.youtube\.com\/embed\//
     };
 
+    if (!content || !current) { return null}
     return (
         <>
             <div className={styles.markdownContainer}>
+                <div className={styles.difficultyRating}>{current?.difficultyRating}</div>
                 <ReactMarkdown className={styles.reactMarkDown}>{content}</ReactMarkdown>
             </div>
             <div className={styles.videoContainer}>
