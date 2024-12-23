@@ -6,7 +6,7 @@ import Results from './Results';
 import Settings from './Settings';
 import Image from 'next/image';
 
-export default function Menu({ current, cards, answer, difficultyRating, rate, videoHtml, problemDescription, testCode, rating, setRating, goToNextProblem, pattern, setPattern, patterns }) {
+export default function Menu({ current, cards, answer, difficultyRating, rate, videoHtml, problemDescription, testCode, rating, setRating, goToNextProblem, pattern, patterns }) {
     const [activeTab, setActiveTab] = useState('problem');
     const resultsRef = useRef(null);
     const chatRef = useRef(null);
@@ -74,7 +74,7 @@ export default function Menu({ current, cards, answer, difficultyRating, rate, v
             case 'problem': return (<div className={styles.tabContent}><Problem current={current} content={problemDescription} videoHtml={videoHtml} difficultyRating={difficultyRating}/></div>);
             case 'results': return (<div className={styles.tabContent}><Results ref={resultsRef} answer={answer} testCode={testCode} rate={rate} rating={rating} setRating={setRating} goToNextProblem={goToNextProblem} handleRunTests={handleRunTests} setActiveTab={setActiveTab} /></div>);
             case 'chat': return (<div className={styles.tabContent}><Chat answer={answer} problemDescription={problemDescription} testCode={testCode} setRating={setRating} chatRef={chatRef} /></div>);
-            case 'settings': return (<div className={styles.tabContent}><Settings cards={cards} pattern={pattern} setPattern={setPattern} patterns={patterns} /></div>);
+            case 'settings': return (<div className={styles.tabContent}><Settings cards={cards} pattern={pattern} patterns={patterns} /></div>);
             default: return null;
         }
     };

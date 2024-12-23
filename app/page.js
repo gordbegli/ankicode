@@ -169,7 +169,7 @@ export default function Flashcard() {
       {done && <div className={styles.done}>Done. Come back later.</div>}
       <div className={styles.container}>
         <div className={styles.menu} style={{ width: `${dividerPosition}%` }}>
-          <Menu current={current} cards={cards} answer={answer} rate={rate} videoHtml={videoHtml} problemDescription={problemDescription} testCode={testCode} rating={rating} setRating={setRating} pattern={pattern} setPattern={updatePattern} patterns={patterns} />
+          <Menu current={current} cards={cards} answer={answer} rate={rate} videoHtml={videoHtml} problemDescription={problemDescription} testCode={testCode} rating={rating} setRating={setRating} pattern={pattern} patterns={patterns} />
         </div>
         <div className={styles.editor} style={{ width: `${100 - dividerPosition}%` }}>
           <Editor value={answer} onChange={(value) => setAnswer(value)} onEditorReady={handleEditorReady} />
