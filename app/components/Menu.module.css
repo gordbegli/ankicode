@@ -42,6 +42,9 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     opacity: .3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .activeTab {
@@ -71,6 +74,13 @@
 
 .logo:hover {
     animation: wiggle 0.5s ease-in-out infinite;
+}
+
+.activeTab svg,
+.inactiveTab svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1.5px;
 }
 
 @keyframes wiggle {
