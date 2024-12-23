@@ -39,10 +39,17 @@ export default function Flashcard() {
   }, []);
 
   const getNextCard = useCallback(() => {
-    //Due -> Daily New (current or next pattern) -> Done
+    //Due -> Daily New (current or next pattern: easy -> medium -> hard) -> Done
     next = cards.filter(card => card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0));
-    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new')[0];}
-    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === patterns[(patterns.indexOf(pattern) + 1) % patterns.length] && card.stage === 'new'); updatePattern(patterns[(patterns.indexOf(pattern) + 1) % patterns.length])}
+  
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new' && card.difficultyRating === 'Easy')[0];}
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new' && card.difficultyRating === 'Medium')[0];}
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new' && card.difficultyRating === 'Hard')[0];}
+    
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === patterns[(patterns.indexOf(pattern) + 1) % patterns.length] && card.stage === 'new' && card.difficultyRating === 'Easy')[0]; updatePattern(patterns[(patterns.indexOf(pattern) + 1) % patterns.length])}
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === patterns[(patterns.indexOf(pattern) + 1) % patterns.length] && card.stage === 'new' && card.difficultyRating === 'Medium')[0];}
+    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === patterns[(patterns.indexOf(pattern) + 1) % patterns.length] && card.stage === 'new' && card.difficultyRating === 'Hard')[0];}
+  
     if (!next) { next = cards[0]; /* assignment just to avoid bugs */ setDone(true);}
     return next;
   }, [cards, pattern, lastNew]);
