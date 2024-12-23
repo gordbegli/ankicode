@@ -23,10 +23,7 @@
 
 .videoContainer {
     margin-top: 8px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 8px;
-    background-color: #ffffff;
+    border: none;
     margin-bottom: 50vh;
 }
 
@@ -44,6 +41,9 @@
     left: 0;
     width: 100%;
     height: 100%;
+    border: 0;
+    outline: none;
+    border-radius: 8px;
 }
 
 .reactMarkDown code:not(pre code) {
