@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { fsrs, generatorParameters, Rating } from 'ts-fsrs';
 import { startingCards } from './startingCards';
 import Editor from './components/Editor';
 import Menu from './components/Menu';
 import styles from './page.module.css';
+import DoneMessage from './components/DoneMessage';
 
 export default function Flashcard() {
   const [answer, setAnswer] = useState('');
@@ -23,6 +24,7 @@ export default function Flashcard() {
   const [focusEditor, setFocusEditor] = useState(false);
   const [lastNew, setLastNew] = useState(() => { if (typeof window !== 'undefined') { return localStorage.getItem('lastNew') || null } return null });
   const [done, setDone] = useState(false);
+  const doneMessageRef = useRef(null);
 
   const fetchCardData = useCallback((id) => {
     Promise.all([
@@ -158,15 +160,21 @@ export default function Flashcard() {
     fetchCardData(next.id);
   }, [pattern, cards, fetchCardData]);
 
+  useEffect(() => {
+    if (done && doneMessageRef.current) {
+      doneMessageRef.current.focus(); //Otherwise the editor remains in focus
+    }
+  }, [done]);
+
   const handleEditorReady = (view) => {
-    if (view) {
+    if (view && !done) {
       view.focus(); // Focus the editor when it finishes loading
     }
   };
 
   return (
     <>
-      {done && <div className={styles.done}>Done. Come back later.</div>}
+      {done && <div ref={doneMessageRef} tabIndex={-1}><DoneMessage cards={cards} /></div>}
       <div className={styles.container}>
         <div className={styles.menu} style={{ width: `${dividerPosition}%` }}>
           <Menu current={current} cards={cards} answer={answer} rate={rate} videoHtml={videoHtml} problemDescription={problemDescription} testCode={testCode} rating={rating} setRating={setRating} pattern={pattern} patterns={patterns} />
