@@ -19,6 +19,24 @@ const Editor = ({ value, onChange, onEditorReady }) => {
     "&": {
       fontSize: "1rem"
     }
+  })
+
+  const vimTheme = EditorView.theme({
+    '.cm-vim-panel.cm-panel': {
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: '#f3f4f6',
+      padding: '4px 8px',
+      borderTop: '1px solid #e5e7eb',
+      fontSize: '0.9rem',
+      zIndex: 1000,
+    },
+    '.cm-scroller': {
+      position: 'fixed',
+      width: '50vw',
+    },
   });
 
   return (
@@ -33,7 +51,8 @@ const Editor = ({ value, onChange, onEditorReady }) => {
         indentationMarkers(),
         EditorState.tabSize.of(4),
         indentUnit.of("    "),
-        fontSize
+        fontSize,
+        vimTheme,
       ]}
       onChange={onChange}
     />
