@@ -16,39 +16,45 @@ const WelcomeMessage = () => {
   if (!showMessage) return null;
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.messageContainer}>
-        <h2 className={styles.title}>Welcome to AnkiCode!</h2>
+    <div className={styles.overlay} onClick={() => setShowMessage(false)}>
+      <div className={styles.messageContainer} onClick={(e) => e.stopPropagation()}>
+        <h2 className={styles.title}>
+          <span className={styles.emoji}>👋</span> Welcome to AnkiCode
+        </h2>
         <div className={styles.content}>
-          <p>AnkiCode is a spaced repetition coding platform.</p>
+          <p className={styles.subtitle}>
+            A modern spaced repetition platform for mastering coding challenges
+          </p>
 
-          <h3>Important Notes</h3>
-          <ul>
-            <li>Add API key in settings to enable chat.</li>
-          </ul>
+          <div className={styles.section}>
+            <h3>
+              <span className={styles.emoji}>🚀</span> Getting Started
+            </h3>
+            <div className={styles.card}>
+              <p>Add your API key in settings to enable AI-powered chat assistance</p>
+            </div>
+          </div>
 
-          <h3>Keyboard Shortcuts</h3>
-          <table className={styles.shortcutTable}>
-            <thead>
-              <tr>
-                <th>Shortcut</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Cmd + '</td><td>Run Tests</td></tr>
-              <tr><td>Cmd + \</td><td>Next Problem</td></tr>
-              <tr><td>Cmd + H</td><td>Enlarge Editor</td></tr>
-              <tr><td>Cmd + L</td><td>Enlarge Menu</td></tr>
-              <tr><td>Cmd + Shift + O</td><td>Focus Chat</td></tr>
-              <tr><td>Cmd + Shift + P</td><td>Focus Problem</td></tr>
-              <tr><td>Cmd + Shift + I</td><td>Focus Editor</td></tr>
-              <tr><td>Cmd + J</td><td>Scroll Menu Down</td></tr>
-              <tr><td>Cmd + K</td><td>Scroll Menu Up</td></tr>
-            </tbody>
-          </table>
+          <div className={styles.section}>
+            <h3>
+              <span className={styles.emoji}>⌨️</span> Keyboard Shortcuts
+            </h3>
+            <div className={styles.shortcutGrid}>
+              <div className={styles.shortcutItem}>
+                <kbd>⌘ '</kbd>
+                <span>Run Tests</span>
+              </div>
+              <div className={styles.shortcutItem}>
+                <kbd>⌘ \</kbd>
+                <span>Next Problem</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <button className={styles.closeButton} onClick={() => setShowMessage(false)}>Get Started</button>
+        <button className={styles.closeButton} onClick={() => setShowMessage(false)}>
+          Let's begin
+          <span className={styles.buttonArrow}>→</span>
+        </button>
       </div>
     </div>
   );
