@@ -1,58 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Progress.module.css';
 
 const Progress = ({ cards, patterns }) => {
-  const progressByPattern = cards.reduce((acc, card) => {
-    if (!acc[card.pattern]) {
-      acc[card.pattern] = {
-        new: 0,
-        future: 0,
-        due: 0
-      };
-    }
-
-    const now = new Date();
-    const dueDate = new Date(card.due);
-    // Reset time part for accurate date comparison
-    now.setHours(0, 0, 0, 0);
-    dueDate.setHours(0, 0, 0, 0);
-
-    if (card.stage === 'new') {
-      acc[card.pattern].new++;
-    } 
-    else if (card.stage === 'learning') {
-      if (dueDate.getTime() > now.getTime()) {
-        acc[card.pattern].future++;
-      } else if (dueDate.getTime() === now.getTime()) {
-        acc[card.pattern].due++;
-      }
-    }
-
+  // Group cards by pattern
+  const cardsByPattern = patterns.reduce((acc, pattern) => {
+    acc[pattern] = [];
     return acc;
   }, {});
 
-  const sortedPatterns = Object.entries(progressByPattern)
-    .sort((a, b) => patterns.indexOf(a[0]) - patterns.indexOf(b[0]))
-    .map(([pattern, counts]) => {
-      const total = counts.new + counts.future+ counts.due;
-      const completed = counts.future+ counts.due;
-      const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
-      return { pattern, counts, total, completed, percentage };
-    });
+  cards.forEach((card) => {
+    if (cardsByPattern[card.pattern]) {
+      cardsByPattern[card.pattern].push(card);
+    }
+  });
+
+  // State to track which patterns are open
+  const [openPatterns, setOpenPatterns] = useState({});
+
+  // Toggle the accordion for a specific pattern
+  const toggleAccordion = (pattern) => {
+    setOpenPatterns((prevOpenPatterns) => ({
+      ...prevOpenPatterns,
+      [pattern]: !prevOpenPatterns[pattern],
+    }));
+  };
 
   return (
-      <div className={styles.progress}>
-        {sortedPatterns.map(({ pattern, counts, total, completed, percentage }) => (
-          <div key={pattern} className={styles.patternCard}>
-            <p className={styles.pattern}>{pattern}</p>
-            <div className={styles.progressBarContainer}>
-              <div className={styles.progressBar} style={{ width: `${percentage}%` }}>
-                <div className={styles.tooltip}>New: {counts.new}<br />Due: {counts.due}<br />Future: {counts.future}</div>
+    <div className={styles.progress}>
+      {patterns.map((pattern) => (
+        <div key={pattern} className={styles.patternCard}>
+          <div className={styles.accordionItem}>
+            <div
+              className={styles.accordionHeader}
+              onClick={() => toggleAccordion(pattern)}
+            >
+              <div className={styles.headerContent}>
+                <p className={styles.pattern}>{pattern}</p>
+                <p>{openPatterns[pattern] ? '−' : '+'}</p>
               </div>
             </div>
+            {openPatterns[pattern] && (
+              <div className={styles.accordionContent}>
+                <table className={styles.cardTable}>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Stage</th>
+                      <th>Due Date</th>
+                      <th>Difficulty</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cardsByPattern[pattern].map((card) => (
+                      <tr key={card.id}>
+                        <td>{card.id}</td>
+                        <td>{card.stage}</td>
+                        <td>{new Date(card.due).toLocaleDateString()}</td>
+                        <td>{card.difficultyRating}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
   );
 };
 
