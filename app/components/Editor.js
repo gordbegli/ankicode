@@ -35,7 +35,7 @@ const Editor = ({ value, onChange, onEditorReady }) => {
     },
     '.cm-scroller': {
       position: 'fixed',
-      width: '50vw',
+      width: '100%',
     },
   });
 
