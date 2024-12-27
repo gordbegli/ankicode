@@ -40,26 +40,40 @@ export default function Flashcard() {
     });
   }, []);
 
-  const getNextCard = useCallback(() => {
-    //Due -> Daily New (current or next pattern: easy -> medium -> hard) -> Done
-    next = cards.filter(card => card.stage === 'learning').find(card => new Date(card.due).setHours(0, 0, 0, 0) <= new Date().setHours(0, 0, 0, 0));
-  
-    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new' && card.difficultyRating === 'Easy')[0];}
-    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new' && card.difficultyRating === 'Medium')[0];}
-    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === pattern && card.stage === 'new' && card.difficultyRating === 'Hard')[0];}
-    
-    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === patterns[(patterns.indexOf(pattern) + 1) % patterns.length] && card.stage === 'new' && card.difficultyRating === 'Easy')[0]; updatePattern(patterns[(patterns.indexOf(pattern) + 1) % patterns.length])}
-    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === patterns[(patterns.indexOf(pattern) + 1) % patterns.length] && card.stage === 'new' && card.difficultyRating === 'Medium')[0];}
-    if (!next && (!lastNew || (new Date() - new Date(lastNew) > 86400000))) {next = cards.filter(card => card.pattern === patterns[(patterns.indexOf(pattern) + 1) % patterns.length] && card.stage === 'new' && card.difficultyRating === 'Hard')[0];}
-  
-    if (!next) { next = cards[0]; /* assignment just to avoid bugs */ setDone(true);}
-    return next;
-  }, [cards, pattern, lastNew]);
-
   const updatePattern = useCallback((pattern) => {
     localStorage.setItem('currentPattern', pattern);
     setPattern(pattern);
   }, []);
+
+  const getNextCard = useCallback(() => {
+    //Due learning cards
+    const today = new Date().setHours(0, 0, 0, 0);
+    let next = cards.find(card => card.stage === 'learning' && new Date(card.due).setHours(0, 0, 0, 0) <= today);
+  
+    //New cards - look for easy then medium then hard problems, first in current pattern then in subsequent patterns
+    if (!next && (!lastNew || new Date() - new Date(lastNew) > 86400000)) {
+      const difficulties = ['Easy', 'Medium', 'Hard'];
+      const currentPatternIndex = patterns.indexOf(pattern);
+      let found = false;
+  
+      for (let difficulty of difficulties) {
+        //Current pattern
+        next = cards.find(card => card.pattern === pattern && card.stage === 'new' && card.difficultyRating === difficulty);
+        if (next) {found = true; break;}
+  
+        //Subsequent patterns
+        for (let i = 1; i < patterns.length && !found; i++) {
+          const nextPattern = patterns[(currentPatternIndex + i) % patterns.length];
+          next = cards.find(card => card.pattern === nextPattern && card.stage === 'new' && card.difficultyRating === difficulty);
+          if (next) {found = true; updatePattern(nextPattern); break;}
+        }
+        if (found) break;
+      }
+    }
+  
+    if (!next) {next = cards[0]; setDone(true);} //No cards left to review
+    return next;
+  }, [cards, pattern, lastNew, patterns, updatePattern]);
 
   const rate = useCallback((rating) => {
     if (current.stage === 'new') {
