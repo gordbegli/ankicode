@@ -8,7 +8,7 @@ import { indentUnit } from '@codemirror/language';
 import { EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 
-const Editor = ({ value, onChange, onEditorReady }) => {
+const Editor = ({ value, onChange, onEditorReady, vimMode }) => {
   const editorRef = (node) => {
     if (node) {
       onEditorReady(node.view);
@@ -45,7 +45,7 @@ const Editor = ({ value, onChange, onEditorReady }) => {
       value={value}
       height="100vh"
       extensions={[
-        vim(),
+        ...(vimMode ? [vim()] : []),
         pythonLanguage,
         basicSetup.filter(ext => ext.name !== 'autocompletion'),
         indentationMarkers(),
