@@ -28,3 +28,55 @@
     box-sizing: border-box;
     height: 40px;
 }
+
+.settingsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.vimToggleContainer {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.vimToggle {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.toggleOption {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  height: 100%;
+  line-height: 40px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.inactiveOption {
+  color: black;
+  opacity: 0.5;
+  background: #e5e5e5;
+  transition: all 0.3s ease;
+}
+
+.activeOption {
+  color: black;
+  background: white;
+  transition: all 0.3s ease;
+}
