@@ -80,7 +80,7 @@
 .inactiveTab svg {
     width: 16px;
     height: 16px;
-    strokeWidth: 1.5px;
+    stroke-width: 1.5px;
 }
 
 @keyframes wiggle {

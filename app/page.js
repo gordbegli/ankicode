@@ -22,7 +22,6 @@ export default function Flashcard() {
   const [cards, setCards] = useState(() => {if (typeof window !== 'undefined') {const storedCards = localStorage.getItem('storedCards');return storedCards ? JSON.parse(storedCards) : startingCards;}return startingCards;});
   const [patterns, setPatterns] = useState(["array", "twopointer", "slidingwindow", "stack", "binarysearch", "linkedlist", "tree", "heap", "backtracking", "trie", "graph", "advancedgraph", "1Ddynamicprogramming", "2Ddynamicprogramming"]);
   const [focusEditor, setFocusEditor] = useState(false);
-  const [vimMode, setVimMode] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('vimMode') || 'false') : false);
   const [lastNew, setLastNew] = useState(() => { if (typeof window !== 'undefined') { return localStorage.getItem('lastNew') || null } return null });
   const [done, setDone] = useState(false);
   const doneMessageRef = useRef(null);
@@ -169,10 +168,6 @@ export default function Flashcard() {
   }, [cards]);
 
   useEffect(() => {
-    localStorage.setItem('vimMode', JSON.stringify(vimMode));
-  }, [vimMode]);
-
-  useEffect(() => {
     const next = getNextCard();
     if (!next) return;
     setCurrent(next);
@@ -196,10 +191,10 @@ export default function Flashcard() {
       {done && <div ref={doneMessageRef} tabIndex={-1}><DoneMessage cards={cards} /></div>}
       <div className={styles.container}>
         <div className={styles.menu} style={{ width: `${dividerPosition}%` }}>
-          <Menu current={current} cards={cards} answer={answer} rate={rate} videoHtml={videoHtml} problemDescription={problemDescription} testCode={testCode} rating={rating} setRating={setRating} pattern={pattern} patterns={patterns} vimMode={vimMode} setVimMode={setVimMode}/>
+          <Menu current={current} cards={cards} answer={answer} rate={rate} videoHtml={videoHtml} problemDescription={problemDescription} testCode={testCode} rating={rating} setRating={setRating} pattern={pattern} patterns={patterns} />
         </div>
         <div className={styles.editor} style={{ width: `${100 - dividerPosition}%` }}>
-          <Editor value={answer} onChange={(value) => setAnswer(value)} onEditorReady={handleEditorReady} vimMode={vimMode}/>
+          <Editor value={answer} onChange={(value) => setAnswer(value)} onEditorReady={handleEditorReady} />
         </div>
       </div>
     </>
