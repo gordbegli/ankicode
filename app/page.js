@@ -26,6 +26,7 @@ export default function Flashcard() {
   const [lastNew, setLastNew] = useState(() => { if (typeof window !== 'undefined') { return localStorage.getItem('lastNew') || null } return null });
   const [done, setDone] = useState(false);
   const doneMessageRef = useRef(null);
+  const editorViewRef = useRef(null);
 
   const fetchCardData = useCallback((id) => {
     Promise.all([
@@ -136,11 +137,12 @@ export default function Flashcard() {
 
   useEffect(() => {
     if (focusEditor) {
-      // This will trigger the onEditorReady callback in the Editor component
-      setAnswer(prevAnswer => prevAnswer + ' ');
+      if (editorViewRef.current && !done) {
+        editorViewRef.current.focus();
+      }
       setFocusEditor(false);
     }
-  }, [focusEditor]);
+  }, [focusEditor, done]);
 
   useEffect(() => {
     const load = async () => {
@@ -187,7 +189,8 @@ export default function Flashcard() {
 
   const handleEditorReady = (view) => {
     if (view && !done) {
-      view.focus(); // Focus the editor when it finishes loading
+      editorViewRef.current = view;
+      view.focus();
     }
   };
 
