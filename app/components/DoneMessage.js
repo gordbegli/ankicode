@@ -107,7 +107,7 @@ const DoneMessage = ({ cards }) => {
             </h3>
             <div className={styles.card}>
               <p>
-                Everything has a shortcut. They're all listed in our <a className={styles.link} href="https://github.com/gordbegli/ankicode?tab=readme-ov-file#keyboard-shortcuts">readme</a>.
+                Checkout the shortcuts listed in our <a className={styles.link} href="https://github.com/gordbegli/ankicode?tab=readme-ov-file#keyboard-shortcuts">readme</a>.
               </p>
             </div>
           </div>
