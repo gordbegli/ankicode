@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Settings.module.css';
 import Progress from '@/app/components/Progress'
 
-export default function Settings({ pattern, cards, patterns, vimMode, setVimMode }) {
+export default function Settings({ pattern, cards, patterns, vimMode, setVimMode, includeMedium, setIncludeMedium, includeHard, setIncludeHard }) {
   const [apiKey, setApiKey] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
 
@@ -26,10 +26,28 @@ export default function Settings({ pattern, cards, patterns, vimMode, setVimMode
       </div>
       <div className={styles.settingsSection}>
         <p className={styles.settingsText}>Vim Mode</p>
-        <div className={styles.vimToggleContainer}>
-          <button className={`${styles.vimToggle} ${vimMode ? styles.active : ''}`} onClick={() => { const newValue = !vimMode; setVimMode(newValue); localStorage.setItem('vimMode', newValue); }}>
+        <div className={styles.switchToggleContainer}>
+          <button className={`${styles.switchToggle} ${vimMode ? styles.active : ''}`} onClick={() => { const newValue = !vimMode; setVimMode(newValue); localStorage.setItem('vimMode', newValue); }}>
             <span className={`${styles.toggleOption} ${!vimMode ? styles.activeOption : styles.inactiveOption}`}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg></span>
             <span className={`${styles.toggleOption} ${vimMode ? styles.activeOption : styles.inactiveOption}`}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="feather feather-power"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg></span>
+          </button>
+        </div>
+      </div>
+      <div className={styles.settingsSection}>
+        <p className={styles.settingsText}>Medium Problems</p>
+        <div className={styles.switchToggleContainer}>
+          <button className={`${styles.switchToggle} ${includeMedium ? styles.active : ''}`} onClick={() => setIncludeMedium(!includeMedium)}>
+            <span className={`${styles.toggleOption} ${!includeMedium ? styles.activeOption : styles.inactiveOption}`}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg></span>
+            <span className={`${styles.toggleOption} ${includeMedium ? styles.activeOption : styles.inactiveOption}`}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="feather feather-power"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg></span>
+          </button>
+        </div>
+      </div>
+      <div className={styles.settingsSection}>
+        <p className={styles.settingsText}>Hard Problems</p>
+        <div className={styles.switchToggleContainer}>
+          <button className={`${styles.switchToggle} ${includeHard ? styles.active : ''}`} onClick={() => setIncludeHard(!includeHard)}>
+            <span className={`${styles.toggleOption} ${!includeHard ? styles.activeOption : styles.inactiveOption}`}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg></span>
+            <span className={`${styles.toggleOption} ${includeHard ? styles.activeOption : styles.inactiveOption}`}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="feather feather-power"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg></span>
           </button>
         </div>
       </div>

@@ -1,32 +1,33 @@
 .settingsSection {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    white-space: nowrap;
-    opacity: 0.5;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  white-space: nowrap;
+  opacity: 0.5;
 }
 
 .settingsText {
-    margin-right: 10px;
-    white-space: nowrap;
+  margin-right: 10px;
+  white-space: nowrap;
+  flex: 1;
 }
 
 .settingsLink {
-    color: #000;
-    text-decoration: underline;
-    white-space: nowrap;
+  color: #000;
+  text-decoration: underline;
+  white-space: nowrap;
 }
 
 .apiKeyInput, .dropdown {
-    flex-grow: 1;
-    width: 100%;
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    border-radius: 50px;
-    outline: none;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    height: 40px;
+  flex-grow: 1;
+  width: 100%;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  height: 40px;
 }
 
 .settingsRow {
@@ -36,12 +37,12 @@
   margin-bottom: 1rem;
 }
 
-.vimToggleContainer {
-  flex-grow: 1;
-  width: 100%;
+.switchToggleContainer {
+  flex: 0 0 150px;
+  width: 150px;
 }
 
-.vimToggle {
+.switchToggle {
   position: relative;
   width: 100%;
   height: 40px;
@@ -79,4 +80,14 @@
   color: black;
   background: white;
   transition: all 0.3s ease;
+}
+
+.settingsHeader {
+  font-size: 1.2rem;
+  color: #2c2c2c;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #eaeaea;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
