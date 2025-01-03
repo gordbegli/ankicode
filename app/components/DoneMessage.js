@@ -64,11 +64,12 @@ const DoneMessage = ({ cards }) => {
 
       const hours = Math.floor(diff / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      setTimeRemaining(`${hours}h ${minutes}m`);
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      setTimeRemaining(`${hours}h ${minutes}m ${seconds}s`);
     };
 
     updateTimeRemaining();
-    const interval = setInterval(updateTimeRemaining, 60000); // Update every minute
+    const interval = setInterval(updateTimeRemaining, 1000); // Update every second
 
     return () => clearInterval(interval);
   }, [nextDueTime]);
