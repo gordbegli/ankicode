@@ -11,6 +11,13 @@
     opacity: 0.8;
 }
 
+@media (max-width: 768px) {
+    .difficultyRating {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+}
+
 .markdownContainer {
     position: relative; 
     padding: 16px; 

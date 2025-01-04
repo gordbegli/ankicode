@@ -162,14 +162,6 @@ export default function Chat({ answer, problemDescription, testCode, setRating, 
 
     return (
         <div className={styles.chatContainer}>
-            <div className={styles.messageContainer}>
-                {messages.filter(m => m.role !== 'system').map(m => (
-                    <div key={m.id} className={styles.message}>
-                        <strong>{m.role === 'user' ? 'User: ' : 'LLM: '}</strong>
-                        <div className={styles.messageContent}>{renderMessage(m)}</div>
-                    </div>
-                ))}
-            </div>
             <form onSubmit={handleSubmitWrapper} ref={formRef} className={styles.form}>
                 <div className={styles.inputButtonContainer}>
                     <input 
@@ -187,6 +179,12 @@ export default function Chat({ answer, problemDescription, testCode, setRating, 
                     </div>
                 </div>
             </form>
+            {messages.filter(m => m.role !== 'system').map(m => (
+                <div key={m.id} className={styles.message}>
+                    <strong>{m.role === 'user' ? 'User: ' : 'LLM: '}</strong>
+                    <div className={styles.messageContent}>{renderMessage(m)}</div>
+                </div>
+            ))}
         </div>
     );
 }

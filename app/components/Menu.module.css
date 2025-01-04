@@ -24,11 +24,18 @@
 
 .tabs {
     z-index: 100;
-    justify-content: flex-end;
     display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
     padding-top: 5px;
-    flex-direction: row;
     background-color: #f0f0f0;
+    scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .activeTab,
@@ -72,6 +79,14 @@
     transition: transform 0.3s ease-in-out;
 }
 
+@media (max-width: 768px) {
+    .logo {
+        padding-top: 5px;
+        padding-left: 7.5px;
+        padding-right: 7.5px;
+        transition: transform 0.3s ease-in-out;
+    }
+}   
 .logo:hover {
     animation: wiggle 0.5s ease-in-out infinite;
 }
@@ -80,7 +95,7 @@
 .inactiveTab svg {
     width: 16px;
     height: 16px;
-    strokeWidth: 1.5px;
+    stroke-width: 1.5px;
 }
 
 @keyframes wiggle {

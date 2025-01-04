@@ -7,6 +7,19 @@
   height: 100vh;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .menu {
+    width: 100% !important;
+  }
+  .editor {
+    width: 100% !important;
+  }
+}
+
 .menu {
   height: 100%;
   overflow-y: auto;

@@ -4,12 +4,8 @@
   flex-direction: column;
   height: 100%;
   position: relative;
-}
-
-.messageContainer {
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
 }
 
 .message {
@@ -34,11 +30,7 @@
 }
 
 .form {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  min-height: 60px;
+  padding-bottom: 10px;
 }
 
 .inputButtonContainer {
@@ -49,7 +41,7 @@
 }
 
 .input {
-  flex-grow: 1;
+  flex: 1 1 200px;
   padding: 10px 20px;
   border: 1px solid rgba(204, 204, 204, 0.5);
   border-radius: 50px;
@@ -61,9 +53,12 @@
 .buttonGroup {
   display: flex;
   gap: 5px;
+  flex: 1 1 auto;
+  justify-content: stretch;
 }
 
 .button {
+  flex: 1;
   padding: 0.75rem 1.25rem;
   border-radius: 0.5rem;
   border: none;
