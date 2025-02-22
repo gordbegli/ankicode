@@ -64,7 +64,10 @@ export default function Settings({ pattern, cards, patterns, vimMode, setVimMode
         </div>
       </div>
       <div className={styles.settingsSection}>
-        <Progress cards={cards} patterns={patterns} />
+        <p className={styles.settingsText}>Progress</p>
+      </div>
+      <div className={styles.settingsSection}>
+        <Progress cards={cards} patterns={patterns} includeMedium={includeMedium} includeHard={includeHard} />
       </div>
     </>
   );
