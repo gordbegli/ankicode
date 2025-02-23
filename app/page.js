@@ -199,6 +199,15 @@ export default function Flashcard() {
     }
   }, [done]);
 
+  useEffect(() => {
+    if (done) {
+      const today = new Date().toISOString().split('T')[0];
+      const updatedCalendar = JSON.parse(localStorage.getItem('calendar') || '{}');
+      updatedCalendar[today] = true; 
+      localStorage.setItem('calendar', JSON.stringify(updatedCalendar));
+    }
+  }, [done]);
+
   const handleEditorReady = (view) => {
     if (view && !done) {
       editorViewRef.current = view;

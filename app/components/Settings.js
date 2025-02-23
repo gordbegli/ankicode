@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Settings.module.css';
 import Progress from '@/app/components/Progress'
+import Calendar from '@/app/components/Calendar'
 
 export default function Settings({ pattern, cards, patterns, vimMode, setVimMode, includeMedium, setIncludeMedium, includeHard, setIncludeHard }) {
   const [apiKey, setApiKey] = useState('');
@@ -68,6 +69,12 @@ export default function Settings({ pattern, cards, patterns, vimMode, setVimMode
       </div>
       <div className={styles.settingsSection}>
         <Progress cards={cards} patterns={patterns} includeMedium={includeMedium} includeHard={includeHard} />
+      </div>
+      <div className={styles.settingsSection}>
+        <p className={styles.settingsText}>Calendar</p>
+      </div>
+      <div className={styles.settingsSection}>
+        <Calendar />
       </div>
     </>
   );

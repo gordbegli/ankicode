@@ -1,0 +1,74 @@
+.calendar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20px);
+  justify-content: space-between;
+  gap: 2px;
+  width: 100%;
+}
+
+.day {
+  width: 100%;
+  height: 20px;
+  border-radius: 3px;
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.day[data-done="true"] {
+  border: none;
+  background-color: #88c6e8;
+}
+
+.day[data-done="false"] {
+  border: 1px solid #ebedf0;
+  background-color: transparent;
+}
+
+.day:hover {
+  transform: scale(1.05);
+  z-index: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.day:hover::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 3px 4px;
+  border-radius: 2px;
+  font-size: 0.65rem;
+  white-space: pre-wrap;
+  min-width: 80px;
+  max-width: 120px;
+  text-align: center;
+  pointer-events: none;
+  transform: none;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.day.left-edge:hover::after {
+  left: 100%;
+  transform: none;
+  margin-left: 8px;
+}
+
+.day.rightEdge:hover::after {
+  left: auto;
+  right: 100%;
+}
