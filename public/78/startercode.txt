@@ -1,12 +1,3 @@
-from typing import Optional
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
-def invert_tree(root: Optional[TreeNode]) -> Optional[TreeNode]:
+def length_of_longest_substring(s: str) -> int:
     # Your code here
     pass

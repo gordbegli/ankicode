@@ -631,7 +631,7 @@ export const startingCards = [
     "pattern": "slidingwindow",
     "stage": "new",
     ...createEmptyCard(),
-    "difficultyRating": "Easy"
+    "difficultyRating": "Medium"
   },
   {
     "id": 79,

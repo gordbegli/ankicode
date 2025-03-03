@@ -1,45 +1,34 @@
 # Longest Substring Without Repeating Characters
 
-Given the root of a binary tree, write a function to invert the tree and return its root. An inverted tree is one where the left and right children of all nodes are swapped.
+Given a string `s`, find the length of the longest substring without repeating characters.
 
 ## Examples
 
 Example 1:
 
 ```
-Input:
-   1
-  / \
- 2   3
-
-Output:
-   1
-  / \
- 3   2
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
 ```
-
-**Input:** root = `[1, 2, 3]`
-**Output:** `[1, 3, 2]`
 
 Example 2:
 
 ```
-Input:
-   4
-
-Output:
-   4
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
 ```
 
-**Input:** root = `[4]`
-**Output:** `[4]`
+Example 3:
+
+```
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+```
 
 ## Constraints
 
-- Number of nodes: `1 <= n <= 1000`
-- Node values: `-1000 <= Node.val <= 1000`
-
-## Notes
-
-- Nodes can have `None` values, simulating missing children.
-- The binary tree is represented using list input.
+- `0 <= len(s) <= 5 * 10^4`
+- `s` consists of English letters, digits, symbols, and spaces.
