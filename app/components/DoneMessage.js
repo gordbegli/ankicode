@@ -1,10 +1,12 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './DoneMessage.module.css';
 
 const DoneMessage = ({ cards }) => {
   const [nextDueTime, setNextDueTime] = useState(null);
   const [timeRemaining, setTimeRemaining] = useState('');
+  const [isPulsing, setIsPulsing] = useState(false);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const now = new Date();
@@ -74,9 +76,20 @@ const DoneMessage = ({ cards }) => {
     return () => clearInterval(interval);
   }, [nextDueTime]);
 
+  const handleOverlayClick = (e) => {
+    // Only trigger the animation if clicking directly on the overlay, not on the messageContainer
+    if (e.target === e.currentTarget) {
+      setIsPulsing(true);
+      // Reset the animation after it completes
+      setTimeout(() => setIsPulsing(false), 300);
+    }
+  };
+
   return (
-    <div className={styles.overlay}>
-      <div className={styles.messageContainer}>
+    <div className={styles.overlay} onClick={handleOverlayClick}>
+      <div 
+        ref={containerRef}
+        className={`${styles.messageContainer} ${isPulsing ? styles.pulse : ''}`}>
         <h2 className={styles.title}>
           <span className={styles.emoji}>🎉</span> All Done For Now!
         </h2>
