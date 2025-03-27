@@ -15,13 +15,17 @@ const DoneMessage = ({ cards }) => {
     let lastNew = localStorage.getItem('lastNew');
     lastNew = lastNew ? new Date(lastNew) : null;
 
-    // Calculate when the next new card is available (24 hours after lastNew)
+    // Calculate when the next new card is available (at midnight)
     let nextNewTime = null;
     if (!lastNew) {
       // If no lastNew, new cards are available now
       nextNewTime = now;
     } else {
-      nextNewTime = new Date(lastNew.getTime() + 24 * 60 * 60 * 1000);
+      // Next new card available tomorrow at midnight
+      const tomorrow = new Date(now);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(0, 0, 0, 0);
+      nextNewTime = tomorrow;
     }
 
     // Find the next due review card

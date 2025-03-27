@@ -7,7 +7,7 @@ For a solution to be marked as "good," it must pass the test suite on the first 
 
 ![AnkiCode's Done Message](screenshot_2.png)  
 
-Every 24 hours, a new problem will be introduced in a didactic order. Additionally, the spaced repetition algorithm will have you review problems whose solutions you are on the verge of forgetting.  
+Each day, a new problem will be introduced in a didactic order. Additionally, the spaced repetition algorithm will have you review problems whose solutions you are on the verge of forgetting.  
 
 ## Keyboard Shortcuts  
 

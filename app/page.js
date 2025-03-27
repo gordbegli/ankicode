@@ -55,7 +55,7 @@ export default function Flashcard() {
     let next = cards.find(card => card.stage === 'learning' && new Date(card.due).setHours(0, 0, 0, 0) <= today);
   
     //New cards - look for easy then medium then hard problems, first in current pattern then in subsequent patterns
-    if (!next && (!lastNew || new Date() - new Date(lastNew) > 86400000)) {
+    if (!next && (!lastNew || new Date(lastNew).setHours(0, 0, 0, 0) < today)) {
       const difficulties = ['Easy'];
       if (includeMedium) difficulties.push('Medium');
       if (includeHard) difficulties.push('Hard');
