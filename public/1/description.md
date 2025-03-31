@@ -1,6 +1,8 @@
-## Sum of Left Leaves
+## Maximum Depth of Binary Tree
 
-Given the root of a binary tree, return the sum of all left leaves. A leaf is a node with no children. A left leaf is a leaf that is the left child of its parent.
+Given the root of a binary tree, return its maximum depth.
+
+A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
 ### Examples
 
@@ -14,13 +16,13 @@ Input:
     /  \
    15   7
 
-Output: 24
+Output: 3
 ```
 
-**Explanation:** The left leaves are 9 and 15. Sum = 9 + 15 = 24.
+**Explanation:** The maximum depth is 3, which is the depth of the path [3,9] or [3,20,15] or [3,20,7].
 
 **Input:** root = `[3,9,20,null,null,15,7]`
-**Output:** `24`
+**Output:** `3`
 
 #### Example 2
 
@@ -30,22 +32,37 @@ Input:
      \
       2
 
+Output: 2
+```
+
+**Explanation:** The maximum depth is 2, which is the depth of the path [1,2].
+
+**Input:** root = `[1,null,2]`
+**Output:** `2`
+
+#### Example 3
+
+```
+Input:
+    []
+
 Output: 0
 ```
 
-**Explanation:** There are no left leaves.
+**Explanation:** The maximum depth of an empty tree is 0.
 
-**Input:** root = `[1,null,2]`
+**Input:** root = `[]`
 **Output:** `0`
 
 ### Constraints
-- Number of nodes in the tree: `1 <= n <= 1000`
-- Node values: `-1000 <= Node.val <= 1000`
+- Number of nodes in the tree: `0 <= n <= 10^4`
+- Node values: `-100 <= Node.val <= 100`
 
 ### Note
-Binary trees are often given as array representations where `root = [3,9,20,null,null,15,7]` means the root is 3, and its left child is 9 and right child is 20. Leaf nodes have both children as `null` in such representations.
+Binary trees are represented as arrays where `root = [3,9,20,null,null,15,7]` means the root is 3, and its left child is 9 and right child is 20. Leaf nodes have both children as `null` in such representations.
 
 ### Edge Cases
-- Single node tree where the root does not have any left leaves.
-- All nodes have either left or right children but the leaves are not left leaves.
-- Trees that have varying depths and structures.
+- Empty tree (null root)
+- Single node tree
+- Completely unbalanced tree (essentially a linked list)
+- Balanced tree with all nodes having either 0 or 2 children

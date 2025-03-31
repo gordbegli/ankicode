@@ -1,26 +1,42 @@
-# Test case 1
+# Test case 1: Balanced tree
 root = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
-result = sumOfLeftLeaves(root)
-assert result == 24, f"Expected 24 but got {result}"
+result = maxDepth(root)
+assert result == 3, f"Expected 3 but got {result}"
 
-# Test case 2
+# Test case 2: Right-skewed tree
 root = TreeNode(1, None, TreeNode(2))
-result = sumOfLeftLeaves(root)
+result = maxDepth(root)
+assert result == 2, f"Expected 2 but got {result}"
+
+# Test case 3: Empty tree
+root = None
+result = maxDepth(root)
 assert result == 0, f"Expected 0 but got {result}"
 
-# Test case 3
-root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4))), TreeNode(5))
-result = sumOfLeftLeaves(root)
+# Test case 4: Single node
+root = TreeNode(0)
+result = maxDepth(root)
+assert result == 1, f"Expected 1 but got {result}"
+
+# Test case 5: Deep left-skewed tree
+root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4, TreeNode(5)))))
+result = maxDepth(root)
+assert result == 5, f"Expected 5 but got {result}"
+
+# Test case 6: Deeper on right side
+root = TreeNode(1, TreeNode(2), TreeNode(3, None, TreeNode(4, None, TreeNode(5))))
+result = maxDepth(root)
 assert result == 4, f"Expected 4 but got {result}"
 
-# Test case 4
-root = TreeNode(0)
-result = sumOfLeftLeaves(root)
-assert result == 0, f"Expected 0 but got {result}"
-
-# Test case 5
-root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4, TreeNode(5)))))
-result = sumOfLeftLeaves(root)
-assert result == 9, f"Expected 9 but got {result}"
+# Test case 7: Balanced but deeper tree
+root = TreeNode(1, 
+          TreeNode(2, 
+                TreeNode(4, TreeNode(8), TreeNode(9)), 
+                TreeNode(5)), 
+          TreeNode(3, 
+                TreeNode(6), 
+                TreeNode(7)))
+result = maxDepth(root)
+assert result == 4, f"Expected 4 but got {result}"
 
 print("All test cases passed!")

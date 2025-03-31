@@ -11,7 +11,7 @@ export const startingCards = [
   },
   {
     "id": 1,
-    "title": "Sum of Left Leaves",
+    "title": "Maximum Depth of Binary Tree",
     "pattern": "tree",
     "stage": "new",
     ...createEmptyCard(),

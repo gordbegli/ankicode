@@ -7,6 +7,6 @@ class TreeNode:
         self.right = right
 
 
-def sumOfLeftLeaves(root: Optional[TreeNode]) -> int:
+def maxDepth(root: Optional[TreeNode]) -> int:
     # Your code here
     pass
