@@ -35,5 +35,3 @@ print(f"Output: {result}")
 assert result == True, "Expected output: True"
 
 print("All test cases complete")
-
-test_isBalanced()
