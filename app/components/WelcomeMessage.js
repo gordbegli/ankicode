@@ -23,7 +23,7 @@ const WelcomeMessage = () => {
         </h2>
         <div className={styles.content}>
           <p className={styles.subtitle}>
-            A modern spaced repetition platform for mastering coding challenges
+            A site to help you memorize algorithms with <a href="https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm" target="_blank" rel="noopener noreferrer" className={styles.link}>FSRS</a>
           </p>
 
           <div className={styles.section}>
