@@ -40,3 +40,5 @@ next-env.d.ts
 
 notes.md
 .aider*
+
+.env.local
