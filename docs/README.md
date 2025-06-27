@@ -1,5 +1,5 @@
 # AnkiCode  
-AnkiCode is a web app that allows users to memorize basic LeetCode patterns using the spaced repetition package [ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs).  
+AnkiCode is a web app that allows users to memorize algorithms using the spaced repetition package [ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs).  
 
 ![AnkiCode's UI](screenshot_1.png)  
 
