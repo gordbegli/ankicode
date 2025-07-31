@@ -1,11 +1,11 @@
 import React, { useState, useImperativeHandle, forwardRef } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import styles from './Results.module.css';
+import styles from './Submit.module.css';
 
-export default forwardRef(Results);
+export default forwardRef(Submit);
 
-function Results({ answer, testCode, rate, rating, setRating, goToNextProblem, handleRunTests }, ref) {
+function Submit({ answer, testCode, rate, rating, setRating, goToNextProblem, handleRunTests }, ref) {
     const [testResults, setTestResults] = useState([]);
     const [showTestCode, setShowTestCode] = useState(false);
     const [allTestsPassed, setAllTestsPassed] = useState(false);
@@ -69,7 +69,7 @@ function Results({ answer, testCode, rate, rating, setRating, goToNextProblem, h
 
     return (
         <div>
-            <div className={styles.resultsHeader}>
+            <div className={styles.submitHeader}>
                 <div className={styles.buttonGroup}>
                     <button onClick={() => setShowTestCode(!showTestCode)} className={styles.viewButton}>
                         {showTestCode ? 'Hide Test Code' : 'View Test Code'}

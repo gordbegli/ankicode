@@ -40,7 +40,7 @@
     background-color: #ddd;
 }
 
-.resultsHeader {
+.submitHeader {
     justify-content: flex-end;
     display: flex;
 }
