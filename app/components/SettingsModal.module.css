@@ -167,3 +167,26 @@
 .switchToggle:hover {
   background: rgba(0, 0, 0, 0.1);
 }
+
+.dataButtonsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.dataButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  height: 40px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.dataButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

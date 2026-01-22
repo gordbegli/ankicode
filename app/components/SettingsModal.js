@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from './SettingsModal.module.css';
 import Progress from '@/app/components/Progress';
@@ -8,6 +8,7 @@ export default function SettingsModal({ cards, patterns, vimMode, setVimMode, in
   const [isOpen, setIsOpen] = useState(false);
   const [apiKey, setApiKey] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     const storedApiKey = localStorage.getItem('apiKey');
@@ -29,6 +30,59 @@ export default function SettingsModal({ cards, patterns, vimMode, setVimMode, in
       return () => window.removeEventListener('keydown', handleEscape);
     }
   }, [isOpen]);
+
+  const localStorageKeys = [
+    'currentPattern', 'storedCards', 'vimMode', 'includeMedium', 'includeHard',
+    'newCardsPerDay', 'newCardsToday', 'apiKey', 'calendar', 'hasSeenWelcome', 'lastNew'
+  ];
+
+  const handleExport = () => {
+    const data = {};
+    localStorageKeys.forEach(key => {
+      const value = localStorage.getItem(key);
+      if (value !== null) {
+        data[key] = value;
+      }
+    });
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const date = new Date().toISOString().split('T')[0];
+    a.download = `ankicode-backup-${date}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const data = JSON.parse(event.target.result);
+        if (typeof data !== 'object' || data === null) {
+          alert('Invalid backup file format.');
+          return;
+        }
+        if (!confirm('This will overwrite your current data. Continue?')) {
+          return;
+        }
+        Object.entries(data).forEach(([key, value]) => {
+          if (localStorageKeys.includes(key)) {
+            localStorage.setItem(key, value);
+          }
+        });
+        window.location.reload();
+      } catch (err) {
+        alert('Failed to parse backup file.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  };
 
   return (
     <>
@@ -107,6 +161,34 @@ export default function SettingsModal({ cards, patterns, vimMode, setVimMode, in
               </div>
               <div className={styles.settingsSection}>
                 <Calendar />
+              </div>
+              <div className={styles.settingsSection}>
+                <p className={styles.settingsText}>Data</p>
+                <div className={styles.dataButtonsContainer}>
+                  <button className={styles.dataButton} onClick={handleExport}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Export
+                  </button>
+                  <button className={styles.dataButton} onClick={() => fileInputRef.current?.click()}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    Import
+                  </button>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleImport}
+                    accept=".json"
+                    style={{ display: 'none' }}
+                  />
+                </div>
               </div>
             </div>
           </div>
