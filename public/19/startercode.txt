@@ -1,3 +1,4 @@
-def numDecodings(s: str) -> int:
-    # Your code here
+# Binary Search: Greedy (Minimum)
+
+def fn(arr):
     pass

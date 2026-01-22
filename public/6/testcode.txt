@@ -1,25 +1,21 @@
-print('Test case 1: LCA of 2 and 8 should be 6')
-root = TreeNode(6, TreeNode(2, TreeNode(0), TreeNode(4, TreeNode(3), TreeNode(5))), TreeNode(8, TreeNode(7), TreeNode(9)))
-p = root.left  # TreeNode(2)
-q = root.right  # TreeNode(8)
-result = lowestCommonAncestor(root, p, q)
-print(f'Output: {result.val}')
-assert result.val == 6
+# Test the reverse linked list template
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-print('Test case 2: LCA of 2 and 4 should be 2')
-root = TreeNode(6, TreeNode(2, TreeNode(0), TreeNode(4, TreeNode(3), TreeNode(5))), TreeNode(8, TreeNode(7), TreeNode(9)))
-p = root.left  # TreeNode(2)
-q = root.left.right  # TreeNode(4)
-result = lowestCommonAncestor(root, p, q)
-print(f'Output: {result.val}')
-assert result.val == 2
+def to_list(head):
+    result = []
+    while head:
+        result.append(head.val)
+        head = head.next
+    return result
 
-print('Test case 3: LCA of 2 and 1 should be 2')
-root = TreeNode(2, TreeNode(1))
-p = root  # TreeNode(2)
-q = root.left  # TreeNode(1)
-result = lowestCommonAncestor(root, p, q)
-print(f'Output: {result.val}')
-assert result.val == 2
+# Create: 1 -> 2 -> 3
+head = ListNode(1, ListNode(2, ListNode(3)))
+result = fn(head)
 
-print('All test cases completed!')
+# Verify it returns reversed: 3 -> 2 -> 1
+assert to_list(result) == [3, 2, 1], f"Expected [3, 2, 1], got {to_list(result)}"
+
+print("All template checks passed.")

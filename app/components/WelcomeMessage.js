@@ -18,43 +18,44 @@ const WelcomeMessage = () => {
   return (
     <div className={styles.overlay} onClick={() => setShowMessage(false)}>
       <div className={styles.messageContainer} onClick={(e) => e.stopPropagation()}>
-        <h2 className={styles.title}>
-          <span className={styles.emoji}>👋</span> Welcome to AnkiCode
-        </h2>
+        <div className={styles.modalHeader}>
+          <h2 className={styles.title}>Welcome to AnkiCode</h2>
+          <button className={styles.closeButton} onClick={() => setShowMessage(false)}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
         <div className={styles.content}>
           <p className={styles.subtitle}>
-            A site to help you memorize algorithms with <a href="https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm" target="_blank" rel="noopener noreferrer" className={styles.link}>FSRS</a>
+            Memorize algorithms with <a href="https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm" target="_blank" rel="noopener noreferrer" className={styles.link}>spaced repetition</a>
           </p>
 
           <div className={styles.section}>
-            <h3>
-              <span className={styles.emoji}>🚀</span> Getting Started
-            </h3>
+            <h3>Getting Started</h3>
             <div className={styles.card}>
-              <p>Add your API key in settings to enable AI-powered chat assistance</p>
+              <p>Click the logo in the top-right to add your OpenAI API key for AI grading</p>
             </div>
           </div>
 
           <div className={styles.section}>
-            <h3>
-              <span className={styles.emoji}>⌨️</span> Keyboard Shortcuts
-            </h3>
+            <h3>Keyboard Shortcuts</h3>
             <div className={styles.shortcutGrid}>
               <div className={styles.shortcutItem}>
-                <kbd>⌘ '</kbd>
-                <span>Run Tests</span>
+                <kbd>⌘ Enter</kbd>
+                <span>Submit</span>
               </div>
               <div className={styles.shortcutItem}>
-                <kbd>⌘ \</kbd>
-                <span>Next Problem</span>
+                <kbd>⌘ ;</kbd>
+                <span>Reveal</span>
+              </div>
+              <div className={styles.shortcutItem}>
+                <kbd>⌘ '</kbd>
+                <span>Next</span>
               </div>
             </div>
           </div>
         </div>
-        <button className={styles.closeButton} onClick={() => setShowMessage(false)}>
-          Let's begin
-          <span className={styles.buttonArrow}>→</span>
-        </button>
       </div>
     </div>
   );

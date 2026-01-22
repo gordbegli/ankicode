@@ -1,5 +1,4 @@
-from typing import List
+# Binary Search: Greedy (Maximum)
 
-def coinChange(coins: List[int], amount: int) -> int:
-    # Your code here
+def fn(arr):
     pass

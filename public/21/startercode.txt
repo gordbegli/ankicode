@@ -1,6 +1,4 @@
-from typing import List
+# Backtracking
 
-class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
-        # Your code here
-        pass
+def backtrack(curr):
+    pass

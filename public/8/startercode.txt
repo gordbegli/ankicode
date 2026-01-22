@@ -1,12 +1,4 @@
-from typing import Optional, List
+# Monotonic Increasing Stack
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
-def rightSideView(root: Optional[TreeNode]) -> List[int]:
-    # Your code here
+def fn(arr):
     pass

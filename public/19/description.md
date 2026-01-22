@@ -1,53 +1,15 @@
-# Decode Ways
+# Binary Search: Greedy (Minimum)
 
-You have intercepted a secret message encoded as a string of numbers. The message is decoded via the following mapping:
+Write the template for binary search on answer space to find a minimum value that satisfies a condition.
 
-"1" -> 'A'
-"2" -> 'B'
-...
-"25" -> 'Y'
-"26" -> 'Z'
+## When to Use
+- Finding minimum value that works
+- Optimization problems with monotonic feasibility
+- "Minimize the maximum" problems
+- When feasibility is monotonic (if x works, x+1 works)
 
-However, while decoding the message, you realize that there are multiple ways to decode the message because some codes overlap each other ("2" and "5" vs "25").
-
-For example, "11106" can be decoded into:
-
- * "AAJF" with the grouping (1, 1, 10, 6)
- * "KJF" with the grouping (11, 10, 6)
- * The grouping (1, 11, 06) is invalid because "06" is not a valid code (leading zeros are invalid).
-
-**Note:** In some cases, the string may not be decodable.
-
-Given a string `s` containing only digits, return the number of ways to decode it. If the entire string cannot be decoded in any valid way, return 0.
-
-The test cases are generated so that the answer fits in a 32-bit integer.
-
-## Examples
-
-**Example 1:**
-```
-Input: s = "12"
-Output: 2
-Explanation:
-"12" could be decoded as "AB" (1 2) or "L" (12).
-```
-
-**Example 2:**
-```
-Input: s = "226"
-Output: 3
-Explanation:
-"226" could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
-```
-
-**Example 3:**
-```
-Input: s = "06"
-Output: 0
-Explanation:
-"06" cannot be mapped to "F" because of the leading zero ("6" is different from "06"). In this case, the string is not a valid encoding, so return 0.
-```
-
-## Constraints:
- * 1 <= s.length <= 100
- * s contains only digits and may contain leading zero(s).
+## Template Structure
+- Define check(x) function for feasibility
+- Search between MINIMUM and MAXIMUM possible answers
+- If check(mid) is True, search lower (right = mid - 1)
+- Return left as the minimum valid answer

@@ -1,30 +1,15 @@
-# Palindromic Substrings
+# Binary Search: Right-most Insertion Point
 
-Given a string `s`, return the number of palindromic substrings in it.
+Write the template for binary search finding the right-most insertion point (upper bound) with duplicate elements.
 
-A string is a palindrome when it reads the same backward as forward.
+## When to Use
+- Finding last occurrence of element
+- Finding position after all equal elements
+- Upper bound queries
+- Duplicate elements in sorted array
 
-A substring is a contiguous sequence of characters within the string.
-
-### Examples
-
-#### Example 1:
-
-Input: `s = "abc"`
-
-Output: `3`
-
-Explanation: Three palindromic strings: "a", "b", "c".
-
-#### Example 2:
-
-Input: `s = "aaa"`
-
-Output: `6`
-
-Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
-
-### Constraints
-
-* 1 <= s.length <= 1000
-* `s` consists of lowercase English letters.
+## Template Structure
+- Initialize left = 0, right = len(arr)
+- Loop while left < right
+- Move right = mid when arr[mid] > target
+- Move left = mid + 1 otherwise

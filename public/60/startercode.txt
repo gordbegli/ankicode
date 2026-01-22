@@ -1,5 +1,0 @@
-from typing import List
-
-def exist(board: List[List[str]], word: str) -> bool:
-    # Your code here
-    pass

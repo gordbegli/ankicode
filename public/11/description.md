@@ -1,38 +1,15 @@
-# Kth Smallest Element in a BST
+# Binary Tree: BFS
 
-Given the root of a binary search tree (BST) and an integer `k`, return the `k`th smallest value (1-indexed) among all the values of the nodes in the tree.
+Write the template for breadth-first search (level-order traversal) on a binary tree.
 
-## Examples
+## When to Use
+- Level-order traversal
+- Finding shortest path in unweighted tree
+- Processing nodes level by level
+- Problems requiring level information
 
-Example 1:
-```
-    3
-   / \
-  1   4
-   \
-    2
-```
-**Input:** root = `[3,1,4,null,2]`, k = 1  
-**Output:** 1  
-
-Example 2:
-```
-        5
-       / \
-      3   6
-     / \
-    2   4
-   /
-  1
-```
-**Input:** root = `[5,3,6,2,4,null,null,1]`, k = 3  
-**Output:** 3  
-
-## Constraints
-
-* The number of nodes in the tree is `n`.
-* `1 <= k <= n <= 10^4`
-* `0 <= Node.val <= 10^4`
-
-## Follow up
-If the BST is frequently modified (i.e., insertions and deletions are common) and you need to find the `k`th smallest value often, how would you optimize?
+## Template Structure
+- Use a deque as queue
+- Process nodes level by level
+- Track level size for level-specific logic
+- Add children to queue

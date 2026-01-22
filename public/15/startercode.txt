@@ -1,6 +1,4 @@
-from typing import List
+# Find Top K Elements with Heap
 
-
-def rob(nums: List[int]) -> int:
-    # Your code here
+def fn(arr, k):
     pass

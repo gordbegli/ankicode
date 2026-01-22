@@ -1,13 +1,4 @@
-from typing import Optional
+# Binary Tree: DFS (Recursive)
 
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
-
-def countGoodNodes(root: Optional[TreeNode]) -> int:
-    # Your code here
+def dfs(root):
     pass

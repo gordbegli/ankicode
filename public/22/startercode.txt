@@ -1,5 +1,4 @@
-from typing import List
+# Dynamic Programming: Top-Down
 
-def wordBreak(s: str, wordDict: List[str]) -> bool:
-    # Your code here
+def fn(arr):
     pass

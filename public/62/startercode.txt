@@ -1,6 +1,0 @@
-from typing import List
-
-# Function to get letter combinations
-def letterCombinations(digits: str) -> List[str]:
-    # Your code here
-    pass

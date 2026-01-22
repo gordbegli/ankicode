@@ -1,5 +1,4 @@
-from typing import List
+# Dijkstra's Algorithm
 
-def canPartition(nums: List[int]) -> bool:
-    # Your code here
+def fn(graph, source):
     pass

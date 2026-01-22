@@ -1,54 +1,14 @@
-# Binary Tree Level Order Traversal
+# Number of Subarrays with Exact Criteria
 
-Given the root of a binary tree, return the level order traversal of its nodes' values (i.e., from left to right, level by level).
+Write the template for counting subarrays that fit exact criteria using prefix sums and hash maps.
 
-## Representation
+## When to Use
+- Counting subarrays with exact sum k
+- Finding subarrays where some property equals a target
+- Problems involving cumulative values and exact matches
 
-The binary tree is represented as a list, where each element corresponds to a node's value, and `None` signifies the absence of a node (i.e., a missing child).
-
-## Examples
-
-Example 1:
-
-```
-Input:
-    3
-   / \
-  9  20
-    /  \
-   15   7
-
-Output: [[3],[9,20],[15,7]]
-```
-
-**Input:** root = [3,9,20,None,None,15,7]
-**Output:** [[3],[9,20],[15,7]]
-
-Example 2:
-```
-Input:
-    1
-
-Output: [[1]]
-```
-
-**Input:** root = [1]
-**Output:** [[1]]
-
-Example 3:
-```
-Input:
-Output: []
-```
-
-**Input:** root = []
-**Output:** []
-
-## Constraints
-
-* The number of nodes in the tree is in the range [0, 2000].
-* -1000 <= Node.val <= 1000
-
-## Edge Cases
-* Tree with varying depth and structure
-* Nodes can be `None`, simulating missing children
+## Template Structure
+- Use a hash map to store prefix counts
+- Initialize counts[0] = 1 (empty prefix)
+- Track running sum with `curr`
+- Count matches using curr - k

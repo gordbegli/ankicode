@@ -1,5 +1,4 @@
-from typing import List
+# Graph: BFS
 
-def minCostClimbingStairs(cost: List[int]) -> int:
-    # Your code here
+def fn(graph):
     pass

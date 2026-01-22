@@ -1,5 +1,0 @@
-from typing import List
-
-def countComponents(n: int, edges: List[List[int]]) -> int:
-    # Your code here
-    pass

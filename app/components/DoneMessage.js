@@ -124,7 +124,7 @@ const DoneMessage = ({ cards }) => {
             </h3>
             <div className={styles.card}>
               <p>
-                Checkout the shortcuts listed in our <a className={styles.link} href="https://github.com/gordbegli/ankicode?tab=readme-ov-file#keyboard-shortcuts">readme</a>.
+                See something wrong? Submit an <a className={styles.link} href="https://github.com/gordbegli/ankicode/issues/new">issue</a>.
               </p>
             </div>
           </div>

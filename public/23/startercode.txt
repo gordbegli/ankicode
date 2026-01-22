@@ -1,6 +1,4 @@
-from typing import List
+# Trie
 
-class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
-        # Your code here
-        pass
+class TrieNode:
+    pass

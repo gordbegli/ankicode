@@ -1,25 +1,15 @@
-# Longest Palindromic Substring
+# Binary Search: Left-most Insertion Point
 
-Given a string `s`, return the longest palindromic substring in `s`.
+Write the template for binary search finding the left-most insertion point (lower bound) with duplicate elements.
 
-## Examples
+## When to Use
+- Finding first occurrence of element
+- Finding insertion point for sorted order
+- Lower bound queries
+- Duplicate elements in sorted array
 
-**Example 1:**
-
-- **Input:** `s = "babad"`
-- **Output:** "bab"
-- **Explanation:** "aba" is also a valid answer.
-
-**Example 2:**
-
-- **Input:** `s = "cbbd"`
-- **Output:** "bb"
-
-## Constraints
-
-- `0 <= s.length <= 1000`
-- `s` consists of only digits and English letters.
-
-## Additional Notes
-
-- A palindrome is a string that reads the same backward as forward, such as "madam" or "racecar". The function should return the first occurring longest palindromic substring in case of multiple answers.
+## Template Structure
+- Initialize left = 0, right = len(arr)
+- Loop while left < right
+- Move right = mid when arr[mid] >= target
+- Move left = mid + 1 otherwise

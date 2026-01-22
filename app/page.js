@@ -4,43 +4,41 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { fsrs, generatorParameters, Rating } from 'ts-fsrs';
 import { startingCards } from './startingCards';
 import Editor from './components/Editor';
-import Menu from './components/Menu';
-import styles from './page.module.css';
+import SettingsModal from './components/SettingsModal';
 import DoneMessage from './components/DoneMessage';
+import styles from './page.module.css';
 
 export default function Flashcard() {
   const [answer, setAnswer] = useState('');
   const [current, setCurrent] = useState(null);
   const [pyodide, setPyodide] = useState(null);
   const f = fsrs(generatorParameters());
-  const [rating, setRating] = useState(3);
-  const [problemDescription, setProblemDescription] = useState('');
-  const [testCode, setTestCode] = useState('');
-  const [videoHtml, setVideoHtml] = useState('');
-  const [dividerPosition, setDividerPosition] = useState(50);
+  const [solution, setSolution] = useState('');
+  const [starterCode, setStarterCode] = useState('');
+  const [isRevealed, setIsRevealed] = useState(false);
   const [pattern, setPattern] = useState(() => {if (typeof window !== 'undefined') {return localStorage.getItem('currentPattern') || 'array';}return 'array';});
   const [cards, setCards] = useState(() => {if (typeof window !== 'undefined') {const storedCards = localStorage.getItem('storedCards');return storedCards ? JSON.parse(storedCards) : startingCards;}return startingCards;});
   const [patterns, setPatterns] = useState(["array", "twopointer", "slidingwindow", "stack", "binarysearch", "linkedlist", "tree", "heap", "backtracking", "trie", "graph", "advancedgraph", "1Ddynamicprogramming", "2Ddynamicprogramming"]);
-  const [focusEditor, setFocusEditor] = useState(false);
   const [vimMode, setVimMode] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('vimMode') || 'false') : false);
   const [includeMedium, setIncludeMedium] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('includeMedium') || 'false') : false);
   const [includeHard, setIncludeHard] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('includeHard') || 'false') : false);
-  const [lastNew, setLastNew] = useState(() => { if (typeof window !== 'undefined') { return localStorage.getItem('lastNew') || null } return null });
+  const [newCardsPerDay, setNewCardsPerDay] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('newCardsPerDay') ?? '1') : 1);
+  const [newCardsToday, setNewCardsToday] = useState(() => { if (typeof window !== 'undefined') { return JSON.parse(localStorage.getItem('newCardsToday') || '{"date":"","count":0}'); } return { date: '', count: 0 }; });
   const [done, setDone] = useState(false);
+  const [isGrading, setIsGrading] = useState(false);
+  const [gradeResult, setGradeResult] = useState(null);
+  const [hasFailedAttempt, setHasFailedAttempt] = useState(false);
   const doneMessageRef = useRef(null);
   const editorViewRef = useRef(null);
 
   const fetchCardData = useCallback((id) => {
     Promise.all([
       fetch(`/${id}/startercode.txt`).then(response => response.text()),
-      fetch(`/${id}/description.md`).then(response => response.text()),
-      fetch(`/${id}/testcode.txt`).then(response => response.text()),
-      fetch(`/${id}/video.txt`).then(response => response.text())
-    ]).then(([starterCode, description, testCode, videoHtml]) => {
+      fetch(`/${id}/solution.txt`).then(response => response.text())
+    ]).then(([starterCode, solution]) => {
+      setStarterCode(starterCode);
       setAnswer(starterCode);
-      setProblemDescription(description);
-      setTestCode(testCode);
-      setVideoHtml(videoHtml);
+      setSolution(solution);
     });
   }, []);
 
@@ -50,24 +48,22 @@ export default function Flashcard() {
   }, []);
 
   const getNextCard = useCallback(() => {
-    //Due learning cards
     const today = new Date().setHours(0, 0, 0, 0);
     let next = cards.find(card => card.stage === 'learning' && new Date(card.due).setHours(0, 0, 0, 0) <= today);
-  
-    //New cards - look for easy then medium then hard problems, first in current pattern then in subsequent patterns
-    if (!next && (!lastNew || new Date(lastNew).setHours(0, 0, 0, 0) < today)) {
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    const todayCount = newCardsToday.date === todayStr ? newCardsToday.count : 0;
+    if (!next && newCardsPerDay > 0 && todayCount < newCardsPerDay) {
       const difficulties = ['Easy'];
       if (includeMedium) difficulties.push('Medium');
       if (includeHard) difficulties.push('Hard');
       const currentPatternIndex = patterns.indexOf(pattern);
       let found = false;
-  
+
       for (let difficulty of difficulties) {
-        //Current pattern
         next = cards.find(card => card.pattern === pattern && card.stage === 'new' && card.difficultyRating === difficulty);
         if (next) {found = true; break;}
-  
-        //Subsequent patterns
+
         for (let i = 1; i < patterns.length && !found; i++) {
           const nextPattern = patterns[(currentPatternIndex + i) % patterns.length];
           next = cards.find(card => card.pattern === nextPattern && card.stage === 'new' && card.difficultyRating === difficulty);
@@ -76,16 +72,19 @@ export default function Flashcard() {
         if (found) break;
       }
     }
-  
-    if (!next) {next = cards[0]; setDone(true);} //No cards left to review
+
+    if (!next) {next = cards[0]; setDone(true);}
     return next;
-  }, [cards, pattern, lastNew, patterns, updatePattern]);
+  }, [cards, pattern, newCardsPerDay, newCardsToday, patterns, updatePattern, includeMedium, includeHard]);
 
   const rate = useCallback((rating) => {
     if (current.stage === 'new') {
       current.stage = 'learning';
-      localStorage.setItem('lastNew', new Date().toISOString());
-      setLastNew(new Date().toISOString());
+      const todayStr = new Date().toISOString().split('T')[0];
+      const newCount = newCardsToday.date === todayStr ? newCardsToday.count + 1 : 1;
+      const updated = { date: todayStr, count: newCount };
+      setNewCardsToday(updated);
+      localStorage.setItem('newCardsToday', JSON.stringify(updated));
     }
     const scheduling = f.repeat(current, new Date());
     const updated = [...cards.filter(card => card !== current), scheduling[rating].card];
@@ -96,57 +95,102 @@ export default function Flashcard() {
       const currentIndex = patterns.indexOf(pattern);
       const nextIndex = (currentIndex + 1) % patterns.length;
       updatePattern(patterns[nextIndex]);
-      next = getNextCard(); // Try to get a card for the new pattern
+      next = getNextCard();
     }
 
     if (next) {
       setCurrent(next);
-      setRating(3);
       fetchCardData(next.id);
     }
-  }, [current, cards, f, getNextCard, patterns, pattern, updatePattern, setCards, setCurrent, setRating, fetchCardData]);
+  }, [current, cards, f, getNextCard, patterns, pattern, updatePattern, setCards, setCurrent, fetchCardData, newCardsToday]);
+
+  const submitAnswer = useCallback(async () => {
+    if (isRevealed || isGrading) return;
+
+    setIsGrading(true);
+    const userCode = answer;
+    const apiKey = localStorage.getItem('apiKey');
+
+    if (!apiKey) {
+      setAnswer(`${userCode}\n\n# No API key found. Add your OpenAI API key in settings.\n# Press Cmd+; to reveal the answer instead.`);
+      setIsGrading(false);
+      return;
+    }
+
+    setAnswer(`${userCode}\n\n# Grading...`);
+
+    try {
+      const response = await fetch('/api/grade', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey,
+        },
+        body: JSON.stringify({
+          userCode: userCode,
+          expectedTemplate: solution,
+          templateName: current?.title,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.error) {
+        setAnswer(`${userCode}\n\n# Error: ${result.error}\n# Press Cmd+; to reveal the answer.`);
+        setGradeResult(null);
+      } else if (result.passed) {
+        setAnswer(`${userCode}\n\n# Correct!\n# ${result.feedback}\n# Press Cmd+' to continue.`);
+        setGradeResult({ passed: true });
+        setIsRevealed(true);
+      } else {
+        setAnswer(`${userCode}\n\n# Not quite.\n# ${result.feedback}\n# Press Cmd+Enter to try again, or Cmd+; to reveal.`);
+        setGradeResult({ passed: false });
+        setHasFailedAttempt(true);
+      }
+    } catch (error) {
+      setAnswer(`${userCode}\n\n# Error: ${error.message}\n# Press Cmd+; to reveal the answer.`);
+      setGradeResult(null);
+    }
+
+    setIsGrading(false);
+  }, [answer, solution, current, isRevealed, isGrading]);
+
+  const revealAnswer = useCallback(() => {
+    if (isRevealed) return;
+    const revealedContent = `${solution}\n\n# Press Cmd+' to continue to the next problem`;
+    setAnswer(revealedContent);
+    setIsRevealed(true);
+    setGradeResult({ passed: false });
+  }, [solution, isRevealed]);
+
+  const handleNext = useCallback(() => {
+    if (!isRevealed) return;
+    const rating = (gradeResult?.passed && !hasFailedAttempt) ? 3 : 1;
+    rate(rating);
+    setIsRevealed(false);
+    setGradeResult(null);
+    setHasFailedAttempt(false);
+  }, [isRevealed, rate, gradeResult, hasFailedAttempt]);
 
   useEffect(() => {
-    const toggleDivider = (direction) => {
-      setDividerPosition(prevPosition => {
-        if (direction === 'left') {
-          if (prevPosition === 0) return 0;
-          return prevPosition > 75 ? 50 : prevPosition < 25 ? 100 : 0;
-        } else if (direction === 'right') {
-          if (prevPosition === 100) return 100;
-          return prevPosition < 25 ? 50 : prevPosition > 75 ? 0 : 100;
-        }
-        return prevPosition;
-      });
-    };
-
     const handleKeyDown = (e) => {
       if (e.metaKey || e.ctrlKey) {
-        if (e.key === 'h') {
+        if (e.key === 'Enter') {
           e.preventDefault();
-          toggleDivider('left');
-        } else if (e.key === 'l') {
+          submitAnswer();
+        } else if (e.key === ';') {
           e.preventDefault();
-          toggleDivider('right');
-        } else if (e.key === 'i' && e.shiftKey) {
+          revealAnswer();
+        } else if (e.key === "'") {
           e.preventDefault();
-          setFocusEditor(prev => !prev);
+          handleNext();
         }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  useEffect(() => {
-    if (focusEditor) {
-      if (editorViewRef.current && !done) {
-        editorViewRef.current.focus();
-      }
-      setFocusEditor(false);
-    }
-  }, [focusEditor, done]);
+  }, [submitAnswer, revealAnswer, handleNext]);
 
   useEffect(() => {
     const load = async () => {
@@ -187,6 +231,10 @@ export default function Flashcard() {
   }, [includeHard]);
 
   useEffect(() => {
+    localStorage.setItem('newCardsPerDay', JSON.stringify(newCardsPerDay));
+  }, [newCardsPerDay]);
+
+  useEffect(() => {
     const next = getNextCard();
     if (!next) return;
     setCurrent(next);
@@ -195,7 +243,7 @@ export default function Flashcard() {
 
   useEffect(() => {
     if (done && doneMessageRef.current) {
-      doneMessageRef.current.focus(); //Otherwise the editor remains in focus
+      doneMessageRef.current.focus();
     }
   }, [done]);
 
@@ -203,7 +251,7 @@ export default function Flashcard() {
     if (done) {
       const today = new Date().toISOString().split('T')[0];
       const updatedCalendar = JSON.parse(localStorage.getItem('calendar') || '{}');
-      updatedCalendar[today] = true; 
+      updatedCalendar[today] = true;
       localStorage.setItem('calendar', JSON.stringify(updatedCalendar));
     }
   }, [done]);
@@ -218,13 +266,26 @@ export default function Flashcard() {
   return (
     <>
       {done && <div ref={doneMessageRef} tabIndex={-1}><DoneMessage cards={cards} /></div>}
+      <SettingsModal
+        cards={cards}
+        patterns={patterns}
+        vimMode={vimMode}
+        setVimMode={setVimMode}
+        includeMedium={includeMedium}
+        setIncludeMedium={setIncludeMedium}
+        includeHard={includeHard}
+        setIncludeHard={setIncludeHard}
+        newCardsPerDay={newCardsPerDay}
+        setNewCardsPerDay={setNewCardsPerDay}
+      />
       <div className={styles.container}>
-        <div className={styles.menu} style={{ width: `${dividerPosition}%` }}>
-          <Menu current={current} cards={cards} answer={answer} rate={rate} videoHtml={videoHtml} problemDescription={problemDescription} testCode={testCode} rating={rating} setRating={setRating} pattern={pattern} patterns={patterns} vimMode={vimMode} setVimMode={setVimMode} includeMedium={includeMedium} setIncludeMedium={setIncludeMedium} includeHard={includeHard} setIncludeHard={setIncludeHard} />
-        </div>
-        <div className={styles.editor} style={{ width: `${100 - dividerPosition}%` }}>
-          <Editor value={answer} onChange={(value) => setAnswer(value)} onEditorReady={handleEditorReady} vimMode={vimMode}/>
-        </div>
+        <Editor
+          value={answer}
+          onChange={(value) => !isRevealed && !isGrading && setAnswer(value)}
+          onEditorReady={handleEditorReady}
+          vimMode={vimMode}
+          readOnly={isRevealed || isGrading}
+        />
       </div>
     </>
   );

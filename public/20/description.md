@@ -1,40 +1,15 @@
-# Coin Change
+# Binary Search: Greedy (Maximum)
 
-You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.
+Write the template for binary search on answer space to find a maximum value that satisfies a condition.
 
-Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return `-1`.
+## When to Use
+- Finding maximum value that works
+- Optimization problems with monotonic feasibility
+- "Maximize the minimum" problems
+- When feasibility is monotonic (if x works, x-1 works)
 
-You may assume that you have an infinite number of each kind of coin.
-
-## Examples
-
-Example 1:
-```python
-Input: coins = [1,2,5], amount = 11
-Output: 3
-Explanation: 11 = 5 + 5 + 1
-```
-
-Example 2:
-```python
-Input: coins = [2], amount = 3
-Output: -1
-```
-
-Example 3:
-```python
-Input: coins = [1], amount = 0
-Output: 0
-```
-
-Example 4:
-```python
-Input: coins = [2, 3, 5], amount = 11
-Output: 3
-Explanation: 11 = 5 + 3 + 3
-```
-
-## Constraints:
-* 1 <= coins.length <= 12
-* 1 <= coins[i] <= 2^31 - 1
-* 0 <= amount <= 10^4
+## Template Structure
+- Define check(x) function for feasibility
+- Search between MINIMUM and MAXIMUM possible answers
+- If check(mid) is True, search higher (left = mid + 1)
+- Return right as the maximum valid answer
