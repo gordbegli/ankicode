@@ -4,7 +4,7 @@ import styles from './SettingsModal.module.css';
 import Progress from '@/app/components/Progress';
 import Calendar from '@/app/components/Calendar';
 
-export default function SettingsModal({ cards, patterns, vimMode, setVimMode, includeMedium, setIncludeMedium, includeHard, setIncludeHard, newCardsPerDay, setNewCardsPerDay }) {
+export default function SettingsModal({ cards, vimMode, setVimMode, includeMedium, setIncludeMedium, includeHard, setIncludeHard, newCardsPerDay, setNewCardsPerDay }) {
   const [isOpen, setIsOpen] = useState(false);
   const [apiKey, setApiKey] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -154,7 +154,7 @@ export default function SettingsModal({ cards, patterns, vimMode, setVimMode, in
                 <p className={styles.settingsText}>Progress</p>
               </div>
               <div className={styles.settingsSection}>
-                <Progress cards={cards} patterns={patterns} includeMedium={includeMedium} includeHard={includeHard} />
+                <Progress cards={cards} includeMedium={includeMedium} includeHard={includeHard} />
               </div>
               <div className={styles.settingsSection}>
                 <p className={styles.settingsText}>Calendar</p>

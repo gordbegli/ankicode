@@ -14,9 +14,7 @@ export default function Flashcard() {
   const [solution, setSolution] = useState('');
   const [starterCode, setStarterCode] = useState('');
   const [isRevealed, setIsRevealed] = useState(false);
-  const [pattern, setPattern] = useState(() => {if (typeof window !== 'undefined') {return localStorage.getItem('currentPattern') || 'array';}return 'array';});
   const [cards, setCards] = useState(() => {if (typeof window !== 'undefined') {const storedCards = localStorage.getItem('storedCards');return storedCards ? JSON.parse(storedCards) : startingCards;}return startingCards;});
-  const [patterns, setPatterns] = useState(["array", "twopointer", "slidingwindow", "stack", "binarysearch", "linkedlist", "tree", "heap", "backtracking", "trie", "graph", "advancedgraph", "1Ddynamicprogramming", "2Ddynamicprogramming"]);
   const [vimMode, setVimMode] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('vimMode') || 'false') : false);
   const [includeMedium, setIncludeMedium] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('includeMedium') || 'false') : false);
   const [includeHard, setIncludeHard] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('includeHard') || 'false') : false);
@@ -40,11 +38,6 @@ export default function Flashcard() {
     });
   }, []);
 
-  const updatePattern = useCallback((pattern) => {
-    localStorage.setItem('currentPattern', pattern);
-    setPattern(pattern);
-  }, []);
-
   const getNextCard = useCallback(() => {
     const today = new Date().setHours(0, 0, 0, 0);
     let next = cards.find(card => card.stage === 'learning' && new Date(card.due).setHours(0, 0, 0, 0) <= today);
@@ -55,19 +48,10 @@ export default function Flashcard() {
       const difficulties = ['Easy'];
       if (includeMedium) difficulties.push('Medium');
       if (includeHard) difficulties.push('Hard');
-      const currentPatternIndex = patterns.indexOf(pattern);
-      let found = false;
 
       for (let difficulty of difficulties) {
-        next = cards.find(card => card.pattern === pattern && card.stage === 'new' && card.difficultyRating === difficulty);
-        if (next) {found = true; break;}
-
-        for (let i = 1; i < patterns.length && !found; i++) {
-          const nextPattern = patterns[(currentPatternIndex + i) % patterns.length];
-          next = cards.find(card => card.pattern === nextPattern && card.stage === 'new' && card.difficultyRating === difficulty);
-          if (next) {found = true; updatePattern(nextPattern); break;}
-        }
-        if (found) break;
+        next = cards.find(card => card.stage === 'new' && card.difficultyRating === difficulty);
+        if (next) break;
       }
     }
 
@@ -77,7 +61,7 @@ export default function Flashcard() {
       return null;
     }
     return next;
-  }, [cards, pattern, newCardsPerDay, newCardsToday, patterns, updatePattern, includeMedium, includeHard]);
+  }, [cards, newCardsPerDay, newCardsToday, includeMedium, includeHard]);
 
   const rate = useCallback((rating) => {
     if (current.stage === 'new') {
@@ -92,19 +76,12 @@ export default function Flashcard() {
     const updated = [...cards.filter(card => card !== current), scheduling[rating].card];
     setCards(updated);
 
-    let next = getNextCard();
-    if (!next) {
-      const currentIndex = patterns.indexOf(pattern);
-      const nextIndex = (currentIndex + 1) % patterns.length;
-      updatePattern(patterns[nextIndex]);
-      next = getNextCard();
-    }
-
+    const next = getNextCard();
     if (next) {
       setCurrent(next);
       fetchCardData(next.id);
     }
-  }, [current, cards, f, getNextCard, patterns, pattern, updatePattern, setCards, setCurrent, fetchCardData, newCardsToday]);
+  }, [current, cards, f, getNextCard, setCards, setCurrent, fetchCardData, newCardsToday]);
 
   const submitAnswer = useCallback(async () => {
     if (isRevealed || isGrading) return;
@@ -234,7 +211,7 @@ export default function Flashcard() {
     if (!next) return;
     setCurrent(next);
     fetchCardData(next.id);
-  }, [pattern, cards, fetchCardData, done]);
+  }, [cards, fetchCardData, done]);
 
   useEffect(() => {
     if (done) {
@@ -256,7 +233,6 @@ export default function Flashcard() {
     <>
       <SettingsModal
         cards={cards}
-        patterns={patterns}
         vimMode={vimMode}
         setVimMode={setVimMode}
         includeMedium={includeMedium}
@@ -272,7 +248,7 @@ export default function Flashcard() {
           onChange={(value) => !isRevealed && !isGrading && setAnswer(value)}
           onEditorReady={handleEditorReady}
           vimMode={vimMode}
-          readOnly={isRevealed || isGrading || done}
+          readOnly={isRevealed || isGrading}
         />
       </div>
     </>
