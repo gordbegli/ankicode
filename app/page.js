@@ -1,17 +1,15 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { fsrs, generatorParameters, Rating } from 'ts-fsrs';
+import { fsrs, generatorParameters } from 'ts-fsrs';
 import { startingCards } from './startingCards';
 import Editor from './components/Editor';
 import SettingsModal from './components/SettingsModal';
-import DoneMessage from './components/DoneMessage';
 import styles from './page.module.css';
 
 export default function Flashcard() {
   const [answer, setAnswer] = useState('');
   const [current, setCurrent] = useState(null);
-  const [pyodide, setPyodide] = useState(null);
   const f = fsrs(generatorParameters());
   const [solution, setSolution] = useState('');
   const [starterCode, setStarterCode] = useState('');
@@ -28,8 +26,8 @@ export default function Flashcard() {
   const [isGrading, setIsGrading] = useState(false);
   const [gradeResult, setGradeResult] = useState(null);
   const [hasFailedAttempt, setHasFailedAttempt] = useState(false);
-  const doneMessageRef = useRef(null);
   const editorViewRef = useRef(null);
+  const hasMounted = useRef(false);
 
   const fetchCardData = useCallback((id) => {
     Promise.all([
@@ -73,7 +71,11 @@ export default function Flashcard() {
       }
     }
 
-    if (!next) {next = cards[0]; setDone(true);}
+    if (!next) {
+      setDone(true);
+      setAnswer('# All done for now!\n#\n# Come back tomorrow when more cards are due.\n# Click the logo in the top-right to check your progress.');
+      return null;
+    }
     return next;
   }, [cards, pattern, newCardsPerDay, newCardsToday, patterns, updatePattern, includeMedium, includeHard]);
 
@@ -193,25 +195,16 @@ export default function Flashcard() {
   }, [submitAnswer, revealAnswer, handleNext]);
 
   useEffect(() => {
-    const load = async () => {
-      if (!window.pyodideLoading) {
-        window.pyodideLoading = true;
-        const script = document.createElement('script');
-        script.src = "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js";
-        script.onload = async () => {
-          window.pyodide = await window.loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/" });
-          setPyodide(window.pyodide);
-        };
-        document.body.appendChild(script);
-      } else if (window.pyodide) {
-        setPyodide(window.pyodide);
-      }
-    };
-    load();
-
+    const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
+    if (!hasSeenWelcome) {
+      localStorage.setItem('hasSeenWelcome', 'true');
+      setAnswer('# Welcome to AnkiCode\n#\n# Memorize algorithm templates with spaced repetition.\n#\n# Shortcuts:\n#   Cmd+Enter  Submit\n#   Cmd+;      Reveal answer\n#   Cmd+\'      Next card\n#\n# Click the logo in the top-right to add your OpenAI API key.\n# Press Cmd+\' to start.');
+      setIsRevealed(true);
+    }
     const next = getNextCard();
+    if (!next) return;
     setCurrent(next);
-    fetchCardData(next.id);
+    if (hasSeenWelcome) fetchCardData(next.id);
   }, []);
 
   useEffect(() => {
@@ -235,17 +228,13 @@ export default function Flashcard() {
   }, [newCardsPerDay]);
 
   useEffect(() => {
+    if (!hasMounted.current) { hasMounted.current = true; return; }
+    if (done) return;
     const next = getNextCard();
     if (!next) return;
     setCurrent(next);
     fetchCardData(next.id);
-  }, [pattern, cards, fetchCardData]);
-
-  useEffect(() => {
-    if (done && doneMessageRef.current) {
-      doneMessageRef.current.focus();
-    }
-  }, [done]);
+  }, [pattern, cards, fetchCardData, done]);
 
   useEffect(() => {
     if (done) {
@@ -265,7 +254,6 @@ export default function Flashcard() {
 
   return (
     <>
-      {done && <div ref={doneMessageRef} tabIndex={-1}><DoneMessage cards={cards} /></div>}
       <SettingsModal
         cards={cards}
         patterns={patterns}
@@ -284,7 +272,7 @@ export default function Flashcard() {
           onChange={(value) => !isRevealed && !isGrading && setAnswer(value)}
           onEditorReady={handleEditorReady}
           vimMode={vimMode}
-          readOnly={isRevealed || isGrading}
+          readOnly={isRevealed || isGrading || done}
         />
       </div>
     </>
