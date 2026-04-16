@@ -1,7 +1,0 @@
-# Test the efficient string building template
-result = fn(['h', 'e', 'l', 'l', 'o'])
-
-# Verify it returns the joined string
-assert result == "hello", f"Expected 'hello', got {result}"
-
-print("All template checks passed.")

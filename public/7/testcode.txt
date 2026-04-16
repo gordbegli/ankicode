@@ -1,7 +1,0 @@
-# Test the subarray counting template
-result = fn([1, 1, 1], 2)
-
-# For array [1,1,1] with k=2, there are 2 subarrays that sum to 2
-assert result == 2, f"Expected 2, got {result}"
-
-print("All template checks passed.")

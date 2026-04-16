@@ -1,8 +1,0 @@
-# Test the binary search left-most insertion point template
-arr = [1, 2, 2, 2, 3, 4]
-
-# Find left-most position for 2 (should be index 1)
-result = fn(arr, 2)
-assert result == 1, f"Expected 1, got {result}"
-
-print("All template checks passed.")

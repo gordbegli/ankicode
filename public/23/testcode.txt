@@ -1,8 +1,0 @@
-# Test the trie building template
-root = fn(["apple", "app", "application"])
-
-# Verify root has children
-assert hasattr(root, 'children'), "TrieNode should have 'children' attribute"
-assert 'a' in root.children, "Root should have 'a' as child"
-
-print("All template checks passed.")

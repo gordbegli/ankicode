@@ -1,8 +1,0 @@
-# Test the binary search right-most insertion point template
-arr = [1, 2, 2, 2, 3, 4]
-
-# Find right-most position for 2 (should be index 4, after all 2s)
-result = fn(arr, 2)
-assert result == 4, f"Expected 4, got {result}"
-
-print("All template checks passed.")

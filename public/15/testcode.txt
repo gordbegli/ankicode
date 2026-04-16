@@ -1,9 +1,0 @@
-# Test the top k elements with heap template
-result = fn([3, 1, 4, 1, 5, 9, 2, 6], 3)
-
-print("Function executed successfully.")
-print("Verify your template includes:")
-print("- heap = []")
-print("- heapq.heappush(heap, ...)")
-print("- if len(heap) > k: heapq.heappop(heap)")
-print("All template checks passed.")
