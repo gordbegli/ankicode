@@ -1,3 +1,5 @@
+# Two Pointers: Two Inputs
+
 def fn(arr1, arr2):
     i = j = ans = 0
 

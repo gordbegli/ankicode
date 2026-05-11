@@ -1,3 +1,5 @@
+# Trie
+
 # note: using a class is only necessary if you want to store data at each node.
 # otherwise, you can implement a trie using only hash maps.
 class TrieNode:

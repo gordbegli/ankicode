@@ -1,3 +1,5 @@
+# Monotonic Increasing Stack
+
 def fn(arr):
     stack = []
     ans = 0

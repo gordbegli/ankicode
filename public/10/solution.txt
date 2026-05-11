@@ -1,3 +1,5 @@
+# Binary Tree: DFS (Iterative)
+
 def dfs(root):
     stack = [root]
     ans = 0

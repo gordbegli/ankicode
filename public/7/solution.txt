@@ -1,3 +1,5 @@
+# Subarrays with Exact Criteria
+
 from collections import defaultdict
 
 def fn(arr, k):

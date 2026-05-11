@@ -10,8 +10,9 @@ import { EditorView } from '@codemirror/view';
 
 const Editor = ({ value, onChange, onEditorReady, vimMode, readOnly = false }) => {
   const editorRef = (node) => {
-    if (node) {
+    if (node && node.view) {
       onEditorReady(node.view);
+      node.view.focus();
     }
   };
 

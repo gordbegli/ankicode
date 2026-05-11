@@ -1,3 +1,5 @@
+# Graph: DFS (Iterative)
+
 def fn(graph):
     stack = [START_NODE]
     seen = {START_NODE}

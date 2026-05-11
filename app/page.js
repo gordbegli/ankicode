@@ -57,7 +57,7 @@ export default function Flashcard() {
 
     if (!next) {
       setDone(true);
-      setAnswer('# All done for now!\n#\n# Come back tomorrow when more cards are due.\n# Click the logo in the top-right to check your progress.');
+      setAnswer('# All done. Come back tomorrow.');
       return null;
     }
     return next;
@@ -73,7 +73,7 @@ export default function Flashcard() {
       localStorage.setItem('newCardsToday', JSON.stringify(updated));
     }
     const scheduling = f.repeat(current, new Date());
-    const updated = [...cards.filter(card => card !== current), scheduling[rating].card];
+    const updated = [...cards.filter(card => card.id !== current.id), { ...current, ...scheduling[rating].card, stage: 'learning' }];
     setCards(updated);
 
     const next = getNextCard();
@@ -149,6 +149,7 @@ export default function Flashcard() {
     setIsRevealed(false);
     setGradeResult(null);
     setHasFailedAttempt(false);
+    setTimeout(() => editorViewRef.current?.focus(), 0);
   }, [isRevealed, rate, gradeResult, hasFailedAttempt]);
 
   useEffect(() => {
@@ -222,13 +223,6 @@ export default function Flashcard() {
     }
   }, [done]);
 
-  const handleEditorReady = (view) => {
-    if (view && !done) {
-      editorViewRef.current = view;
-      view.focus();
-    }
-  };
-
   return (
     <>
       <SettingsModal
@@ -246,7 +240,7 @@ export default function Flashcard() {
         <Editor
           value={answer}
           onChange={(value) => !isRevealed && !isGrading && setAnswer(value)}
-          onEditorReady={handleEditorReady}
+          onEditorReady={(view) => { editorViewRef.current = view; }}
           vimMode={vimMode}
           readOnly={isRevealed || isGrading}
         />

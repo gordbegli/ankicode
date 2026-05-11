@@ -3,6 +3,17 @@ import Mixpanel from 'mixpanel';
 
 const mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
 
+const clientCache = new Map();
+
+function getClient(apiKey) {
+    let client = clientCache.get(apiKey);
+    if (!client) {
+        client = new OpenAI({ apiKey });
+        clientCache.set(apiKey, client);
+    }
+    return client;
+}
+
 export async function POST(req) {
     try {
         const { userCode, expectedTemplate, templateName } = await req.json();
@@ -15,9 +26,7 @@ export async function POST(req) {
             });
         }
 
-        const openai = new OpenAI({
-            apiKey: userApiKey,
-        });
+        const openai = getClient(userApiKey);
 
         const messages = [
             {
@@ -39,6 +48,8 @@ Be lenient about minor differences like:
 - Abbreviated comments (e.g. "#logic" vs "#logic to update curr")
 - Missing answer variables (ans, result, etc.) when the core algorithmic structure is correctly implemented
 - Missing placeholder comments when the user has implemented the correct algorithmic pattern
+- Tuple/pair unpacking order differences (e.g. "for edge, nei in graph[node]" vs "for nei, weight in graph[node]") as long as the variables are used consistently with their intended meaning
+- Variable name typos where the intent is obvious (e.g. "cust_dist" instead of "curr_dist", "neigbor" instead of "neighbor")
 
 Be STRICT about incorrect logic:
 - Wrong index calculations (e.g. m = arr[(r-l)//2] is WRONG, should be m = arr[(l+r)//2])

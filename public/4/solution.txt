@@ -1,3 +1,5 @@
+# Efficient String Building
+
 # arr is a list of characters
 def fn(arr):
     ans = []
