@@ -1,4 +1,0 @@
-# Binary Tree: BFS
-
-def fn(root):
-    pass

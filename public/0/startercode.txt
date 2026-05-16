@@ -1,4 +1,0 @@
-# Two Pointers: Opposite Ends
-
-def fn(arr):
-    pass

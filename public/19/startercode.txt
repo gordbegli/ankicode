@@ -1,4 +1,0 @@
-# Binary Search: Greedy (Minimum)
-
-def fn(arr):
-    pass

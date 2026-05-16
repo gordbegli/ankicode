@@ -1,4 +1,0 @@
-# Efficient String Building
-
-def fn(arr):
-    pass

@@ -1,4 +1,0 @@
-# Binary Search
-
-def fn(arr, target):
-    pass

@@ -1,4 +1,0 @@
-# Find Top K Elements with Heap
-
-def fn(arr, k):
-    pass

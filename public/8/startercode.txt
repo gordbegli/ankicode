@@ -1,4 +1,0 @@
-# Monotonic Increasing Stack
-
-def fn(arr):
-    pass

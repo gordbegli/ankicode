@@ -1,4 +1,0 @@
-# Graph: BFS
-
-def fn(graph):
-    pass

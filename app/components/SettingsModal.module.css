@@ -38,7 +38,7 @@
 .modal {
   background: white;
   border-radius: 12px;
-  max-width: 500px;
+  max-width: 760px;
   width: 90%;
   max-height: 80vh;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -189,4 +189,44 @@
 
 .dataButton:hover {
   background: rgba(0, 0, 0, 0.05);
+}
+
+.stateSection {
+  align-items: stretch;
+  flex-direction: column;
+  opacity: 1;
+  white-space: normal;
+}
+
+.stateHeader {
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+}
+
+.stateHelp {
+  color: #555;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+
+.stateTextarea {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  height: 260px;
+  line-height: 1.4;
+  outline: none;
+  padding: 10px;
+  resize: vertical;
+  width: 100%;
+}
+
+.stateMessage {
+  color: #555;
+  font-size: 0.8rem;
+  margin: 8px 0 0;
 }

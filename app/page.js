@@ -7,19 +7,51 @@ import Editor from './components/Editor';
 import SettingsModal from './components/SettingsModal';
 import styles from './page.module.css';
 
+const APP_STATE_KEY = 'ankicodeState';
+
+const defaultAppState = {
+  vimMode: false,
+  includeMedium: false,
+  includeHard: false,
+  newCardsPerDay: 1,
+  newCardsToday: { date: '', count: 0 },
+  calendar: {},
+  hasSeenWelcome: false,
+  cards: startingCards,
+};
+
+function loadAppState() {
+  if (typeof window === 'undefined') return defaultAppState;
+
+  const storedState = localStorage.getItem(APP_STATE_KEY);
+  const state = storedState ? JSON.parse(storedState) : defaultAppState;
+  delete state.apiKey;
+  return state;
+}
+
+function saveAppState(state) {
+  const stateToSave = { ...state };
+  delete stateToSave.apiKey;
+  localStorage.setItem(APP_STATE_KEY, JSON.stringify(stateToSave, null, 2));
+}
+
 export default function Flashcard() {
   const [answer, setAnswer] = useState('');
   const [current, setCurrent] = useState(null);
   const f = fsrs(generatorParameters());
   const [solution, setSolution] = useState('');
-  const [starterCode, setStarterCode] = useState('');
   const [isRevealed, setIsRevealed] = useState(false);
-  const [cards, setCards] = useState(() => {if (typeof window !== 'undefined') {const storedCards = localStorage.getItem('storedCards');return storedCards ? JSON.parse(storedCards) : startingCards;}return startingCards;});
-  const [vimMode, setVimMode] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('vimMode') || 'false') : false);
-  const [includeMedium, setIncludeMedium] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('includeMedium') || 'false') : false);
-  const [includeHard, setIncludeHard] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('includeHard') || 'false') : false);
-  const [newCardsPerDay, setNewCardsPerDay] = useState(() => typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('newCardsPerDay') ?? '1') : 1);
-  const [newCardsToday, setNewCardsToday] = useState(() => { if (typeof window !== 'undefined') { return JSON.parse(localStorage.getItem('newCardsToday') || '{"date":"","count":0}'); } return { date: '', count: 0 }; });
+  const [appState, setAppState] = useState(loadAppState);
+  const {
+    cards,
+    calendar,
+    hasSeenWelcome,
+    includeHard,
+    includeMedium,
+    newCardsPerDay,
+    newCardsToday,
+    vimMode,
+  } = appState;
   const [done, setDone] = useState(false);
   const [isGrading, setIsGrading] = useState(false);
   const [gradeResult, setGradeResult] = useState(null);
@@ -27,30 +59,35 @@ export default function Flashcard() {
   const editorViewRef = useRef(null);
   const hasMounted = useRef(false);
 
-  const fetchCardData = useCallback((id) => {
-    Promise.all([
-      fetch(`/${id}/startercode.txt`).then(response => response.text()),
-      fetch(`/${id}/solution.txt`).then(response => response.text())
-    ]).then(([starterCode, solution]) => {
-      setStarterCode(starterCode);
-      setAnswer(starterCode);
-      setSolution(solution);
-    });
+  const updateAppState = useCallback((updates) => {
+    setAppState(previous => ({ ...previous, ...updates }));
   }, []);
 
-  const getNextCard = useCallback(() => {
+  const setVimMode = useCallback((value) => updateAppState({ vimMode: value }), [updateAppState]);
+  const setIncludeMedium = useCallback((value) => updateAppState({ includeMedium: value }), [updateAppState]);
+  const setIncludeHard = useCallback((value) => updateAppState({ includeHard: value }), [updateAppState]);
+  const setNewCardsPerDay = useCallback((value) => updateAppState({ newCardsPerDay: value }), [updateAppState]);
+
+  const loadCardData = useCallback((card) => {
+    if (!card) return;
+
+    setAnswer(card.starterCode || '');
+    setSolution(card.solution || '');
+  }, []);
+
+  const getNextCard = useCallback((sourceCards = cards, sourceNewCardsToday = newCardsToday, sourceSettings = { newCardsPerDay, includeMedium, includeHard }) => {
     const today = new Date().setHours(0, 0, 0, 0);
-    let next = cards.find(card => card.stage === 'learning' && new Date(card.due).setHours(0, 0, 0, 0) <= today);
+    let next = sourceCards.find(card => card.stage === 'learning' && new Date(card.due).setHours(0, 0, 0, 0) <= today);
 
     const todayStr = new Date().toISOString().split('T')[0];
-    const todayCount = newCardsToday.date === todayStr ? newCardsToday.count : 0;
-    if (!next && newCardsPerDay > 0 && todayCount < newCardsPerDay) {
+    const todayCount = sourceNewCardsToday.date === todayStr ? sourceNewCardsToday.count : 0;
+    if (!next && sourceSettings.newCardsPerDay > 0 && todayCount < sourceSettings.newCardsPerDay) {
       const difficulties = ['Easy'];
-      if (includeMedium) difficulties.push('Medium');
-      if (includeHard) difficulties.push('Hard');
+      if (sourceSettings.includeMedium) difficulties.push('Medium');
+      if (sourceSettings.includeHard) difficulties.push('Hard');
 
       for (let difficulty of difficulties) {
-        next = cards.find(card => card.stage === 'new' && card.difficultyRating === difficulty);
+        next = sourceCards.find(card => card.stage === 'new' && card.difficultyRating === difficulty);
         if (next) break;
       }
     }
@@ -60,41 +97,59 @@ export default function Flashcard() {
       setAnswer('# All done. Come back tomorrow.');
       return null;
     }
+    setDone(false);
     return next;
-  }, [cards, newCardsPerDay, newCardsToday, includeMedium, includeHard]);
+  }, [cards, includeHard, includeMedium, newCardsPerDay, newCardsToday]);
 
-  const rate = useCallback((rating) => {
-    if (current.stage === 'new') {
-      current.stage = 'learning';
-      const todayStr = new Date().toISOString().split('T')[0];
-      const newCount = newCardsToday.date === todayStr ? newCardsToday.count + 1 : 1;
-      const updated = { date: todayStr, count: newCount };
-      setNewCardsToday(updated);
-      localStorage.setItem('newCardsToday', JSON.stringify(updated));
-    }
-    const scheduling = f.repeat(current, new Date());
-    const updated = [...cards.filter(card => card.id !== current.id), { ...current, ...scheduling[rating].card, stage: 'learning' }];
-    setCards(updated);
+  const handleAppStateChange = useCallback((nextState) => {
+    setAppState(nextState);
 
-    const next = getNextCard();
+    const next = getNextCard(nextState.cards, nextState.newCardsToday, nextState);
     if (next) {
       setCurrent(next);
-      fetchCardData(next.id);
+      loadCardData(next);
+    } else {
+      setCurrent(null);
     }
-  }, [current, cards, f, getNextCard, setCards, setCurrent, fetchCardData, newCardsToday]);
+  }, [getNextCard, loadCardData]);
+
+  const rate = useCallback((rating) => {
+    if (!current) return;
+
+    let updatedNewCardsToday = newCardsToday;
+    const cardToSchedule = { ...current, stage: 'learning' };
+
+    if (current.stage === 'new') {
+      const todayStr = new Date().toISOString().split('T')[0];
+      const newCount = newCardsToday.date === todayStr ? newCardsToday.count + 1 : 1;
+      updatedNewCardsToday = { date: todayStr, count: newCount };
+    }
+
+    const scheduling = f.repeat(cardToSchedule, new Date());
+    const updatedCards = cards.map(card => (
+      card.id === current.id
+        ? { ...cardToSchedule, ...scheduling[rating].card, stage: 'learning' }
+        : card
+    ));
+
+    updateAppState({ cards: updatedCards, newCardsToday: updatedNewCardsToday });
+
+    const next = getNextCard(updatedCards, updatedNewCardsToday, {
+      ...appState,
+      cards: updatedCards,
+      newCardsToday: updatedNewCardsToday,
+    });
+    if (next) {
+      setCurrent(next);
+      loadCardData(next);
+    }
+  }, [appState, current, cards, f, getNextCard, setCurrent, loadCardData, newCardsToday, updateAppState]);
 
   const submitAnswer = useCallback(async () => {
     if (isRevealed || isGrading) return;
 
     setIsGrading(true);
     const userCode = answer;
-    const apiKey = localStorage.getItem('apiKey');
-
-    if (!apiKey) {
-      setAnswer(`${userCode}\n\n# No API key found. Add your OpenAI API key in settings.\n# Press Cmd+; to reveal the answer instead.`);
-      setIsGrading(false);
-      return;
-    }
 
     setAnswer(`${userCode}\n\n# Grading...`);
 
@@ -103,7 +158,6 @@ export default function Flashcard() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-API-Key': apiKey,
         },
         body: JSON.stringify({
           userCode: userCode,
@@ -173,59 +227,42 @@ export default function Flashcard() {
   }, [submitAnswer, revealAnswer, handleNext]);
 
   useEffect(() => {
-    const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
     if (!hasSeenWelcome) {
-      localStorage.setItem('hasSeenWelcome', 'true');
-      setAnswer('# Welcome to AnkiCode\n#\n# Memorize algorithm templates with spaced repetition.\n#\n# Shortcuts:\n#   Cmd+Enter  Submit\n#   Cmd+;      Reveal answer\n#   Cmd+\'      Next card\n#\n# Click the logo in the top-right to add your OpenAI API key.\n# Press Cmd+\' to start.');
+      updateAppState({ hasSeenWelcome: true });
+      setAnswer('# Welcome to AnkiCode\n#\n# Memorize algorithm templates with spaced repetition.\n#\n# Shortcuts:\n#   Cmd+Enter  Submit\n#   Cmd+;      Reveal answer\n#   Cmd+\'      Next card\n#\n# Press Cmd+\' to start.');
       setIsRevealed(true);
     }
-    const next = getNextCard();
+    const next = getNextCard(cards, newCardsToday, { newCardsPerDay, includeMedium, includeHard });
     if (!next) return;
     setCurrent(next);
-    if (hasSeenWelcome) fetchCardData(next.id);
+    if (hasSeenWelcome) loadCardData(next);
   }, []);
 
   useEffect(() => {
-    if (cards.length > 0) localStorage.setItem('storedCards', JSON.stringify(cards));
-  }, [cards]);
-
-  useEffect(() => {
-    localStorage.setItem('vimMode', JSON.stringify(vimMode));
-  }, [vimMode]);
-
-  useEffect(() => {
-    localStorage.setItem('includeMedium', JSON.stringify(includeMedium));
-  }, [includeMedium]);
-
-  useEffect(() => {
-    localStorage.setItem('includeHard', JSON.stringify(includeHard));
-  }, [includeHard]);
-
-  useEffect(() => {
-    localStorage.setItem('newCardsPerDay', JSON.stringify(newCardsPerDay));
-  }, [newCardsPerDay]);
+    saveAppState(appState);
+  }, [appState]);
 
   useEffect(() => {
     if (!hasMounted.current) { hasMounted.current = true; return; }
     if (done) return;
-    const next = getNextCard();
+    const next = getNextCard(cards, newCardsToday, { newCardsPerDay, includeMedium, includeHard });
     if (!next) return;
     setCurrent(next);
-    fetchCardData(next.id);
-  }, [cards, fetchCardData, done]);
+    loadCardData(next);
+  }, [cards, done, getNextCard, includeHard, includeMedium, loadCardData, newCardsPerDay, newCardsToday]);
 
   useEffect(() => {
     if (done) {
       const today = new Date().toISOString().split('T')[0];
-      const updatedCalendar = JSON.parse(localStorage.getItem('calendar') || '{}');
-      updatedCalendar[today] = true;
-      localStorage.setItem('calendar', JSON.stringify(updatedCalendar));
+      if (calendar[today]) return;
+      updateAppState({ calendar: { ...calendar, [today]: true } });
     }
-  }, [done]);
+  }, [calendar, done, updateAppState]);
 
   return (
     <>
       <SettingsModal
+        appState={appState}
         cards={cards}
         vimMode={vimMode}
         setVimMode={setVimMode}
@@ -235,6 +272,7 @@ export default function Flashcard() {
         setIncludeHard={setIncludeHard}
         newCardsPerDay={newCardsPerDay}
         setNewCardsPerDay={setNewCardsPerDay}
+        onAppStateChange={handleAppStateChange}
       />
       <div className={styles.container}>
         <Editor

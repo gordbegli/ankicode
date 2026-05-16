@@ -1,4 +1,0 @@
-# Binary Search: Left-most Insertion Point
-
-def fn(arr, target):
-    pass

@@ -1,4 +1,0 @@
-# Two Pointers: Two Inputs
-
-def fn(arr1, arr2):
-    pass

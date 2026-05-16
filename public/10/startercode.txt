@@ -1,4 +1,0 @@
-# Binary Tree: DFS (Iterative)
-
-def dfs(root):
-    pass

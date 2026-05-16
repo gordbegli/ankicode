@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Calendar.module.css';
 
-const Calendar = () => {
+const Calendar = ({ calendar }) => {
   const gridRef = useRef(null);
   const [rightEdges, setRightEdges] = useState([]);
   const [daysData, setDaysData] = useState([]);
 
   useEffect(() => {
-    const storedCalendar = JSON.parse(localStorage.getItem('calendar') || '{}');
+    const storedCalendar = calendar || JSON.parse(localStorage.getItem('calendar') || '{}');
     const today = new Date();
     const currentYear = today.getUTCFullYear();
     const startDate = new Date(Date.UTC(currentYear, 0, 1));       // Jan 1 this year
@@ -27,7 +27,7 @@ const Calendar = () => {
     }
     
     setDaysData(days);
-  }, []);
+  }, [calendar]);
 
   // Direct copy from Progress.js edge detection
   useEffect(() => {

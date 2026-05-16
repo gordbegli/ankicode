@@ -3,30 +3,18 @@ import Mixpanel from 'mixpanel';
 
 const mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
 
-const clientCache = new Map();
-
-function getClient(apiKey) {
-    let client = clientCache.get(apiKey);
-    if (!client) {
-        client = new OpenAI({ apiKey });
-        clientCache.set(apiKey, client);
-    }
-    return client;
-}
-
 export async function POST(req) {
     try {
         const { userCode, expectedTemplate, templateName } = await req.json();
-        const userApiKey = req.headers.get('X-API-Key');
 
-        if (!userApiKey) {
-            return new Response(JSON.stringify({ error: 'No API key provided' }), {
-                status: 400,
+        if (!process.env.OPENAI_API_KEY) {
+            return new Response(JSON.stringify({ error: 'OpenAI API key is not configured' }), {
+                status: 500,
                 headers: { 'Content-Type': 'application/json' },
             });
         }
 
-        const openai = getClient(userApiKey);
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
         const messages = [
             {

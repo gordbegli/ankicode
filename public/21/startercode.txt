@@ -1,4 +1,0 @@
-# Backtracking
-
-def backtrack(curr):
-    pass

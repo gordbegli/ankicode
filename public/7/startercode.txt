@@ -1,4 +1,0 @@
-# Subarrays with Exact Criteria
-
-def fn(arr, k):
-    pass

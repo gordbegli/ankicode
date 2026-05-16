@@ -1,4 +1,0 @@
-# Prefix Sum
-
-def fn(arr):
-    pass

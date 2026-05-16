@@ -1,4 +1,0 @@
-# Binary Search: Greedy (Maximum)
-
-def fn(arr):
-    pass

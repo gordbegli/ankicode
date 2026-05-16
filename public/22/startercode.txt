@@ -1,4 +1,0 @@
-# Dynamic Programming: Top-Down
-
-def fn(arr):
-    pass

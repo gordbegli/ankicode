@@ -1,4 +1,0 @@
-# Reversing a Linked List
-
-def fn(head):
-    pass
