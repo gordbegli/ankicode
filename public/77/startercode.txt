@@ -1,6 +1,0 @@
-from typing import List
-
-
-def maxProfit(prices: List[int]) -> int:
-    # TODO: Write your code here
-    pass

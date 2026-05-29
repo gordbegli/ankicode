@@ -1,5 +1,0 @@
-from typing import List
-
-def findOrder(numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-    # Your code here
-    pass

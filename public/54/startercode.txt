@@ -1,3 +1,0 @@
-def minDistance(word1: str, word2: str) -> int:
-    # Your code here
-    pass

@@ -1,6 +1,0 @@
-from typing import List
-
-# Function that will need to be implemented
-def partition(s: str) -> List[List[str]]:
-    # Your code here
-    pass

@@ -1,5 +1,0 @@
-from typing import List
-
-def validTree(n: int, edges: List[List[int]]) -> bool:
-    # Your code here
-    pass

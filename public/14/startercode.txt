@@ -1,5 +1,0 @@
-from typing import List
-
-def minCostClimbingStairs(cost: List[int]) -> int:
-    # Your code here
-    pass

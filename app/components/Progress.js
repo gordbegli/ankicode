@@ -1,28 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Progress.module.css';
 
-const Progress = ({ cards, patterns, includeMedium, includeHard }) => {
+const Progress = ({ cards, includeMedium, includeHard }) => {
   const gridRef = useRef(null);
   const [rightEdges, setRightEdges] = useState([]);
 
-  // Group and sort cards by pattern
-  const cardsByPattern = patterns.reduce((acc, pattern) => {
-    acc[pattern] = cards
+  const patterns = [...new Set(cards.map(c => c.pattern))];
+  const sortedCards = patterns.flatMap(pattern =>
+    cards
       .filter(card => card.pattern === pattern)
       .sort((a, b) => {
-        // Learning cards first
         if (a.stage === 'learning' && b.stage !== 'learning') return -1;
         if (b.stage === 'learning' && a.stage !== 'learning') return 1;
-
-        // Then sort by difficulty: Easy -> Medium -> Hard
         const difficultyOrder = { 'Easy': 1, 'Medium': 2, 'Hard': 3 };
         return difficultyOrder[a.difficultyRating] - difficultyOrder[b.difficultyRating];
-      });
-    return acc;
-  }, {});
-
-  // Flatten the sorted cards into a single array while maintaining pattern order
-  const sortedCards = patterns.flatMap(pattern => cardsByPattern[pattern]);
+      })
+  );
 
   useEffect(() => {
     const updatePositions = () => {

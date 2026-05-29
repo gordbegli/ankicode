@@ -1,3 +1,0 @@
-def countPalindromicSubstrings(s: str) -> int:
-    # Your code here
-    pass

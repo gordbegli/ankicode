@@ -8,10 +8,11 @@ import { indentUnit } from '@codemirror/language';
 import { EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 
-const Editor = ({ value, onChange, onEditorReady, vimMode }) => {
+const Editor = ({ value, onChange, onEditorReady, vimMode, readOnly = false }) => {
   const editorRef = (node) => {
-    if (node) {
+    if (node && node.view) {
       onEditorReady(node.view);
+      node.view.focus();
     }
   };
 
@@ -44,8 +45,10 @@ const Editor = ({ value, onChange, onEditorReady, vimMode }) => {
       ref={editorRef}
       value={value}
       height="100vh"
+      readOnly={readOnly}
+      editable={!readOnly}
       extensions={[
-        ...(vimMode ? [vim()] : []),
+        ...(vimMode && !readOnly ? [vim()] : []),
         pythonLanguage,
         basicSetup.filter(ext => ext.name !== 'autocompletion'),
         indentationMarkers(),
@@ -53,6 +56,7 @@ const Editor = ({ value, onChange, onEditorReady, vimMode }) => {
         indentUnit.of("    "),
         fontSize,
         vimTheme,
+        EditorView.lineWrapping,
       ]}
       onChange={onChange}
     />
