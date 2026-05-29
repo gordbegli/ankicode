@@ -6,15 +6,16 @@ const mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
 export async function POST(req) {
     try {
         const { userCode, expectedTemplate, templateName } = await req.json();
+        const userApiKey = req.headers.get('X-API-Key');
 
-        if (!process.env.OPENAI_API_KEY) {
-            return new Response(JSON.stringify({ error: 'OpenAI API key is not configured' }), {
-                status: 500,
+        if (!userApiKey) {
+            return new Response(JSON.stringify({ error: 'No OpenAI API key set. Click the logo in the top right and add yours to get started.' }), {
+                status: 400,
                 headers: { 'Content-Type': 'application/json' },
             });
         }
 
-        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+        const openai = new OpenAI({ apiKey: userApiKey });
 
         const messages = [
             {

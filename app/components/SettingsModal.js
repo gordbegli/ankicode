@@ -10,8 +10,9 @@ function formatAppState(state) {
   return JSON.stringify(stateToFormat, null, 2);
 }
 
-export default function SettingsModal({ appState, cards, vimMode, setVimMode, includeMedium, setIncludeMedium, includeHard, setIncludeHard, newCardsPerDay, setNewCardsPerDay, onAppStateChange }) {
+export default function SettingsModal({ appState, cards, vimMode, setVimMode, includeMedium, setIncludeMedium, includeHard, setIncludeHard, newCardsPerDay, setNewCardsPerDay, apiKey, setApiKey, onAppStateChange }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const [stateText, setStateText] = useState('');
   const [stateTextDirty, setStateTextDirty] = useState(false);
   const [stateMessage, setStateMessage] = useState('');
@@ -79,6 +80,18 @@ export default function SettingsModal({ appState, cards, vimMode, setVimMode, in
               </button>
             </div>
             <div className={styles.modalContent}>
+              <div className={styles.settingsSection}>
+                <p className={styles.settingsText}><a className={styles.settingsLink} target='_blank' href='https://platform.openai.com/api-keys'>OpenAI</a> Key</p>
+                <input
+                  type={isInputFocused ? 'text' : 'password'}
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
+                  onFocus={() => setIsInputFocused(true)}
+                  onBlur={() => setIsInputFocused(false)}
+                  placeholder="sk-..."
+                  className={styles.apiKeyInput}
+                />
+              </div>
               <div className={styles.settingsSection}>
                 <p className={styles.settingsText}>New / Day</p>
                 <input type="number" min="0" value={newCardsPerDay} onChange={(e) => setNewCardsPerDay(Math.max(0, parseInt(e.target.value) || 0))} className={styles.apiKeyInput} />
