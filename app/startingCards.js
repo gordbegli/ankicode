@@ -683,6 +683,7 @@ while heap:
 
 export const startingCards = startingCardDefinitions.map(card => ({
   ...card,
+  starterCode: `${card.starterCode}\n# Cmd+Enter to submit. Cmd+; to reveal.\n`,
   stage: 'new',
   ...createEmptyCard(),
 }));

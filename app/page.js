@@ -17,6 +17,7 @@ const defaultAppState = {
   newCardsToday: { date: '', count: 0 },
   calendar: {},
   hasSeenWelcome: false,
+  apiKey: '',
   cards: startingCards,
 };
 
@@ -24,15 +25,11 @@ function loadAppState() {
   if (typeof window === 'undefined') return defaultAppState;
 
   const storedState = localStorage.getItem(APP_STATE_KEY);
-  const state = storedState ? JSON.parse(storedState) : defaultAppState;
-  delete state.apiKey;
-  return state;
+  return storedState ? { ...defaultAppState, ...JSON.parse(storedState) } : defaultAppState;
 }
 
 function saveAppState(state) {
-  const stateToSave = { ...state };
-  delete stateToSave.apiKey;
-  localStorage.setItem(APP_STATE_KEY, JSON.stringify(stateToSave, null, 2));
+  localStorage.setItem(APP_STATE_KEY, JSON.stringify(state, null, 2));
 }
 
 export default function Flashcard() {
@@ -51,6 +48,7 @@ export default function Flashcard() {
     newCardsPerDay,
     newCardsToday,
     vimMode,
+    apiKey,
   } = appState;
   const [done, setDone] = useState(false);
   const [isGrading, setIsGrading] = useState(false);
@@ -67,6 +65,7 @@ export default function Flashcard() {
   const setIncludeMedium = useCallback((value) => updateAppState({ includeMedium: value }), [updateAppState]);
   const setIncludeHard = useCallback((value) => updateAppState({ includeHard: value }), [updateAppState]);
   const setNewCardsPerDay = useCallback((value) => updateAppState({ newCardsPerDay: value }), [updateAppState]);
+  const setApiKey = useCallback((value) => updateAppState({ apiKey: value }), [updateAppState]);
 
   const loadCardData = useCallback((card) => {
     if (!card) return;
@@ -102,7 +101,7 @@ export default function Flashcard() {
   }, [cards, includeHard, includeMedium, newCardsPerDay, newCardsToday]);
 
   const handleAppStateChange = useCallback((nextState) => {
-    setAppState(nextState);
+    setAppState(previous => ({ ...nextState, apiKey: previous.apiKey }));
 
     const next = getNextCard(nextState.cards, nextState.newCardsToday, nextState);
     if (next) {
@@ -158,6 +157,7 @@ export default function Flashcard() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-API-Key': apiKey || '',
         },
         body: JSON.stringify({
           userCode: userCode,
@@ -169,7 +169,7 @@ export default function Flashcard() {
       const result = await response.json();
 
       if (result.error) {
-        setAnswer(`${userCode}\n\n# Error: ${result.error}\n# Press Cmd+; to reveal the answer.`);
+        setAnswer(`${userCode}\n\n# ${result.error}`);
         setGradeResult(null);
       } else if (result.passed) {
         setAnswer(`${userCode}\n\n# Correct!\n# ${result.feedback}\n# Press Cmd+' to continue.`);
@@ -186,7 +186,7 @@ export default function Flashcard() {
     }
 
     setIsGrading(false);
-  }, [answer, solution, current, isRevealed, isGrading]);
+  }, [answer, solution, current, isRevealed, isGrading, apiKey]);
 
   const revealAnswer = useCallback(() => {
     if (isRevealed) return;
@@ -229,7 +229,7 @@ export default function Flashcard() {
   useEffect(() => {
     if (!hasSeenWelcome) {
       updateAppState({ hasSeenWelcome: true });
-      setAnswer('# Welcome to AnkiCode\n#\n# Memorize algorithm templates with spaced repetition.\n#\n# Shortcuts:\n#   Cmd+Enter  Submit\n#   Cmd+;      Reveal answer\n#   Cmd+\'      Next card\n#\n# Press Cmd+\' to start.');
+      setAnswer('# Welcome to AnkiCode\n#\n# Memorize algorithm templates with spaced repetition.\n#\n# Before you start, click the logo in the top right and paste in your\n# OpenAI API key. It is stored only in your browser and used to grade\n# your answers. Grab one at https://platform.openai.com/api-keys\n#\n# Shortcuts:\n#   Cmd+Enter  Submit\n#   Cmd+;      Reveal answer\n#   Cmd+\'      Next card\n#\n# Press Cmd+\' to start.');
       setIsRevealed(true);
     }
     const next = getNextCard(cards, newCardsToday, { newCardsPerDay, includeMedium, includeHard });
@@ -272,6 +272,8 @@ export default function Flashcard() {
         setIncludeHard={setIncludeHard}
         newCardsPerDay={newCardsPerDay}
         setNewCardsPerDay={setNewCardsPerDay}
+        apiKey={apiKey}
+        setApiKey={setApiKey}
         onAppStateChange={handleAppStateChange}
       />
       <div className={styles.container}>
