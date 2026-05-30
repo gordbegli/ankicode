@@ -35,3 +35,4 @@ dfs(root, None)
 - [ ] Make `page.js` more readable.
 - [ ] Pretty sure `pattern` is not needed. Rm from `defaultDeck.js`.
 - [ ] Do I really need `title` in `defaultDeck.js`?
+- [ ] Update `route.js` to use some sort of JSON enforcement instead of the jank I have in there. 
