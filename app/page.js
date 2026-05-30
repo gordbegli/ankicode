@@ -7,8 +7,6 @@ import Editor from './components/Editor';
 import SettingsModal from './components/SettingsModal';
 import styles from './page.module.css';
 
-const APP_STATE_KEY = 'ankicodeState';
-
 const defaultAppState = {
   vimMode: false,
   includeMedium: false,
@@ -23,13 +21,12 @@ const defaultAppState = {
 
 function loadAppState() {
   if (typeof window === 'undefined') return defaultAppState;
-
-  const storedState = localStorage.getItem(APP_STATE_KEY);
+  const storedState = localStorage.getItem('ankicodeState');
   return storedState ? { ...defaultAppState, ...JSON.parse(storedState) } : defaultAppState;
 }
 
 function saveAppState(state) {
-  localStorage.setItem(APP_STATE_KEY, JSON.stringify(state, null, 2));
+  localStorage.setItem('ankicodeState', JSON.stringify(state, null, 2));
 }
 
 export default function Flashcard() {
