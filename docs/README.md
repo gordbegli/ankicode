@@ -1,6 +1,6 @@
 # AnkiCode  
 
-AnkiCode blends [Anki](https://apps.ankiweb.net/), a code editor, and an [llm judge](https://github.com/gordbegli/ankicode/blob/main/app/api/grade/route.js).
+AnkiCode blends [Anki](https://apps.ankiweb.net/), a code editor, and an [llm judge](https://github.com/gordbegli/ankicode/blob/main/app/api/grade/systemPrompt.js).
 You can use it to memorize python. It comes stock with cards for templates from [this](https://leetcode.com/explore/featured/card/leetcodes-interview-crash-course-data-structures-and-algorithms) dsa course.
 
 ### Example Flash Card
