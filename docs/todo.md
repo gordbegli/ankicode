@@ -33,3 +33,5 @@ dfs(root, None)
 - [ ] Clean up the vibe coded slop qol stuff in the app logic.
 - [ ] Deliniate the vibe coded components.
 - [ ] Make `page.js` more readable.
+- [ ] Pretty sure `pattern` is not needed. Rm from `defaultDeck.js`.
+- [ ] Do I really need `title` in `defaultDeck.js`?
