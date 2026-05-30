@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { fsrs, generatorParameters } from 'ts-fsrs';
-import { startingCards } from './startingCards';
+import { defaultDeck } from './defaultDeck';
 import Editor from './components/Editor';
 import SettingsModal from './components/SettingsModal';
 import styles from './page.module.css';
@@ -16,7 +16,7 @@ const defaultAppState = {
   calendar: {},
   hasSeenWelcome: false,
   apiKey: '',
-  cards: startingCards,
+  cards: defaultDeck,
 };
 
 function loadAppState() {
@@ -63,8 +63,8 @@ export default function Flashcard() {
   const loadCardData = useCallback((card) => {
     if (!card) return;
 
-    setAnswer(card.starterCode || '');
-    setSolution(card.solution || '');
+    setAnswer(card.front || card.starterCode || '');
+    setSolution(card.back || card.solution || '');
   }, []);
 
   const getNextCard = useCallback((sourceCards = cards, sourceNewCardsToday = newCardsToday, sourceSettings = { newCardsPerDay, includeMedium, includeHard }) => {
