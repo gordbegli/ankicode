@@ -1,14 +1,4 @@
----
-
-When there is one card left and I answer it. 
-And i get it correct.
-I see the same card again.
-But when I reload the page.
-I need the done message, instead of having to answer the question.
-
----
-
-consider adding these
+> maybe these should be defaults?
 
 ```
 #graph from array of edges
@@ -35,4 +25,10 @@ def dfs(node, parent):
 	dfs(node.right, node)
 	
 dfs(root, None)
-```#
+```
+
+---
+
+- [ ] The naming in the app should be updated to use anki idioms like "card" "front" "back" etc.
+- [ ] Clean up the vibe coded slop qol stuff in the app logic.
+- [ ] Deliniate the vibe coded components.
