@@ -32,3 +32,4 @@ dfs(root, None)
 - [ ] The naming in the app should be updated to use anki idioms like "card" "front" "back" etc.
 - [ ] Clean up the vibe coded slop qol stuff in the app logic.
 - [ ] Deliniate the vibe coded components.
+- [ ] Make `page.js` more readable.
