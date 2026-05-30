@@ -25,10 +25,6 @@ function loadAppState() {
   return storedState ? { ...defaultAppState, ...JSON.parse(storedState) } : defaultAppState;
 }
 
-function saveAppState(state) {
-  localStorage.setItem('ankicodeState', JSON.stringify(state, null, 2));
-}
-
 export default function Flashcard() {
   const [answer, setAnswer] = useState('');
   const [current, setCurrent] = useState(null);
@@ -236,7 +232,7 @@ export default function Flashcard() {
   }, []);
 
   useEffect(() => {
-    saveAppState(appState);
+    localStorage.setItem('ankicodeState', JSON.stringify(appState, null, 2));
   }, [appState]);
 
   useEffect(() => {
